@@ -1,0 +1,113 @@
+.top {
+    border: 3px solid var(--primary);
+    padding: 0px 10px;
+    position: sticky;
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    z-index: 10;
+    background-color: var(--gray);
+}
+
+.dark {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.radio-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.white {
+    color: var(--white);
+}
+
+.search-text {
+    padding-left: 10px;
+}
+
+mat-form-field{
+    margin-top: 10px;
+}
+
+.form {
+    display: flex;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.app {
+    display: flex;
+    gap: 20px;
+    background-color: var(--white);
+    align-items: center;
+    width: 100%;
+    width: 350px;
+    margin: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.icon-add {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.results {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.icon, .img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px 0 0 10px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.name{
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.id {
+    font-style: italic;
+    font-size: 12px;
+}
+
+.developer {
+    font-size: 12px;
+}
+
+.score {
+    font-weight: 700;
+}

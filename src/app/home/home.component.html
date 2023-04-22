@@ -1,0 +1,119 @@
+<div class="container">
+    <div class="section center home">
+        <div class="title">
+            Welcome
+        </div>
+        <div class="subtitle uppercase">
+            to apps review Analyzer
+        </div>
+
+        <ng-container *ngTemplateOutlet="svg"></ng-container>
+    </div>
+    <div class="section introduction">
+        <div class="title">
+            Introduction
+        </div>
+        <div class="subtitle content">
+            The Apps Reviews Analyzer is a comprehensive app analytics tool that provides businesses and developers with
+            insights into user feedback to make data-driven decisions.<br><br>
+            With the Apps Reviews Analyzer, users can manage app reviews for both iOS and Android apps. The Dashboard
+            provides a visual representation of the ratings of the iOS/Android apps added to the system. Users can see
+            the number of ratings from 1 star to 5 stars and filter and sort them based on multiple factors.<br><br>
+            The Apps Reviews Analyzer also includes a range of additional features that make it a valuable tool for
+            businesses and developers. These features include the ability to add any iOS/Android app available on Google
+            Play/Apple App Store, generate word clouds based on reviews and sentiments from Google Play/Apple App Store,
+            compare, delete added apps, and receive pop-up notification for new reviews added since the last time the
+            website was loaded.<br><br>
+            Overall, the Apps Reviews Analyzer is a powerful tool that can provide businesses and developers with
+            valuable
+            insights into user feedback. Its range of features, ease of use, and ability to work with both iOS and
+            Android apps hepls in making it easier for delivering the best user experience.
+        </div>
+        <ng-container *ngTemplateOutlet="svg"></ng-container>
+    </div>
+    <div class="section">
+        <div class="title">
+            Features
+        </div>
+        <div class="features-container">
+            <div class="feature shadows" *ngFor="let feature of features">
+                <div class="icon shadows material-symbols-outlined">
+                    {{feature.icon}}
+                </div>
+                <ng-container *ngTemplateOutlet="waveTop"></ng-container>
+                <div class="feature-title">
+                    {{feature.title}}
+                </div>
+                <div class="text">
+                    {{feature.text}}
+                </div>
+                <ng-container *ngTemplateOutlet="wave"></ng-container>
+            </div>
+        </div>
+        <ng-container *ngTemplateOutlet="svg"></ng-container>
+    </div>
+    <div class="section">
+        <div class="title">
+            PWA Apps
+        </div>
+        <div class="mobile-inner">
+            <div class="mobile-container">
+                <img class="mobile"
+                    src="https://raw.githubusercontent.com/phoenixSaket/reviews/main/src/assets/mobile.png"
+                    alt="mobile">
+                <div class="image-container">
+                    <img class="screenshot mobile ss-1" [src]="images[selectedImgIndex]" alt="mobile">
+                </div>
+            </div>
+            <div class="mobile-content">
+                <div class="pwa-section">
+                    Download the Reviews Analyzer Native PWA app
+                </div>
+                <div class="pwa-section">
+                    No updates required
+                </div>
+                <div class="pwa-section">
+                    Stay up to date with the latest and greatest always
+                </div>
+                <div class="pwa-section">
+                    <button class="button" (click)="download('android')">Download Android App</button>
+                </div>
+                <div class="pwa-section">
+                    <button class="button" (click)="download('ios')">Download iOS App Source Code</button>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngTemplateOutlet="svg"></ng-container>
+    </div>
+    <!-- <div class="section">
+        <div class="title">
+            How to
+        </div>
+    </div> -->
+</div>
+
+<ng-template #svg>
+    <div class="svg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#7180ac" fill-opacity="1"
+                d="M0,224L40,192C80,160,160,96,240,101.3C320,107,400,181,480,213.3C560,245,640,235,720,202.7C800,171,880,117,960,117.3C1040,117,1120,171,1200,160C1280,149,1360,75,1400,37.3L1440,0L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z">
+            </path>
+        </svg>
+    </div>
+</ng-template>
+
+<ng-template #wave class="wave">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#7180ac" fill-opacity="0.3"
+            d="M0,224L40,192C80,160,160,96,240,101.3C320,107,400,181,480,213.3C560,245,640,235,720,202.7C800,171,880,117,960,117.3C1040,117,1120,171,1200,160C1280,149,1360,75,1400,37.3L1440,0L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z">
+        </path>
+    </svg>
+</ng-template>
+
+<ng-template #waveTop class="wave">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#7180ac" fill-opacity="0.3"
+            d="M0,224L40,192C80,160,160,96,240,101.3C320,107,400,181,480,213.3C560,245,640,235,720,202.7C800,171,880,117,960,117.3C1040,117,1120,171,1200,160C1280,149,1360,75,1400,37.3L1440,0L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z">
+        </path>
+    </svg>
+</ng-template>

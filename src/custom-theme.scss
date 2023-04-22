@@ -1,0 +1,91 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$analyzer-primary: mat.define-palette(mat.$deep-purple-palette);
+$analyzer-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$custom-primary: (
+  50: #e6e9f0,
+  100: #c0c7dc,
+  200: #98a3c4,
+  300: #4fc3f7,
+  400: #53659c,
+  500: #314b92,
+  600: #2b4489,
+  700: #223b7e,
+  800: #183173,
+  900: #042160,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white
+  )
+);
+
+
+$custom-primary-accent: (
+  50: #dcecf0,
+  100: #A8D0DB,
+  200: #6bb2c6,
+  300: #1b96b5,
+  400: #0084ad,
+  500: #0071a4,
+  600: #006699,
+  700: #005689,
+  800: #004777,
+  900: #002b5a,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white
+  )
+);
+
+$analyzer-primary: mat.define-palette($custom-primary);
+$analyzer-accent: mat.define-palette($custom-primary-accent);
+
+
+
+// The warn palette is optional (defaults to red).
+$analyzer-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$analyzer-theme: mat.define-light-theme((
+  color: (
+    primary: $analyzer-primary,
+    accent: $analyzer-accent,
+    warn: $analyzer-primary,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($analyzer-theme);
+

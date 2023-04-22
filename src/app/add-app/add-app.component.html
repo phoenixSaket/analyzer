@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="top">
+
+        <form class="form" (submit)="searchApp($event)">
+            <div class="platform">
+                <mat-radio-group class="radio-button-container">
+                    <mat-radio-button class="example-radio-button" (change)="checked(platform)"
+                        *ngFor="let platform of platforms" [value]="platform">
+                        <span class="dark">{{platform}}</span>
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <mat-form-field class="example-full-width">
+                <mat-label>App Name</mat-label>
+                <input matInput value="" (change)="inputApp($event)">
+            </mat-form-field>
+            <button mat-raised-button color="primary">
+                <span class="white">Search</span>
+                <span class="material-symbols-outlined search-text white">
+                    search
+                </span></button>
+        </form>
+
+    </div>
+
+    <div class="results">
+        <div class="apps" *ngFor="let app of apps">
+            <div class="app shadows">
+                <div class="icon-add shadows material-symbols-outlined">
+                    add
+                </div>
+                <div class="icon">
+                    <img [src]="app.icon" class="img">
+                </div>
+                <div class="details">
+                    <div class="name">{{app.title}}</div>
+                    <div class="id">{{app.appId}}</div>
+                    <div class="developer">{{app.developer}}</div>
+                    <div class="developer">{{app.genres.join(", ")}}</div>
+                    <div class="score">{{app.score.toFixed(2)}} / 5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
