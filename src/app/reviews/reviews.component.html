@@ -1,5 +1,8 @@
 <div class="container">
     <div class="line boxes">
+        <div class="box shadows app">
+            <img [src]="appData.icon" alt="logo" class="logo">
+        </div>
         <div class="box shadows show-ratings green" routerLink="/app-reviews">
             Open Reviews
             <span class="material-symbols-outlined shadows">
@@ -31,27 +34,11 @@
             </span>
         </div>
         <div class="box shadows">
-            {{appData.price == 0 ? 'Free' : appData.price}}
-            <div class="title-box">
-                Price
-            </div>
-            <span class="material-symbols-outlined shadows">
-                attach_money
-            </span>
-        </div>
-
-        <div class="box shadows">
             {{appData.updated | date}}
             <div class="title-box">Updated</div>
             <span class="material-symbols-outlined shadows">
                 new_releases
             </span>
-        </div>
-        <div class="box shadows">
-            <div class="title-box">
-                Version
-            </div>
-            {{appData.version | titlecase}}
         </div>
     </div>
     <div class="w-50">

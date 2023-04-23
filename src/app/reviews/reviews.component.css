@@ -23,7 +23,7 @@
     min-width: 100px;
     min-height: 150px;
     height: 100%;
-    max-width: 150px;
+    max-width: 350px;
 }
 
 .boxes {
@@ -51,8 +51,8 @@
 
 .box>.material-symbols-outlined {
     position: absolute;
-    top: -20px;
-    right: -20px;
+    top: -10px;
+    right: -10px;
     width: 40px;
     height: 40px;
     display: flex;
@@ -142,4 +142,10 @@
 
 .green {
     background-color: #56B3B3;
+}
+
+.logo {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
 }
