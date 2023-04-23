@@ -13,14 +13,35 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
-
+import { DetailsComponent } from './add-app/details/details.component';
+import { DetailsAndroidComponent } from './add-app/details-android/details-android.component';
+import { AppsComponent } from './apps/apps.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { AppReviewsComponent } from './app-reviews/app-reviews.component';
+import { AppAndroidComponent } from './app-android/app-android.component';
+import { AppIosComponent } from './app-ios/app-ios.component';
+import { FiltersComponent } from './filters/filters.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from "@angular/material/icon";
+import { MatListModule } from "@angular/material/list";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     HomeComponent,
-    AddAppComponent
+    AddAppComponent,
+    DetailsComponent,
+    DetailsAndroidComponent,
+    AppsComponent,
+    ReviewsComponent,
+    AppReviewsComponent,
+    AppAndroidComponent,
+    AppIosComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +52,15 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatDialogModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatChipsModule,
+    NgApexchartsModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatListModule,
+    MatSelectModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

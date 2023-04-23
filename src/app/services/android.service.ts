@@ -6,8 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AndroidService {
 
-  public url = "https://review-un6v.onrender.com/android/";
-  public backupUrl = "https://reviews-be.cyclic.app/android/";
+  // public url = "https://review-un6v.onrender.com/android/";
+  // public backupUrl = "https://reviews-be.cyclic.app/android/";
+
+  public url = "https://reviews-be.cyclic.app/android/";
+  public backupUrl = "https://review-un6v.onrender.com/android/";
 
   public androidAppsDefault = [
     'com.ibx.ibxmobile',

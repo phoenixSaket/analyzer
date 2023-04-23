@@ -1,17 +1,24 @@
+* {
+    transition-duration: 100ms;
+}
+
 .top {
-    border: 3px solid var(--primary);
-    padding: 0px 10px;
+    border-bottom: 1px solid var(--primary);
     position: sticky;
-    top: 10px;
+    top: 0px;
     width: calc(100% - 20px);
-    border-radius: 10px;
+    /* border-radius: 10px; */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
     flex-wrap: wrap;
     z-index: 10;
     background-color: var(--gray);
+}
+
+.bold {
+    font-weight: 700;
 }
 
 .dark {
@@ -72,6 +79,12 @@ mat-form-field{
     color: var(--white);
     border-radius: 10px;
     cursor: pointer;
+    transition-duration: 100ms;
+}
+
+.icon-add:hover {
+    font-size: 30px;
+    background-color: var(--accent);
 }
 
 .results {
@@ -110,4 +123,21 @@ mat-form-field{
 
 .score {
     font-weight: 700;
+}
+
+.open {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.svg {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    opacity: 0.3;
 }

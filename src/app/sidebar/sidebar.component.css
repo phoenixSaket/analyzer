@@ -45,6 +45,46 @@
     transition-duration: 100ms;
 }
 
+.img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 100ms;
+}
+
+.open.img  {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+}
+
+.platform {
+    position: relative;
+}
+
+.circle-logo {
+    position: absolute;
+    top: -11px;
+    right: -11px;
+    width: 22px;
+    height: 22px;
+    background-color: var(--light-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.platform-img { 
+    width: 15px;
+    height: 15px;
+    filter: brightness(0);
+}
+
 .text {
     font-size: 16px;
     /* font-weight: 700; */

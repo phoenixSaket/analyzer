@@ -1,0 +1,79 @@
+.svg {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    opacity: 0.3;
+}
+
+.apps-container {
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.apps, .icon {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+}
+
+.add-icon {
+    font-size: 30px;
+    font-weight: 700;
+    background-color: var(--light-blue);
+    cursor: pointer;
+}
+
+.platform {
+    position: relative;
+}
+
+.red {
+    background-color: #ef626c;
+}
+
+.green {
+    background-color: #56B3B3;
+}
+
+.title {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 1.5px 1.5px 1px darkgrey;
+}
+
+.circle-logo {
+    position: absolute;
+    z-index: 10;
+    top: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--light-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.platform-img { 
+    width: 25px;
+    height: 25px;
+    filter: brightness(0);
+}

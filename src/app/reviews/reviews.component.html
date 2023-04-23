@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="line boxes">
+        <div class="box shadows show-ratings green" routerLink="/app-reviews">
+            Open Reviews
+            <span class="material-symbols-outlined shadows">
+                open_in_new
+            </span>
+        </div>
+        <div class="box shadows red">
+            Delete App
+            <span class="material-symbols-outlined shadows">
+                Delete
+            </span>
+        </div>
+        <div class="box shadows">
+            {{appData.score?.toFixed(2)}} / 5
+            <div class="title-box">
+                Rating
+            </div>
+            <span class="material-symbols-outlined shadows">
+                star
+            </span>
+        </div>
+        <div class="box shadows">
+            {{appData.reviews}}
+            <div class="title-box">
+                Reviews
+            </div>
+            <span class="material-symbols-outlined shadows">
+                rate_review
+            </span>
+        </div>
+        <div class="box shadows">
+            {{appData.price == 0 ? 'Free' : appData.price}}
+            <div class="title-box">
+                Price
+            </div>
+            <span class="material-symbols-outlined shadows">
+                attach_money
+            </span>
+        </div>
+
+        <div class="box shadows">
+            {{appData.updated | date}}
+            <div class="title-box">Updated</div>
+            <span class="material-symbols-outlined shadows">
+                new_releases
+            </span>
+        </div>
+        <div class="box shadows">
+            <div class="title-box">
+                Version
+            </div>
+            {{appData.version | titlecase}}
+        </div>
+    </div>
+    <div class="w-50">
+        <div class="box shadows">
+            <span class="material-symbols-outlined shadows">
+                bar_chart
+            </span>
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+                [yaxis]="chartOptions.yaxis" [plotOptions]="chartOptions.plotOptions"
+                [dataLabels]="chartOptions.dataLabels" [colors]="chartOptions.colors"></apx-chart>
+        </div>
+    </div>
+    <div class="w-50">
+        <div class="box shadows histogram">
+            <span class="material-symbols-outlined shadows">
+                align_horizontal_left
+            </span>
+            <div class="hist" *ngFor="let hist of histogram; let i = index;">
+                <div class="stars" *ngIf="i == 0">
+                    <div class="star">
+                        ★
+                    </div>
+                </div>
+                <div class="stars" *ngIf="i == 1">
+                    <div class="star">
+                        ★★
+                    </div>
+                </div>
+                <div class="stars" *ngIf="i == 2">
+                    <div class="star">
+                        ★★★
+                    </div>
+                </div>
+                <div class="stars" *ngIf="i == 3">
+                    <div class="star">
+                        ★★★★
+                    </div>
+                </div>
+                <div class="stars" *ngIf="i == 4">
+                    <div class="star">
+                        ★★★★★
+                    </div>
+                </div>
+
+                <div class="p-container">
+                    <div class="progress" [style.width.%]="(hist * 100 )/ total"></div>
+                    <div class="progress-total"></div>
+                </div>
+                <div class="text">{{hist}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="w-50">
+        <div class="box shadows graph">
+            <span class="material-symbols-outlined shadows">
+                pie_chart
+            </span>
+            <apx-chart [series]="chartOptions2.series" [colors]="chartOptions2.colors" [chart]="chartOptions2.chart"
+                [labels]="chartOptions2.labels" [plotOptions]="chartOptions2.plotOptions"></apx-chart>
+        </div>
+    </div>
+    <div class="screenshots">
+        <img class="ss-img shadows" [src]="ss" alt="screenshot" *ngFor="let ss of appData.screenshots">
+    </div>
+    <div>
+        <div class="box shadows summary">
+            <div class="line link" [innerHTML]="appData.description.replaceAll('\n', '<br>')"></div>
+        </div>
+    </div>
+
+</div>

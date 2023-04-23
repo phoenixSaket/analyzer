@@ -1,0 +1,145 @@
+.container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: calc(100% - 60px);
+    margin: 30px;
+}
+
+.box {
+    min-width: 100px;
+    min-height: 150px;
+    height: 100%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: var(--lighter);
+}
+
+.boxes>.box {
+    width: 100%;
+    min-width: 100px;
+    min-height: 150px;
+    height: 100%;
+    max-width: 150px;
+}
+
+.boxes {
+    display: flex;
+    gap: 15px;
+    /* flex-wrap: wrap; */
+    width: 100%;
+    justify-content: space-between;
+}
+
+.ss-img {
+    height: 400px;
+    width: auto;
+}
+
+.title-box {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.show-ratings {
+    cursor: pointer;
+}
+
+.box>.material-symbols-outlined {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    border-radius: 10px;
+    z-index: 2;
+    color: var(--white);
+}
+
+.reviews {
+    display: flex;
+    flex-direction: column;
+}
+
+.w-50 {
+    width: calc(33% - 10px);
+    margin: 10px 0;
+}
+
+.link {
+    padding: 30px;
+}
+
+.screenshots {
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.hist {
+    display: flex;
+    position: relative;
+    width: calc(100% - 100px);
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.histogram {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.stars {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.progress {
+    position: absolute;
+    bottom: -10px;
+    background-color: #eee;
+    height: 5px;
+    border-radius: 2px;
+    background: #363E59;
+    z-index: 2;
+}
+
+.progress-total {
+    width: 100%;
+    background-color: #eee;
+    height: 5px;
+    border-radius: 2px;
+    background: #b9c2df;
+    position: absolute;
+    bottom: -10px;
+}
+
+.p-container {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+.red {
+    background-color: #ef626c;
+}
+
+.green {
+    background-color: #56B3B3;
+}

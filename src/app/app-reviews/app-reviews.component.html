@@ -1,0 +1,9 @@
+<div class="container">
+    <app-filters [versions]="versions" [years]="years" [versionSorted]="" [dateSorted]="" [ratingSorted]="" (searchKeyword)="search($event)" (version)="versionFilter($event)" (year)="yearFilter($event)" (ratingFilter)="ratingFilter($event)" (sortBy)="sortFilter($event)" ></app-filters>
+    <div class="android apps">
+        <div class="app" *ngFor="let data of appData">
+            <app-android [data]="data"></app-android>
+        </div>
+    </div>
+    <div class="ios apps"></div>
+</div>
