@@ -27,6 +27,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatSelectModule } from "@angular/material/select";
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatSelectModule } from "@angular/material/select";
     AppReviewsComponent,
     AppAndroidComponent,
     AppIosComponent,
-    FiltersComponent
+    FiltersComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

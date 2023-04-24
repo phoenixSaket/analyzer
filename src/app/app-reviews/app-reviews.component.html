@@ -7,3 +7,7 @@
     </div>
     <div class="ios apps"></div>
 </div>
+
+<div class="loader" *ngIf="!!appData && appData.length == 0">
+    <app-loader></app-loader>
+</div>

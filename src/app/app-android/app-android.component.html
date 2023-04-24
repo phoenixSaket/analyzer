@@ -8,18 +8,36 @@
             <div class="version" *ngIf="!!data.version">
                 <span class="versionText">Version : </span>
                 <span class="versionNumber">{{data.version}}</span>
+                <div class="date">{{data.date | date}}</div>
+                <div class="stars-container">
+                    <span class="rate" *ngFor="let star of rating">
+                        <span *ngIf="!star.shouldHighlight">&#9734;</span>
+                        <span *ngIf="star.shouldHighlight">&#9733;</span>
+                    </span>
+                </div>
+            </div>
+            <div class="center">
+
+                <div class="title">{{data.title}}</div>
+                <div class="content">{{data.text}}</div>
+                <!-- <div class="sentiment-container">
+                    <div class="chip" [ngClass]="data.sentiment?.score == 0 ? 'basic': (data.sentiment?.score > 0 ? 'green' : 'red')">
+                        Sentiment Score : {{data.sentiment?.score}}
+                    </div>
+                    <div class="chip green" *ngFor="let positve of data.sentiment?.positive">
+                        {{positve}}
+                    </div>
+                    <div class="chip red" *ngFor="let negative of data.sentiment?.negative">
+                        {{negative}}
+                    </div>
+                </div> -->
             </div>
         </div>
     </div>
-    <div class="center">
-        <div class="stars-container">
-            <span class="rate" *ngFor="let star of rating">
-                <span *ngIf="!star.shouldHighlight">&#9734;</span>
-                <span *ngIf="star.shouldHighlight">&#9733;</span>
-            </span>
-        </div>
-        <div class="title">{{data.title}}</div>
-        <div class="content">{{data.text}}</div>
+    <!-- <div class="center"> -->
+
+        <!-- <div class="title">{{data.title}}</div>
+        <div class="content">{{data.text}}</div> -->
         <!-- <div class="sentiment-container">
             <div class="chip" [ngClass]="data.sentiment?.score == 0 ? 'basic': (data.sentiment?.score > 0 ? 'green' : 'red')">
                 Sentiment Score : {{data.sentiment?.score}}
@@ -31,8 +49,8 @@
                 {{negative}}
             </div>
         </div> -->
-    </div>
-    <div class="right">
+    <!-- </div> -->
+    <!-- <div class="right">
         <div class="date">{{data.date | date}}</div>
-    </div>
+    </div> -->
 </div>

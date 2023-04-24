@@ -2,8 +2,8 @@
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    width: calc(100% - 60px);
-    margin: 30px;
+    width: calc(100% - 25px);
+    margin: 30px 10px;
 }
 
 .box {
@@ -18,12 +18,29 @@
     background-color: var(--lighter);
 }
 
+.image-box {
+    background-position: top;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-size: cover;
+}
+
 .boxes>.box {
     width: 100%;
     min-width: 100px;
     min-height: 150px;
     height: 100%;
-    max-width: 350px;
+    max-height: 175px;
+    max-width: 175px;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+}
+
+.charts {
+    min-height: 350px;
 }
 
 .boxes {
@@ -71,7 +88,16 @@
 
 .w-50 {
     width: calc(33% - 10px);
+    min-width: 300px;
     margin: 10px 0;
+}
+
+.w-100 {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .link {

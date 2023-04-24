@@ -9,7 +9,7 @@
 
 :root {
     --primary: #7180AC;
-    --secondary: #F3D5CE;
+    --secondary: #c4d0e4;
     --light-blue: #A8D0DB;
     --light: #F3D5CE;
     --lighter: #e6ecff84;
@@ -69,4 +69,9 @@ html, body { height: 100%; }
 }
 .mat-form-field-wrapper {
     padding-bottom: unset;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0.5em 0;
+    margin-top: 5px;
 }

@@ -1,7 +1,6 @@
-<div class="filter-container" *ngIf="showFilters">
+<div class="filter-container shadows" *ngIf="showFilters">
 
     <div class="ratings div">
-
         <mat-chip-list multiple>
             <mat-chip color="rating" *ngFor="let rate of ratings" (click)="toggleRatingSelection(rate)"
                 selectable="true" [selected]="rate.isSelected">
@@ -14,39 +13,88 @@
 
     </div>
 
-    <div class="filter-div">
-        <form class="example-form">
-            <mat-form-field appearance="outline" class="example-full-width">
-                <mat-label>Search by keyword</mat-label>
-                <input matInput placeholder="Search" (keyup)="searchInput($event)" autocomplete="off">
-            </mat-form-field>
-        </form>
-    </div>
+    <input class="search" placeholder="🔎︎ Search" (keyup)="searchInput($event)" autocomplete="off">
+    <!-- <mat-label>Version</mat-label>
+        <mat-select (selectionChange)="versionSelected($event)">
+            <mat-option value="-1">All Versions</mat-option>
+            <mat-option *ngFor="let version of versions" [value]="version">
+                {{version != null ? version : 'NA'}}
+            </mat-option>
+        </mat-select> -->
 
-    <div class="filter-div">
-        <mat-form-field appearance="outline">
-            <mat-label>Version</mat-label>
-            <mat-select (selectionChange)="versionSelected($event)">
-                <mat-option value="-1">All Versions</mat-option>
-                <mat-option *ngFor="let version of versions" [value]="version">
+    <div class="filterss">
+
+        <div class="dropdown-container">
+            <div class="top" (click)="toggler('version')">
+                <div class="label">Version</div>
+                <div class="chevron">
+                    <span class="material-symbols-outlined" *ngIf="expandVersion">
+                        expand_less
+                    </span>
+                    <span class="material-symbols-outlined" *ngIf="!expandVersion">
+                        expand_more
+                    </span>
+
+                </div>
+            </div>
+            <div class="options" *ngIf="expandVersion">
+                <div class="option" (click)="versionSelected('-1')">All</div>
+                <div class="option" (click)="versionSelected(version)" *ngFor="let version of versions">
                     {{version != null ? version : 'NA'}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <!-- <mat-form-field>
+                    <mat-label>Year</mat-label>
+                    <mat-select (selectionChange)="yearSelected($event)">
+                        <mat-option value="-1">All Years</mat-option>
+                        <mat-option *ngFor="let year of years" [value]="year">
+                            {{year != null ? year : 'NA'}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+        <div class="dropdown-container">
+            <div class="top" (click)="toggler('year')">
+                <div class="label">Year</div>
+                <div class="chevron">
+                    <span class="material-symbols-outlined" *ngIf="expandYear">
+                        expand_less
+                    </span>
+                    <span class="material-symbols-outlined" *ngIf="!expandYear">
+                        expand_more
+                    </span>
+                </div>
+            </div>
+            <div class="options" *ngIf="expandYear">
+                <div class="option" (click)="yearSelected('-1')">All</div>
+                <div class="option" (click)="yearSelected(year)" *ngFor="let year of years">
+                    {{year != null ? year : 'NA'}}
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown-container">
+            <div class="top" (click)="toggler('sort')">
+                <div class="label">Sort</div>
+                <div class="chevron">
+                    <span class="material-symbols-outlined" *ngIf="expandSort">
+                        expand_less
+                    </span>
+                    <span class="material-symbols-outlined" *ngIf="!expandSort">
+                        expand_more
+                    </span>
+                </div>
+            </div>
+            <div class="options" *ngIf="expandSort">
+                <div class="option" (click)="sortChange(sort.value)" *ngFor="let sort of sortingArray">
+                    {{sort.text}}
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="filter-div">
-        <mat-form-field appearance="outline">
-            <mat-label>Year</mat-label>
-            <mat-select (selectionChange)="yearSelected($event)">
-                <mat-option value="-1">All Years</mat-option>
-                <mat-option *ngFor="let year of years" [value]="year">
-                    {{year != null ? year : 'NA'}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    
+
     <!-- <mat-form-field appearance="outline">
         <mat-label>Sort By</mat-label>
         <mat-select (selectionChange)="sortChange($event)">
@@ -57,7 +105,7 @@
     </mat-form-field> -->
 
 </div>
-<div class="sorting-container">
+<!-- <div class="sorting-container">
     <div class="sort-box left" (click)="sortByEmit('version')">
         <div class="text">Version</div>
         <mat-icon *ngIf="!versionSorted.sorted">sort</mat-icon>
@@ -77,10 +125,10 @@
         <div *ngIf="dateSorted.sorted && dateSorted.type == 'A'">&#8642;</div>
         <div *ngIf="dateSorted.sorted && dateSorted.type == 'D'">&#8638;</div>
     </div>
-</div>
+</div> -->
 
 <div class="mobile-filters" *ngIf="showFilterButton" [ngStyle]="{'height' : showFilters ? 'unset' : '100%'}">
-    
+
     <button mat-flat-button color="primary" class="filter-button" (click)="toggleFilters()">
         <img class="filter-img" src="assets/filter.png" alt="filter">
         <div class="text">{{showFilters ? 'Hide' :'Show'}} Filters</div>

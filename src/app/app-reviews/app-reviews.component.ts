@@ -16,21 +16,25 @@ export class AppReviewsComponent implements OnInit {
   public versionSorted: any;
   public dateSorted: any;
   public ratingSorted: any;
+  private appId: string = "";
 
   constructor(private data: DataService, private android: AndroidService, private ios: IosService) { }
 
   ngOnInit(): void {
     this.data.appLoader.subscribe((resp: any) => {
       if (!!resp) {
-        console.log(resp);
+        console.log("debug",resp);
         if (resp.isIOS) {
           this.platform = true;
         } else {
           this.platform = false;
-          this.android.getAppReviews(resp.app.appId).subscribe((data: any) => {
-            console.log("data", JSON.parse(data.result));
-            this.appData = JSON.parse(data.result).data;
-          })
+          if(this.appId == "" || this.appId != resp.app.appId) {
+            this.appId = resp.app.appId;
+            this.android.getAppReviews(resp.app.appId).subscribe((data: any) => {
+              console.log("data", JSON.parse(data.result));
+              this.appData = JSON.parse(data.result).data;
+            })
+          }
         }
       }
     })

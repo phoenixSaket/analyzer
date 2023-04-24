@@ -35,6 +35,12 @@ export class FiltersComponent implements OnInit {
     { text: '5★', value: '5', isSelected: false },
   ];
 
+  // Filters
+
+  public expandVersion: boolean = false;
+  public expandYear: boolean = false;
+  public expandSort: boolean = false;
+
 
   constructor() { }
 
@@ -89,6 +95,17 @@ export class FiltersComponent implements OnInit {
 
   sortByEmit(str: string) {
     this.sortBy.emit(str);
+  }
+
+  toggler(type: string) {
+    switch (type) {
+      case "version": this.expandVersion = !this.expandVersion; break;
+      case "year": this.expandYear = !this.expandYear; break;
+      case "sort": this.expandSort = !this.expandSort; break;
+
+      default:
+        break;
+    }
   }
 
 }

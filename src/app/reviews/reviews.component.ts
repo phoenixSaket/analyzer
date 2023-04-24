@@ -47,10 +47,12 @@ export class ReviewsComponent implements OnInit {
   public appData: any = {};
   public histogram: any[] = [];
   public total: number = 0;
+  public loading: boolean = true;
 
   constructor(private data: DataService, private ios: IosService, private android: AndroidService) {
     this.chartOptions = {
       chart: {
+        // width: '100%',
         height: 350,
         type: "bar",
       },
@@ -71,7 +73,8 @@ export class ReviewsComponent implements OnInit {
     };
     this.chartOptions2 = {
       chart: {
-        width: 400,
+        width: '100%',
+        height: 350,
         type: "pie"
       },
       labels: ["1★", "2★", "3★", "4★", "5★"],
@@ -105,6 +108,9 @@ export class ReviewsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(Object.keys(this.appData).length > 0) {
+      this.loading = false;
+    }
     this.data.appLoader.subscribe((app: any) => {
       if (!!app) {
         console.log("Selected app", app);
@@ -116,6 +122,7 @@ export class ReviewsComponent implements OnInit {
           this.android.getApp(app.appId).subscribe((resp: any) => {
             console.log("resp android", JSON.parse(resp.result));
             this.appData = JSON.parse(resp.result);
+            this.loading = false;
             let histogram = JSON.parse(resp.result).histogram;
             let ratings: any[] = Object.values(histogram);
             this.histogram = ratings;

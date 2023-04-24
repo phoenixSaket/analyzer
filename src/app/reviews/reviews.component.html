@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" *ngIf="!loading else loader;">
     <div class="line boxes">
-        <div class="box shadows app">
-            <img [src]="appData.icon" alt="logo" class="logo">
+        <div class="box shadows app image-box" [ngStyle]="{'background-image': 'url('+appData.icon+')'}">
+            <!-- <img [src]="appData.icon" alt="logo" class="logo"> -->
         </div>
         <div class="box shadows show-ratings green" routerLink="/app-reviews">
             Open Reviews
@@ -16,7 +16,7 @@
             </span>
         </div>
         <div class="box shadows">
-            {{appData.score?.toFixed(2)}} / 5
+            {{appData?.score?.toFixed(2)}} / 5
             <div class="title-box">
                 Rating
             </div>
@@ -41,63 +41,65 @@
             </span>
         </div>
     </div>
-    <div class="w-50">
-        <div class="box shadows">
-            <span class="material-symbols-outlined shadows">
-                bar_chart
-            </span>
-            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
-                [yaxis]="chartOptions.yaxis" [plotOptions]="chartOptions.plotOptions"
-                [dataLabels]="chartOptions.dataLabels" [colors]="chartOptions.colors"></apx-chart>
-        </div>
-    </div>
-    <div class="w-50">
-        <div class="box shadows histogram">
-            <span class="material-symbols-outlined shadows">
-                align_horizontal_left
-            </span>
-            <div class="hist" *ngFor="let hist of histogram; let i = index;">
-                <div class="stars" *ngIf="i == 0">
-                    <div class="star">
-                        ★
-                    </div>
-                </div>
-                <div class="stars" *ngIf="i == 1">
-                    <div class="star">
-                        ★★
-                    </div>
-                </div>
-                <div class="stars" *ngIf="i == 2">
-                    <div class="star">
-                        ★★★
-                    </div>
-                </div>
-                <div class="stars" *ngIf="i == 3">
-                    <div class="star">
-                        ★★★★
-                    </div>
-                </div>
-                <div class="stars" *ngIf="i == 4">
-                    <div class="star">
-                        ★★★★★
-                    </div>
-                </div>
-
-                <div class="p-container">
-                    <div class="progress" [style.width.%]="(hist * 100 )/ total"></div>
-                    <div class="progress-total"></div>
-                </div>
-                <div class="text">{{hist}}</div>
+    <div class="w-100">
+        <div class="w-50">
+            <div class="box shadows charts">
+                <span class="material-symbols-outlined shadows">
+                    bar_chart
+                </span>
+                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+                    [yaxis]="chartOptions.yaxis" [plotOptions]="chartOptions.plotOptions"
+                    [dataLabels]="chartOptions.dataLabels" [colors]="chartOptions.colors"></apx-chart>
             </div>
         </div>
-    </div>
-    <div class="w-50">
-        <div class="box shadows graph">
-            <span class="material-symbols-outlined shadows">
-                pie_chart
-            </span>
-            <apx-chart [series]="chartOptions2.series" [colors]="chartOptions2.colors" [chart]="chartOptions2.chart"
-                [labels]="chartOptions2.labels" [plotOptions]="chartOptions2.plotOptions"></apx-chart>
+        <div class="w-50">
+            <div class="box shadows charts histogram">
+                <span class="material-symbols-outlined shadows">
+                    align_horizontal_left
+                </span>
+                <div class="hist" *ngFor="let hist of histogram; let i = index;">
+                    <div class="stars" *ngIf="i == 0">
+                        <div class="star">
+                            ★
+                        </div>
+                    </div>
+                    <div class="stars" *ngIf="i == 1">
+                        <div class="star">
+                            ★★
+                        </div>
+                    </div>
+                    <div class="stars" *ngIf="i == 2">
+                        <div class="star">
+                            ★★★
+                        </div>
+                    </div>
+                    <div class="stars" *ngIf="i == 3">
+                        <div class="star">
+                            ★★★★
+                        </div>
+                    </div>
+                    <div class="stars" *ngIf="i == 4">
+                        <div class="star">
+                            ★★★★★
+                        </div>
+                    </div>
+    
+                    <div class="p-container">
+                        <div class="progress" [style.width.%]="(hist * 100 )/ total"></div>
+                        <div class="progress-total"></div>
+                    </div>
+                    <div class="text">{{hist}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-50">
+            <div class="box shadows charts">
+                <span class="material-symbols-outlined shadows">
+                    pie_chart
+                </span>
+                <apx-chart [series]="chartOptions2.series" [colors]="chartOptions2.colors" [chart]="chartOptions2.chart"
+                    [labels]="chartOptions2.labels" [plotOptions]="chartOptions2.plotOptions"></apx-chart>
+            </div>
         </div>
     </div>
     <div class="screenshots">
@@ -110,3 +112,6 @@
     </div>
 
 </div>
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>
