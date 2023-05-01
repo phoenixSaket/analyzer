@@ -9,3 +9,12 @@ app-filters {
     top: 0px;
     background-color: var(--gray);
 }
+
+.apps {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}

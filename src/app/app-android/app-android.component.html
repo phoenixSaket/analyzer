@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
     <div class="left d-flex gap-10 w-100 m-b-10">
         <div class="image">
             <img [src]="data.userImage" alt="userImage" class="user-img">
@@ -17,40 +17,40 @@
                 </div>
             </div>
             <div class="center">
-
                 <div class="title">{{data.title}}</div>
                 <div class="content">{{data.text}}</div>
-                <!-- <div class="sentiment-container">
-                    <div class="chip" [ngClass]="data.sentiment?.score == 0 ? 'basic': (data.sentiment?.score > 0 ? 'green' : 'red')">
-                        Sentiment Score : {{data.sentiment?.score}}
-                    </div>
-                    <div class="chip green" *ngFor="let positve of data.sentiment?.positive">
-                        {{positve}}
-                    </div>
-                    <div class="chip red" *ngFor="let negative of data.sentiment?.negative">
-                        {{negative}}
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
-    <!-- <div class="center"> -->
+</div> -->
 
-        <!-- <div class="title">{{data.title}}</div>
-        <div class="content">{{data.text}}</div> -->
-        <!-- <div class="sentiment-container">
-            <div class="chip" [ngClass]="data.sentiment?.score == 0 ? 'basic': (data.sentiment?.score > 0 ? 'green' : 'red')">
-                Sentiment Score : {{data.sentiment?.score}}
+
+<div class="card">
+    <div class="top">
+        <div class="image-and-name">
+            <div class="image">
+                <img [src]="data.userImage" alt="userImage" class="user-img" (error)="data.userImage = 'assets/avatar-1.png'">
             </div>
-            <div class="chip green" *ngFor="let positve of data.sentiment?.positive">
-                {{positve}}
+            <div class="author-version-date">
+                <div class="author">{{data.userName}}</div>
+                <div class="version-and-date">
+                    <div class="v-d date">{{data.date | date}}</div>
+                    <div class="v-d version">|</div>
+                    <div class="v-d version">Version : {{data.version || "NA"}}</div>
+                </div>
             </div>
-            <div class="chip red" *ngFor="let negative of data.sentiment?.negative">
-                {{negative}}
-            </div>
-        </div> -->
-    <!-- </div> -->
-    <!-- <div class="right">
-        <div class="date">{{data.date | date}}</div>
-    </div> -->
+        </div>
+        <div class="stars-container">
+            <span class="rate" *ngFor="let star of rating">
+                <span *ngIf="!star.shouldHighlight">&#9734;</span>
+                <span *ngIf="star.shouldHighlight">&#9733;</span>
+            </span>
+        </div>
+    </div>
+    <div class="title">
+        {{data.title}}
+    </div>
+    <div class="content">
+        {{data.text}}
+    </div>
 </div>

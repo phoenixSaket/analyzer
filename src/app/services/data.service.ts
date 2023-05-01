@@ -18,6 +18,7 @@ export class DataService {
   public totalApps: number = JSON.parse(localStorage.getItem("apps-review") || "[]").length;
   public loadedApps: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public appLoader: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public reviewsLoader: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public newAppAdded: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public compareAppAdded: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public newReviewCount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
