@@ -35,6 +35,7 @@ export class SidebarComponent implements OnInit {
   }
 
   selectApp(app: any) {
+    this.data.isLoading = true;
     this.data.appLoader.next(app);
   }
 }

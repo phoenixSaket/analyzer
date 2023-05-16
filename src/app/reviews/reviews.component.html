@@ -1,9 +1,9 @@
-<div class="container" *ngIf="!loading else loader;">
+<div class="container">
     <div class="line boxes">
         <div class="box shadows app image-box" [ngStyle]="{'background-image': 'url('+appData.icon+')'}">
             <!-- <img [src]="appData.icon" alt="logo" class="logo"> -->
         </div>
-        <div class="box shadows show-ratings green" routerLink="/app-reviews">
+        <div class="box shadows show-ratings green" (click)="openReviews()">
             Open Reviews
             <span class="material-symbols-outlined shadows">
                 open_in_new
@@ -107,11 +107,8 @@
     </div>
     <div>
         <div class="box shadows summary">
-            <div class="line link" [innerHTML]="appData.description.replaceAll('\n', '<br>')"></div>
+            <div class="line link" [innerHTML]="appData?.description?.toString()?.replaceAll('\n', '<br>')"></div>
         </div>
     </div>
 
 </div>
-<ng-template #loader>
-    <app-loader></app-loader>
-</ng-template>

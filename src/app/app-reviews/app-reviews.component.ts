@@ -33,6 +33,7 @@ export class AppReviewsComponent implements AfterViewInit {
           this.android.getAppReviews(resp.app.appId).subscribe((data: any) => {
             console.log("data", JSON.parse(data.result));
             this.appData = JSON.parse(data.result).data;
+            this.data.isLoading = false;
           })
         }
       }
@@ -68,6 +69,9 @@ export class AppReviewsComponent implements AfterViewInit {
           this.appData.push(el);
         });
         console.log("total reviews", this.appData);
+        if(index == total) {
+          this.data.isLoading = false;
+        }
         index = index + 1;
         this.getSequentialReviews(total, index);
       })

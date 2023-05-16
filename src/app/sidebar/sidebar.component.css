@@ -14,14 +14,17 @@
 
 .open {
     width: 300px;
+    transition: ease-in-out 300ms;
 }
 
 .close {
     width: 60px;
+    transition: ease-in-out 300ms;
 }
 
 .container-fake {
     height: calc(100vh - 10px);
+    transition: ease-in-out 300ms;
 }
 
 .container-fake.open {
@@ -42,7 +45,7 @@
     height: 40px;
     cursor: pointer;
     color: var(--text);
-    transition-duration: 100ms;
+    transition-duration: 300ms;
 }
 
 .img {
@@ -53,7 +56,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition-duration: 100ms;
+    transition-duration: 300ms;
 }
 
 .open.img  {
@@ -87,7 +90,32 @@
 
 .text {
     font-size: 16px;
-    /* font-weight: 700; */
+    line-height: 16px;
+    transition: ease-in-out 300ms;
+    transition-delay: 600ms;
+    font-weight: 600;
+    align-items: center;
+}
+
+.open .text {
+    display: flex;
+    transition-delay: 600ms;
+    transition-property: display;
+}
+
+.close .text {
+    transition-property: display;
+    transition-delay: 600ms;
+    display: none;
+}
+
+.small-text {
+    font-size: 12px;
+}
+
+.small-text::before {
+    content: '-';
+    margin: 0 5px;
 }
 
 .open .icon {
@@ -96,6 +124,10 @@
     gap: 20px;
     padding: 0 10px; 
     border-radius: 7px;
+}
+
+.close .icon {
+    transition-delay: 300ms;
 }
 
 .icon:hover {
