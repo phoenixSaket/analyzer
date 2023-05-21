@@ -1,32 +1,44 @@
 <div class="filter-container" *ngIf="showFilters">
 
     <div class="ratings div">
+        <div class="selected-label-ratings">
+            <span class="material-symbols-outlined">
+                hotel_class
+            </span>
+            Ratings
+        </div>
         <mat-chip-list multiple>
             <mat-chip color="rating" *ngFor="let rate of ratings" (click)="toggleRatingSelection(rate)"
                 selectable="true" [selected]="rate.isSelected">
                 <div class="rating-container">
                     <div>{{rate.text}}</div>
-                    <div class="bold" *ngIf="rate.isSelected">&#10003;</div>
+                    <!-- <div class="bold" *ngIf="rate.isSelected">&#10003;</div> -->
                 </div>
             </mat-chip>
         </mat-chip-list>
 
     </div>
 
-    <input class="search" placeholder="🔎︎ Search" (keyup)="searchInput($event)" autocomplete="off">
-    <!-- <mat-label>Version</mat-label>
-        <mat-select (selectionChange)="versionSelected($event)">
-            <mat-option value="-1">All Versions</mat-option>
-            <mat-option *ngFor="let version of versions" [value]="version">
-                {{version != null ? version : 'NA'}}
-            </mat-option>
-        </mat-select> -->
+    <div class="search-box">
+        <div class="selected-label-search">
+            <span class="material-symbols-outlined">
+                search
+            </span>
+            Search
+        </div>
+        <input class="search" placeholder="Search by keyword" (keyup)="searchInput($event)" autocomplete="off">
+    </div>
 
     <div class="filterss">
-
         <div class="dropdown-container">
             <div class="top" (click)="toggler('version')">
-                <div class="label">Version</div>
+                <div class="selected-label" *ngIf="selectedVersion">
+                    <span class="material-symbols-outlined">
+                        info
+                    </span>
+                    Version
+                </div>
+                <div class="label">{{selectedVersion ? versionValue : 'Version'}}</div>
                 <div class="chevron">
                     <span class="material-symbols-outlined" *ngIf="expandVersion">
                         expand_less
@@ -45,18 +57,15 @@
             </div>
         </div>
 
-        <!-- <mat-form-field>
-                    <mat-label>Year</mat-label>
-                    <mat-select (selectionChange)="yearSelected($event)">
-                        <mat-option value="-1">All Years</mat-option>
-                        <mat-option *ngFor="let year of years" [value]="year">
-                            {{year != null ? year : 'NA'}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> -->
         <div class="dropdown-container">
             <div class="top" (click)="toggler('year')">
-                <div class="label">Year</div>
+                <div class="selected-label" *ngIf="selectedYear">
+                    <span class="material-symbols-outlined">
+                        today
+                    </span>
+                    Year
+                </div>
+                <div class="label">{{selectedYear ? yearValue : 'Year'}}</div>
                 <div class="chevron">
                     <span class="material-symbols-outlined" *ngIf="expandYear">
                         expand_less
@@ -76,7 +85,13 @@
 
         <div class="dropdown-container">
             <div class="top" (click)="toggler('sort')">
-                <div class="label">Sort</div>
+                <div class="selected-label" *ngIf="selectedSort">
+                    <span class="material-symbols-outlined">
+                        sort
+                    </span>
+                    Sort
+                </div>
+                <div class="label">{{selectedSort ? sortValue : 'Sort'}}</div>
                 <div class="chevron">
                     <span class="material-symbols-outlined" *ngIf="expandSort">
                         expand_less
@@ -93,42 +108,9 @@
             </div>
         </div>
     </div>
-
-
-    <!-- <mat-form-field appearance="outline">
-        <mat-label>Sort By</mat-label>
-        <mat-select (selectionChange)="sortChange($event)">
-            <mat-option *ngFor="let sort of sortingArray" [value]="sort.value">
-                {{sort.text}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field> -->
-
 </div>
-<!-- <div class="sorting-container">
-    <div class="sort-box left" (click)="sortByEmit('version')">
-        <div class="text">Version</div>
-        <mat-icon *ngIf="!versionSorted.sorted">sort</mat-icon>
-        <div *ngIf="versionSorted.sorted && versionSorted.type == 'A'">&#8642;</div>
-        <div *ngIf="versionSorted.sorted && versionSorted.type == 'D'">&#8638;</div>
-    </div>
-    <div class="sort-box center" (click)="sortByEmit('rating')">
-        <div class="text">Rating</div>
-        <mat-icon *ngIf="!ratingSorted.sorted">sort</mat-icon>
-        <div *ngIf="ratingSorted.sorted && ratingSorted.type == 'A'">&#8642;</div>
-        <div *ngIf="ratingSorted.sorted && ratingSorted.type == 'D'">&#8638;</div>
-        
-    </div>
-    <div class="sort-box right" (click)="sortByEmit('date')">
-        <div class="text">Date</div>
-        <mat-icon *ngIf="!dateSorted.sorted">sort</mat-icon>
-        <div *ngIf="dateSorted.sorted && dateSorted.type == 'A'">&#8642;</div>
-        <div *ngIf="dateSorted.sorted && dateSorted.type == 'D'">&#8638;</div>
-    </div>
-</div> -->
 
 <div class="mobile-filters" *ngIf="showFilterButton" [ngStyle]="{'height' : showFilters ? 'unset' : '100%'}">
-
     <button mat-flat-button color="primary" class="filter-button" (click)="toggleFilters()">
         <img class="filter-img" src="assets/filter.png" alt="filter">
         <div class="text">{{showFilters ? 'Hide' :'Show'}} Filters</div>

@@ -1,18 +1,16 @@
 .filter-container {
     width: calc(100% + 20px);
-    /* height: 100%; */
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: space-between;
-    /* background-color: var(--primary); */
-    border-bottom: 2px solid var(--primary);
+    padding: 10px 0;
+    justify-content: center;
+    background-color: var(--gray);
     align-items: center;
-    /* border-radius: 10px; */
-    padding: 7px 0px;
-    /* margin: 0 -20px; */
+    padding: 15px 0px;
     margin: 10px -15px 10px;
+    gap: 22px 10px;
 }
 
 .rating-container {
@@ -39,20 +37,17 @@
     color: white;
 }
 
-.mat-chip.mat-standard-chip {
-    background-color: transparent;
-    border: 2px solid var(--primary);
-}
-
-/* .filter-div>mat-form-field {
-    width: 200px;
-} */
-
 .ratings {
     display: flex;
     gap: 5px;
-    width: 35%;
+    width: max-content;
     justify-content: center;
+    padding: 5px 25px;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+    background-color: #f0f0f0;
+    position: relative;
+
 }
 
 .mat-rating.mat-chip-selected {
@@ -191,22 +186,26 @@
     outline: none;
 }
 
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+}
+
 .search {
     border: none;
     padding: 10px;
     border-radius: 5px;
-    background: #ffffff95;
-    /* border-bottom: 1px solid var(--primary); */
+    background: #f0f0f0;
+    border: 2px solid var(--primary);
     transition-duration: 100ms;
     color: var(--primary);
     font-weight: 700;
-    max-width: 250px;
-    width: 25%;
+    width: 100%;
     font-size: 16px;
 }
 
 .search:focus {
-    border-bottom: 3px solid var(--light);
     outline: none;
 }
 
@@ -218,17 +217,30 @@
     letter-spacing: 1px;
 }
 
+.selected-label-search {
+    position: absolute;
+    top: -13px;
+    left: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    background-color: #f0f0f0;
+    padding: 2px 10px;
+    border-radius: 5px;
+    color: var(--accent);
+}
+
 .dropdown-container {
     display: flex;
     flex-direction: column;
     position: relative;
     width: 100%;
     justify-content: space-between;
-    background-color: #ffffff95;
+    background-color: #f0f0f0;
     color: var(--primary);
     padding: 5px 10px;
     border-radius: 5px;
     gap: 10px;
+    border: 2px solid var(--primary);
 }
 
 .top {
@@ -237,12 +249,13 @@
     width: 100%;
     cursor: pointer;
     align-items: center;
+    position: relative;
 }
 
 .chevron {
     cursor: pointer;
     user-select: none;
-    /* color: var(--light); */
+    color: var(--accent);
     font-weight: 700;
     font-style: italic;
     line-height: 16px;
@@ -253,8 +266,8 @@
 .options {
     display: flex;
     flex-direction: column;
-    /* gap: 2px; */
-    max-height: 300px;
+    gap: 2px;
+    max-height: 200px;
     position: absolute;
     z-index: 5;
     top: 40px;
@@ -262,19 +275,23 @@
     cursor: pointer;
     width: 100%;
     overflow-y: auto;
+    transition-duration: 200ms;
 }
 
 .option {
-    background-color: #ffffff;
+    background-color: #f0f0f0;
     padding: 10px;
     max-width: 200px;
     min-width: 50px;
     font-size: 14px;
     border-radius: 5px;
+    transition-duration: 200ms;
 }
 
 .option:hover {
-    background-color: #ffffff;
+    background-color: var(--light-blue);
+    color: black;
+    font-weight: 700;
 }
 
 .label {
@@ -287,6 +304,30 @@
     font-size: 16px;
 }
 
+.selected-label {
+    position: absolute;
+    top: -20px;
+    left: -5px;
+    font-size: 12px;
+    font-weight: 800;
+    background-color: #f0f0f0;
+    padding: 2px 10px;
+    border-radius: 5px;
+    color: var(--accent);
+}
+
+.selected-label-ratings {
+    position: absolute;
+    top: -13px;
+    left: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    background-color: #f0f0f0;
+    padding: 2px 10px;
+    border-radius: 5px;
+    color: var(--accent)
+}
+
 .filterss {
     display: flex;
     width: 35%;
@@ -294,4 +335,18 @@
     justify-content: center;
     gap: 10px;
     margin: 0 10px;
+}
+
+.selected-label .material-symbols-outlined,
+.selected-label-ratings .material-symbols-outlined,
+.selected-label-search .material-symbols-outlined {
+    font-size: 15px;
+}
+
+.selected-label,
+.selected-label-ratings,
+.selected-label-search {
+    display: flex;
+    align-items: center;
+    gap: 2px;
 }

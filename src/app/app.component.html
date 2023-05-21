@@ -3,7 +3,7 @@
     <app-sidebar></app-sidebar>
   </div>
   <div class="right-container">
-    <router-outlet *ngIf="!data.isLoading"></router-outlet>
-    <app-loader *ngIf="data.isLoading"></app-loader>
+    <router-outlet></router-outlet>
+    <app-loader [ngStyle]="{'display': data.isLoading ? '' : 'none' }"></app-loader>
   </div>
 </div>

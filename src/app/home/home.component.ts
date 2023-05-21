@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   public selectedImgIndex: number = 0;
 
-  constructor() { }
+  constructor(public data: DataService) { }
 
   ngOnInit(): void {
     this.rotator();

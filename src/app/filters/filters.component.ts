@@ -41,10 +41,22 @@ export class FiltersComponent implements OnInit {
   public expandYear: boolean = false;
   public expandSort: boolean = false;
 
+  // Selected Values
+
+  public selectedVersion: boolean = false;
+  public selectedYear: boolean = false;
+  public selectedSort: boolean = false;
+  public versionValue: any; 
+  public yearValue: any; 
+  public sortValue: any; 
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.versionSelected(-1);
+    this.yearSelected(-1);
+    this.sortChange("date");
+  }
 
   searchInput(event: any) {
     event.preventDefault();
@@ -78,11 +90,17 @@ export class FiltersComponent implements OnInit {
   }
 
   versionSelected(event: any) {
-    this.version.emit(event.value);
+    this.selectedVersion = true;
+    this.versionValue = event == -1 ? 'All' : event;
+    this.expandVersion = false;
+    this.version.emit(event);
   }
 
   yearSelected(event: any) {
-    this.year.emit(event.value);
+    this.selectedYear = true;
+    this.yearValue = event == -1 ? 'All' : event;
+    this.expandYear = false;
+    this.year.emit(event);
   }
 
   toggleFilters() {
@@ -90,7 +108,10 @@ export class FiltersComponent implements OnInit {
   }
 
   sortChange(event: any) {
-    this.sortBy.emit(event.value);
+    this.selectedSort = true;
+    this.sortValue = event;
+    this.expandSort = false;
+    this.sortBy.emit(event);
   }
 
   sortByEmit(str: string) {

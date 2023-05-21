@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-// import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { AndroidService } from './android.service';
 import { IosService } from './ios.service';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +13,10 @@ export class DataService {
 
   public isLoading: boolean = false;
   public selectedApp;
-  totalApps: any[] = [];
+  public newAppAdded: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public appSelected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public totalApps: any;
+  public allApps: any[] = [];
 
   constructor(private http: HttpClient, private android: AndroidService, private ios: IosService, public dialog: MatDialog, private snackBar: MatSnackBar) {
   }
@@ -23,7 +26,7 @@ export class DataService {
   }
 
   getCurrentApp(): any {
-    return this.selectedApp;
+    return JSON.parse(JSON.stringify(this.selectedApp));
   }
 
   getCurrentPage(): string {
@@ -34,11 +37,18 @@ export class DataService {
   }
 
   addApp(app: any) {
-    this.totalApps.push(app);
-    localStorage.setItem("apps-analyzer", JSON.stringify(this.totalApps));
+    // console.log("Add app", app);
+    this.allApps = this.getTotalApps();
+    this.allApps.push(app);
+    localStorage.setItem("apps-analyzer", JSON.stringify(this.allApps));
   }
 
   getTotalApps() {
+    this.totalApps = JSON.parse(localStorage.getItem("apps-analyzer") || "[]");
+    return this.totalApps
+  }
+
+  getTotalAppsLength() {
     this.totalApps = JSON.parse(localStorage.getItem("apps-analyzer") || "[]").length;
     return this.totalApps;
   }
@@ -50,7 +60,7 @@ export class DataService {
   }
 
   newReviewsCheck() {
-    
+
   }
 
   iosAlerts(reviews: any): any[] {
@@ -58,7 +68,7 @@ export class DataService {
   }
 
   androidAlerts(reviews: any) {
-    
+
   }
 
   openNewReviewDialog() {
@@ -68,5 +78,22 @@ export class DataService {
     let payload = { email: email, message: message }
     // return this.http.post("https://reviews-be.cyclic.app/save-apps", payload);
     return this.http.post("https://reviews-be.cyclic.app/mail/send", payload);
+  }
+
+  addIfNotPresent(entry: any, array: any[]): any[] {
+    if (array.length > 0) {
+      if (array.indexOf(entry) == -1) {
+        array.push(entry);
+      }
+    } else {
+      array.push(entry);
+    }
+    return array;
+  }
+
+  sortDescending(array: any[]): any[] {
+    return array.sort((a: any, b: any) => {
+      return b - a;
+    });
   }
 }

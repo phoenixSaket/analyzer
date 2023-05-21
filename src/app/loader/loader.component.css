@@ -19,19 +19,22 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.01);
 }
 
 .large-indicator {
     display: flex;
     display: -webkit-flex;
+    z-index: 100;
+    /* padding: 50px 100px; */
+    justify-content: center;
+    align-items: center;
 }
 
 .large-indicator div {
     height: 1em;
     margin-right: 1em;
     width: 1em;
-
 }
 
 .large-indicator div {

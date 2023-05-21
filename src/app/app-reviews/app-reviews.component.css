@@ -6,8 +6,7 @@
 
 app-filters {
     position: sticky;
-    top: 0px;
-    background-color: var(--gray);
+    top: -12px;
 }
 
 .apps {
@@ -17,4 +16,17 @@ app-filters {
     gap: 10px;
     justify-content: center;
     margin: 20px 0;
+}
+
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.image {
+    width: 300px;
+    height: 300px;
 }

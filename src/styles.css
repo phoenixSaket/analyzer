@@ -75,3 +75,14 @@ html, body { height: 100%; }
     padding: 0.5em 0;
     margin-top: 5px;
 }
+
+.mat-standard-chip {
+    min-height: 30px !important;
+    border-radius: 5px !important;
+}
+
+mark.highlight {
+    background-color: #ffbdb9;
+    color: black;
+    font-weight: 700;
+}

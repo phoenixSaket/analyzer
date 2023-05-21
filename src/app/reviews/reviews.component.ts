@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { AndroidService } from '../services/android.service';
 import { DataService } from '../services/data.service';
 import { IosService } from '../services/ios.service';
@@ -15,6 +15,7 @@ import {
 } from "ng-apexcharts";
 import { ApexDataLabels, ApexPlotOptions, ApexTheme, ApexYAxis } from 'ng-apexcharts/lib/model/apex-types';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -49,7 +50,7 @@ export class ReviewsComponent implements OnInit {
   public histogram: any[] = [];
   public total: number = 0;
 
-  constructor(private data: DataService, private ios: IosService, private android: AndroidService, private router: Router) {
+  constructor(public data: DataService, private ios: IosService, private android: AndroidService, private router: Router) {
     this.chartOptions = {
       chart: {
         // width: '100%',
@@ -142,20 +143,53 @@ export class ReviewsComponent implements OnInit {
 
   ngOnInit(): void {
     try {
+      this.data.appSelected.subscribe((newAppSelected: boolean) => {
+        if (newAppSelected) {
+          let app = this.data.selectedApp;
+          this.data.isLoading = true;
+          if (!!app) {
+            console.log("Selected app", app);
+            if (app.isIOS) {
+              this.ios.getApp(app.appId).subscribe((resp: any) => {
+                this.appData = JSON.parse(resp.result);
+                console.log(this.appData)
+                this.ios.getAPPRatings(app.appId).subscribe((response: any) => {
+                  this.data.isLoading = false;
+                  let histogram = JSON.parse(response.result).histogram;
+                  let ratings: any[] = Object.values(histogram);
+                  this.histogram = ratings;
+                  let total = ratings.reduce((el, ab) => ab + el);
+                  this.total = total;
+                  let values = [];
+                  ratings.forEach(el => {
+                    values.push(parseFloat(((el * 100) / total).toFixed(2)));
+                  })
+                  this.chartOptions.series = [{
+                    data: values,
+                    name: "Ratings"
+                  }];
+                  // this.chartOptions.title = { ...this.chartOptions, text: JSON.parse(resp.result).title };
+                  this.chartOptions.dataLabels = {
+                    enabled: true,
+                    formatter: function (val) {
+                      return val + "%";
+                    },
+                    offsetY: -20,
+                    style: {
+                      fontSize: "12px",
+                      colors: ["#304758"]
+                    }
+                  }
 
-      let app = this.data.getCurrentApp();
+                  this.chartOptions2.series = values;
+                })
+              })
 
-      // this.data.appLoader.subscribe((app: any) => {
-        if (!!app) {
-          console.log("Selected app", app);
-          if (app.isIOS) {
-            this.ios.getApp(app.appId).subscribe((resp: any) => {
-              console.log("resp ios", JSON.parse(resp.result));
-              this.appData = JSON.parse(resp.result);
-              this.ios.getAPPRatings(app.appId).subscribe((response: any) => {
+            } else {
+              this.android.getApp(app.appId).subscribe((resp: any) => {
+                this.appData = JSON.parse(resp.result);
                 this.data.isLoading = false;
-                console.log("For Histogram", response);
-                let histogram = JSON.parse(response.result).histogram;
+                let histogram = JSON.parse(resp.result).histogram;
                 let ratings: any[] = Object.values(histogram);
                 this.histogram = ratings;
                 let total = ratings.reduce((el, ab) => ab + el);
@@ -182,44 +216,12 @@ export class ReviewsComponent implements OnInit {
                 }
 
                 this.chartOptions2.series = values;
-              })
-            })
-          } else {
-            this.android.getApp(app.appId).subscribe((resp: any) => {
-              console.log("resp android", JSON.parse(resp.result));
-              this.appData = JSON.parse(resp.result);
-              this.data.isLoading = false;
-              let histogram = JSON.parse(resp.result).histogram;
-              let ratings: any[] = Object.values(histogram);
-              this.histogram = ratings;
-              let total = ratings.reduce((el, ab) => ab + el);
-              this.total = total;
-              let values = [];
-              ratings.forEach(el => {
-                values.push(parseFloat(((el * 100) / total).toFixed(2)));
-              })
-              this.chartOptions.series = [{
-                data: values,
-                name: "Ratings"
-              }];
-              // this.chartOptions.title = { ...this.chartOptions, text: JSON.parse(resp.result).title };
-              this.chartOptions.dataLabels = {
-                enabled: true,
-                formatter: function (val) {
-                  return val + "%";
-                },
-                offsetY: -20,
-                style: {
-                  fontSize: "12px",
-                  colors: ["#304758"]
-                }
-              }
+              });
 
-              this.chartOptions2.series = values;
-            })
+            }
           }
         }
-      // });
+      });
     } catch (err: any) {
       console.log("ERROR", err);
     }

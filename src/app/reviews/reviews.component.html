@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [ngStyle]="{'display': data.isLoading ? 'none' : '' }">
     <div class="line boxes">
         <div class="box shadows app image-box" [ngStyle]="{'background-image': 'url('+appData.icon+')'}">
             <!-- <img [src]="appData.icon" alt="logo" class="logo"> -->

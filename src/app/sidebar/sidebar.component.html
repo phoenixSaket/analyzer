@@ -29,7 +29,7 @@
             apps
             <span class="text">Apps</span>
         </div>
-        <div class="icon shadows platform" *ngFor="let app of apps" routerLink="/reviews" (click)="selectApp(app)">
+        <div class="icon shadows platform" *ngFor="let app of apps" (click)="selectApp(app)">
             <div class="circle-logo">
                 <img class="platform-img" [src]="'/assets/'+ (app.isIOS ? 'apple.png' : 'android-2.png')" alt="platform">
             </div>

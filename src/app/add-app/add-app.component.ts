@@ -71,7 +71,8 @@ export class AddAppComponent implements OnInit {
       shouldAddApp = this.saveToLocalStorage({ appId: app.id, isIOS: this.platform == "IOS", app: app });
       if (shouldAddApp) {
         // this.data.newAppAdded.next({ appId: app.id, isIOS: this.platform == "IOS", appName: app.title, app: app });
-        this.data.addApp({ appId: app.id, isIOS: this.platform == "IOS", appName: app.title, app: app });
+        // this.data.addApp({ appId: app.id, isIOS: this.platform == "IOS", appName: app.title, app: app });
+        this.data.newAppAdded.next(true);
       } else {
         // this.openSnackbar("App already present");
       }
@@ -79,7 +80,8 @@ export class AddAppComponent implements OnInit {
       shouldAddApp = this.saveToLocalStorage({ appId: app.appId, isIOS: this.platform == "IOS", app: app });
       if (shouldAddApp) {
         // this.data.newAppAdded.next({ appId: app.appId, isIOS: this.platform == "IOS", appName: app.title, app: app });
-        this.data.addApp({ appId: app.id, isIOS: this.platform == "IOS", appName: app.title, app: app });
+        // this.data.addApp({ appId: app.id, isIOS: this.platform == "IOS", appName: app.title, app: app });
+        this.data.newAppAdded.next(true);
       } else {
         // this.openSnackbar("App already present");
       }

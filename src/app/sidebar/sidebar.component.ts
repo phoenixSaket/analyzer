@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +12,7 @@ export class SidebarComponent implements OnInit {
   public isOpen: boolean = false;
   public apps: any[] = [];
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private router: Router) { }
 
   ngOnInit(): void {
     // this.data.newAppAdded.subscribe((data: any) => {
@@ -24,6 +25,14 @@ export class SidebarComponent implements OnInit {
     // this.apps = apps;
 
     this.apps = this.data.getTotalApps();
+    this.data.newAppAdded.subscribe((isAdded: boolean) => {
+      console.log("App added ", isAdded);
+      if (isAdded) {
+        this.apps = this.data.getTotalApps();
+        console.log(this.apps);
+      }
+    });
+
   }
 
   setActive(event: any) {
@@ -36,5 +45,7 @@ export class SidebarComponent implements OnInit {
   selectApp(app: any) {
     // this.data.appLoader.next(app);
     this.data.setCurrentApp(app);
+    this.data.appSelected.next(true);
+    this.router.navigate(["/reviews"]);
   }
 }

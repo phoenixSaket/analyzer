@@ -1,6 +1,6 @@
 <div class="container">
     <app-filters [versions]="versions" [years]="years" [versionSorted]="" [dateSorted]="" [ratingSorted]=""
-        (searchKeyword)="search($event)" (version)="versionFilter($event)" (year)="yearFilter($event)"
+        (searchKeyword)="searchSort($event)" (version)="versionFilter($event)" (year)="yearFilter($event)"
         (ratingFilter)="ratingFilter($event)" (sortBy)="sortFilter($event)"></app-filters>
     <div class="android apps" *ngIf="!platform">
         <div class="app" *ngFor="let data of appData">
@@ -12,6 +12,11 @@
     </div>
 </div>
 
-<div class="loader" *ngIf="!!appData && appData.length == 0">
-    <app-loader></app-loader>
+<div class="loader" *ngIf="!!appData && appData.length == 0 && !data.isLoading">
+    <div>
+        <img class="image" src="assets/not-found.png" alt="no matching reviews">
+    </div>
+    <div>
+        No matching reviews for the provided filters.
+    </div>
 </div>

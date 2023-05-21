@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class IosService {
 
   constructor(private http: HttpClient) { }
 
-  getApp(app: string, useBackup: boolean = false) {
+  getApp(app: string, useBackup: boolean = false): Observable<any> {
     const url = (useBackup ? this.backupUrl : this.url) + "app";
     return this.http.post(url, { name: parseInt(app) });
   }
