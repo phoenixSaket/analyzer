@@ -14,17 +14,16 @@ export class SidebarComponent implements OnInit {
   constructor(private data: DataService) { }
 
   ngOnInit(): void {
-    let apps = JSON.parse(localStorage.getItem("apps-analyzer") || "[]");
-    console.log("Added apps", apps);
+    // this.data.newAppAdded.subscribe((data: any) => {
+    //   if (!!data) {
+    //     console.log("App", data);
+    //     apps.push(data);
+    //   }
+    // })
 
-    this.data.newAppAdded.subscribe((data: any) => {
-      if (!!data) {
-        console.log("App", data);
-        apps.push(data);
-      }
-    })
+    // this.apps = apps;
 
-    this.apps = apps;
+    this.apps = this.data.getTotalApps();
   }
 
   setActive(event: any) {
@@ -35,7 +34,7 @@ export class SidebarComponent implements OnInit {
   }
 
   selectApp(app: any) {
-    this.data.isLoading = true;
-    this.data.appLoader.next(app);
+    // this.data.appLoader.next(app);
+    this.data.setCurrentApp(app);
   }
 }

@@ -143,7 +143,9 @@ export class ReviewsComponent implements OnInit {
   ngOnInit(): void {
     try {
 
-      this.data.appLoader.subscribe((app: any) => {
+      let app = this.data.getCurrentApp();
+
+      // this.data.appLoader.subscribe((app: any) => {
         if (!!app) {
           console.log("Selected app", app);
           if (app.isIOS) {
@@ -217,7 +219,7 @@ export class ReviewsComponent implements OnInit {
             })
           }
         }
-      });
+      // });
     } catch (err: any) {
       console.log("ERROR", err);
     }

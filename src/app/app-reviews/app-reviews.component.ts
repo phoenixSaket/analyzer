@@ -21,7 +21,8 @@ export class AppReviewsComponent implements AfterViewInit {
   constructor(public data: DataService, private android: AndroidService, private ios: IosService) { }
 
   ngAfterViewInit(): void {
-    this.data.appLoader.subscribe((resp: any) => {
+    let resp = this.data.getCurrentApp();
+    // this.data.appLoader.subscribe((resp: any) => {
       if (!!resp) {
         console.log("debug", resp);
         if (resp.isIOS) {
@@ -37,7 +38,7 @@ export class AppReviewsComponent implements AfterViewInit {
           })
         }
       }
-    })
+    // })
   }
 
   getIOSReviews(resp: any) {
