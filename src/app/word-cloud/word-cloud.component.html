@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="inline">
+        <div class="dropdown-container shadows">
+            <div class="top" (click)="toggler()">
+                <div class="label">{{isSelected ? appValue : 'Select App'}}</div>
+                <div class="chevron">
+                    <span class="material-symbols-outlined" *ngIf="expand">
+                        expand_less
+                    </span>
+                    <span class="material-symbols-outlined" *ngIf="!expand">
+                        expand_more
+                    </span>
+
+                </div>
+            </div>
+            <div class="options" *ngIf="expand">
+                <div class="option" (click)="appSelected(app, false)" *ngFor="let app of apps">
+                    {{app.app.title}}
+                    <span class="platform">{{app.isIOS ? 'IOS' : 'Android'}}</span>
+                </div>
+            </div>
+        </div>
+
+        <button *ngIf="isSelected" class="primary-button shadows" (click)="zoomMinus()">
+            Zoom&nbsp;
+            <span class="material-symbols-outlined">
+                zoom_out
+            </span>
+        </button>
+
+        <button *ngIf="isSelected" class="primary-button shadows" (click)="zoom()">
+            Zoom&nbsp;
+            <span class="material-symbols-outlined">
+                zoom_in
+            </span>
+        </button>
+
+        <input *ngIf="isSelected" class="search shadows" [value]="multi" placeholder="Zoom Value" (change)="inputZoom($event)">
+        <button *ngIf="isSelected" class="primary-button shadows" (click)="zoomChange()">
+            Use Zoom Value&nbsp;
+            <span class="material-symbols-outlined">
+                pinch_zoom_out
+            </span>
+        </button>
+
+    </div>
+
+    <div class="word-cloud-container">
+        <canvas id="canvas">{{chart}}</canvas>
+    </div>
+</div>

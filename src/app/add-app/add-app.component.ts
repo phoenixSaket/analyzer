@@ -17,7 +17,7 @@ export class AddAppComponent implements OnInit {
   public platforms: string[] = ['IOS', 'Android'];
   public appName: string = "";
   public apps: any[] = [];;
-  public platform: string = "";
+  public selectedPlatform: string = "IOS";
 
   constructor(private ios: IosService, private android: AndroidService, private dialog: MatDialog, private snackbar: MatSnackBar, private data: DataService) { }
 
@@ -26,7 +26,7 @@ export class AddAppComponent implements OnInit {
 
   checked(item: string) {
     console.log(item);
-    this.platform = item;
+    this.selectedPlatform = item;
     this.apps = [];
     this.searchApp(null);
   }
@@ -39,7 +39,7 @@ export class AddAppComponent implements OnInit {
     const num: number = 20;
     const lang: string = "";
     const price: string = "";
-    if (this.platform == "IOS") {
+    if (this.selectedPlatform == "IOS") {
       this.ios.searchApp(term, num, lang, price).subscribe((resp: any) => {
         console.log("resp", JSON.parse(resp.result));
         this.apps = JSON.parse(resp.result);
@@ -58,7 +58,7 @@ export class AddAppComponent implements OnInit {
 
   openApp(app: any) {
     console.log("Open", app);
-    if (this.platform == 'IOS') {
+    if (this.selectedPlatform == 'IOS') {
       this.dialog.open(DetailsComponent, { data: app })
     } else {
       this.dialog.open(DetailsAndroidComponent, { data: app })
@@ -67,20 +67,20 @@ export class AddAppComponent implements OnInit {
 
   addApp(app: any) {
     let shouldAddApp: boolean;
-    if (this.platform == "IOS") {
-      shouldAddApp = this.saveToLocalStorage({ appId: app.id, isIOS: this.platform == "IOS", app: app });
+    if (this.selectedPlatform == "IOS") {
+      shouldAddApp = this.saveToLocalStorage({ appId: app.id, isIOS: this.selectedPlatform == "IOS", app: app });
       if (shouldAddApp) {
-        // this.data.newAppAdded.next({ appId: app.id, isIOS: this.platform == "IOS", appName: app.title, app: app });
-        // this.data.addApp({ appId: app.id, isIOS: this.platform == "IOS", appName: app.title, app: app });
+        // this.data.newAppAdded.next({ appId: app.id, isIOS: this.selectedPlatform == "IOS", appName: app.title, app: app });
+        // this.data.addApp({ appId: app.id, isIOS: this.selectedPlatform == "IOS", appName: app.title, app: app });
         this.data.newAppAdded.next(true);
       } else {
         // this.openSnackbar("App already present");
       }
     } else {
-      shouldAddApp = this.saveToLocalStorage({ appId: app.appId, isIOS: this.platform == "IOS", app: app });
+      shouldAddApp = this.saveToLocalStorage({ appId: app.appId, isIOS: this.selectedPlatform == "IOS", app: app });
       if (shouldAddApp) {
-        // this.data.newAppAdded.next({ appId: app.appId, isIOS: this.platform == "IOS", appName: app.title, app: app });
-        // this.data.addApp({ appId: app.id, isIOS: this.platform == "IOS", appName: app.title, app: app });
+        // this.data.newAppAdded.next({ appId: app.appId, isIOS: this.selectedPlatform == "IOS", appName: app.title, app: app });
+        // this.data.addApp({ appId: app.id, isIOS: this.selectedPlatform == "IOS", appName: app.title, app: app });
         this.data.newAppAdded.next(true);
       } else {
         // this.openSnackbar("App already present");

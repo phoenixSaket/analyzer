@@ -1,9 +1,5 @@
-* {
-    transition-duration: 100ms;
-}
-
 .top {
-    border-bottom: 1px solid var(--primary);
+    /* border-bottom: 1px solid var(--primary); */
     position: sticky;
     top: 0px;
     width: calc(100% - 20px);
@@ -15,6 +11,7 @@
     flex-wrap: wrap;
     z-index: 10;
     background-color: var(--gray);
+    margin: 10px 0;
 }
 
 .bold {
@@ -24,6 +21,8 @@
 .dark {
     color: var(--primary);
     font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
 }
 
 .radio-button-container {
@@ -140,4 +139,84 @@ mat-form-field{
     z-index: -1;
     width: 100%;
     opacity: 0.3;
+}
+
+.platform {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.plat {
+    display: flex;
+    align-items: center;
+    align-items: center;
+    color: var(--primary);
+    justify-content: space-between;
+    width: 140px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.plat .material-symbols-outlined {
+    background-color: var(--white);
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+}
+
+.primary-button {
+    padding: 10px;
+    background-color: var(--primary);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 140px;
+    align-items: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-style: italic;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+.search {
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    background: #f0f0f0;
+    border: 2px solid var(--primary);
+    transition-duration: 100ms;
+    color: var(--primary);
+    font-weight: 700;
+    width: 250px;
+    font-size: 14px;
+}
+
+.search:focus {
+    outline: none;
+}
+
+.search::placeholder {
+    color: var(--primary);
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.dot{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--primary);
 }

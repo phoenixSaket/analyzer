@@ -28,6 +28,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatSelectModule } from "@angular/material/select";
 import { LoaderComponent } from './loader/loader.component';
+import { WordCloudComponent } from './word-cloud/word-cloud.component';
+import { SentimentWordCloudComponent } from './sentiment-word-cloud/sentiment-word-cloud.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { LoaderComponent } from './loader/loader.component';
     AppAndroidComponent,
     AppIosComponent,
     FiltersComponent,
-    LoaderComponent
+    LoaderComponent,
+    WordCloudComponent,
+    SentimentWordCloudComponent
   ],
   imports: [
     BrowserModule,

@@ -3,18 +3,22 @@
 
         <form class="form" (submit)="searchApp($event)">
             <div class="platform">
-                <mat-radio-group class="radio-button-container">
-                    <mat-radio-button class="example-radio-button" (change)="checked(platform)"
-                        *ngFor="let platform of platforms" [value]="platform">
-                        <span class="dark">{{platform}}</span>
-                    </mat-radio-button>
-                </mat-radio-group>
+                <!-- <mat-radio-group class="radio-button-container"> -->
+                <!-- <mat-radio-button class="example-radio-button" (change)="checked(platform)" -->
+                <div class="plat shadows" *ngFor="let platform of platforms" [value]="platform" (click)="checked(platform)">
+                    <span class="material-symbols-outlined " *ngIf="selectedPlatform == platform">
+                        <span class="dot"></span>
+                    </span>
+                    <span class="material-symbols-outlined" *ngIf="selectedPlatform != platform">
+                    </span>
+                    <span class="dark">{{platform}}</span>
+                </div>
+                <!-- </mat-radio-button> -->
+                <!-- </mat-radio-group> -->
             </div>
-            <mat-form-field class="example-full-width">
-                <mat-label>App Name</mat-label>
-                <input matInput value="" (change)="inputApp($event)">
-            </mat-form-field>
-            <button mat-raised-button color="primary">
+
+            <input class="search shadows" value="" placeholder="Search by App Name" (change)="inputApp($event)">
+            <button class="primary-button shadows">
                 <span class="white">Search</span>
                 <span class="material-symbols-outlined search-text white">
                     search
