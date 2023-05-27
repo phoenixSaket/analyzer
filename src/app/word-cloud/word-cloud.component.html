@@ -21,31 +21,35 @@
             </div>
         </div>
 
-        <button *ngIf="isSelected" class="primary-button shadows" (click)="zoomMinus()">
-            Zoom&nbsp;
-            <span class="material-symbols-outlined">
-                zoom_out
-            </span>
-        </button>
 
-        <button *ngIf="isSelected" class="primary-button shadows" (click)="zoom()">
-            Zoom&nbsp;
+        <button *ngIf="!loading && isSelected" class="primary-button shadows" (click)="zoom()">
+            Zoom In&nbsp;
             <span class="material-symbols-outlined">
                 zoom_in
             </span>
         </button>
 
-        <input *ngIf="isSelected" class="search shadows" [value]="multi" placeholder="Zoom Value" (change)="inputZoom($event)">
-        <button *ngIf="isSelected" class="primary-button shadows" (click)="zoomChange()">
-            Use Zoom Value&nbsp;
+        <button *ngIf="!loading && isSelected" class="primary-button shadows" (click)="zoomMinus()">
+            Zoom Out&nbsp;
             <span class="material-symbols-outlined">
-                pinch_zoom_out
+                zoom_out
+            </span>
+        </button>
+
+        <button class="primary-button shadows" *ngIf="!loading && isSelected" (click)="saveWordCloud()">
+            Download&nbsp;
+            <span class="material-symbols-outlined">
+                download
             </span>
         </button>
 
     </div>
 
+    <div class="loading-container" *ngIf="loading">
+        <app-loader></app-loader>
+    </div>
+
     <div class="word-cloud-container">
-        <canvas id="canvas">{{chart}}</canvas>
+        <canvas #wordCloudContainer id="canvas">{{chart}}</canvas>
     </div>
 </div>

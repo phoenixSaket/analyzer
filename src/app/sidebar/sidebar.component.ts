@@ -24,11 +24,24 @@ export class SidebarComponent implements OnInit {
 
     // this.apps = apps;
 
-    this.apps = this.data.getTotalApps();
+    // this.apps = this.data.getTotalApps();
+    let apps = JSON.parse(JSON.stringify(this.data.getTotalApps()));
+
+    apps.forEach((app: any, index: number) => {
+      if (index < 5) {
+        this.apps.push(app);
+      }
+    })
     this.data.newAppAdded.subscribe((isAdded: boolean) => {
-      console.log("App added ", isAdded);
       if (isAdded) {
-        this.apps = this.data.getTotalApps();
+        // this.apps = this.data.getTotalApps();
+        let apps = JSON.parse(JSON.stringify(this.data.getTotalApps()));
+
+        apps.forEach((app: any, index: number) => {
+          if (index < 5) {
+            this.apps.push(app);
+          }
+        })
         console.log(this.apps);
       }
     });
@@ -43,7 +56,6 @@ export class SidebarComponent implements OnInit {
   }
 
   selectApp(app: any) {
-    // this.data.appLoader.next(app);
     this.data.setCurrentApp(app);
     this.data.appSelected.next(true);
     this.router.navigate(["/reviews"]);

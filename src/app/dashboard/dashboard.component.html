@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="tab-content">
+        <div class="chart shadows" *ngFor="let chart of charts">
+            <div class="name-container">
+                <div class="name">
+                    {{chart.app}}
+                    <div class="platform">{{chart.isIOS ? 'IOS' : 'Android'}}</div>
+                </div>
+            </div>
+            <apx-chart [series]="chart.series" [colors]="chart.colors" [chart]="chart.chart" [labels]="chart?.labels"
+                [responsive]="chart?.responsive" [plotOptions]="chart.plotOptions"></apx-chart>
+        </div>
+    </div>
+</div>

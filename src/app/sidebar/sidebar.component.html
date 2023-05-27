@@ -13,7 +13,7 @@
             add
             <span class="text">Add an App</span>
         </div>
-        <div class="icon shadows material-symbols-outlined" routerLink="" (click)="setActive($event)">
+        <div class="icon shadows material-symbols-outlined" routerLink="/dashboard" (click)="setActive($event)">
             dashboard
             <span class="text">Dashboard</span>
         </div>
@@ -23,30 +23,30 @@
         </div>
         <div class="icon shadows material-symbols-outlined" routerLink="/sentiment-word-cloud" (click)="setActive($event)">
             sentiment_satisfied
-            <span class="text">Sentiment Analysis</span>
+            <span class="text">Sentiment Word Cloud</span>
         </div>
         <div class="icon shadows material-symbols-outlined" routerLink="/apps" (click)="setActive($event)">
             apps
             <span class="text">Apps</span>
         </div>
-        <div class="icon shadows platform" *ngFor="let app of apps" (click)="selectApp(app)">
+        <!-- <div class="icon shadows platform" *ngFor="let app of apps" (click)="selectApp(app)">
             <div class="circle-logo">
                 <img class="platform-img" [src]="'/assets/'+ (app.isIOS ? 'apple.png' : 'android-2.png')" alt="platform">
             </div>
             <img class="img" [ngClass]="isOpen ? 'open' : 'close'" [src]="app.app.icon" alt="icon">
             <span class="text">{{app.app.title}} <span class="small-text">{{app.isIOS ? 'IOS' : 'Android'}}</span></span>
-        </div>
+        </div> -->
     </div>
-    <div class="bottom">
+    <!-- <div class="bottom">
         <div class="icon shadows material-symbols-outlined">
             compare_arrows
             <span class="text">Compare Apps</span>
         </div>
-        <!-- <div class="icon shadows material-symbols-outlined">
+        <div class="icon shadows material-symbols-outlined">
             delete
             <span class="text" *ngIf="isOpen">Delete Apps</span>
-        </div> -->
-    </div>
+        </div>
+    </div> -->
 </div>
 
 <div class="container-fake" [ngClass]="isOpen ? 'open': 'close'"></div>

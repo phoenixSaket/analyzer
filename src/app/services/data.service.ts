@@ -15,8 +15,10 @@ export class DataService {
   public selectedApp;
   public newAppAdded: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public appSelected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public compareApps: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public totalApps: any;
   public allApps: any[] = [];
+  public appsToCompare: any[] = [];
 
   constructor(private http: HttpClient, private android: AndroidService, private ios: IosService, public dialog: MatDialog, private snackBar: MatSnackBar) {
   }
@@ -29,11 +31,12 @@ export class DataService {
     return JSON.parse(JSON.stringify(this.selectedApp));
   }
 
-  getCurrentPage(): string {
-    return null;
+  setCompareApps(app: any) {
+    this.appsToCompare = this.addIfNotPresent(app, JSON.parse(JSON.stringify(this.appsToCompare)));
   }
-
-  setCurrentPage(page: string) {
+  
+  getCompareApps(): any {
+    return JSON.parse(JSON.stringify(this.appsToCompare));
   }
 
   addApp(app: any) {

@@ -1,1 +1,79 @@
-<p>sentiment-word-cloud works!</p>
+<div class="container">
+    <div class="inline">
+        <div class="dropdown-container shadows">
+            <div class="top" (click)="toggler()">
+                <div class="label">{{isSelected ? appValue : 'Select App'}}</div>
+                <div class="chevron">
+                    <span class="material-symbols-outlined" *ngIf="expand">
+                        expand_less
+                    </span>
+                    <span class="material-symbols-outlined" *ngIf="!expand">
+                        expand_more
+                    </span>
+
+                </div>
+            </div>
+            <div class="options" *ngIf="expand">
+                <div class="option" (click)="appSelected(app, false)" *ngFor="let app of apps">
+                    {{app.app.title}}
+                    <span class="platform">{{app.isIOS ? 'IOS' : 'Android'}}</span>
+                </div>
+            </div>
+        </div>
+
+        <button *ngIf="!loading && isSelected" class="primary-button shadows" (click)="zoom()">
+            Zoom In&nbsp;
+            <span class="material-symbols-outlined">
+                zoom_in
+            </span>
+        </button>
+
+        <button *ngIf="!loading && isSelected" class="primary-button shadows" (click)="zoomMinus()">
+            Zoom Out&nbsp;
+            <span class="material-symbols-outlined">
+                zoom_out
+            </span>
+        </button>
+
+        <button class="primary-button shadows" *ngIf="!loading && isSelected" (click)="saveWordCloud()">
+            Download&nbsp;
+            <span class="material-symbols-outlined">
+                download
+            </span>
+        </button>
+
+    </div>
+    <div class="loading-container" *ngIf="loading">
+        <app-loader></app-loader>
+    </div>
+
+    <div class="word-cloud-container">
+        <canvas #wordCloudContainer id="positive-canvas">{{positiveChart}}</canvas>
+        <div class="color-container shadows" *ngIf="isSelected">
+            <div class="instruction">
+                <div class="color positive">
+                    <span class="material-symbols-outlined">
+                        sentiment_very_satisfied
+                    </span>
+                </div>
+                <div class="text positive-text">Positive</div>
+            </div>
+            <div class="instruction">
+                <div class="color neutral">
+                    <span class="material-symbols-outlined">
+                        sentiment_neutral
+                    </span>
+                </div>
+                <div class="text neutral-text">Neutral</div>
+            </div>
+            <div class="instruction">
+                <div class="color negative">
+                    <span class="material-symbols-outlined">
+                        sentiment_extremely_dissatisfied
+                    </span>
+                </div>
+                <div class="text negative-text">Negative</div>
+            </div>
+        </div>
+    </div>
+</div>

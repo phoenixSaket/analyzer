@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { WordCloudComponent } from './word-cloud/word-cloud.component';
 import { SentimentWordCloudComponent } from './sentiment-word-cloud/sentiment-word-cloud.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: "reviews", component: ReviewsComponent },
   { path: "app-reviews", component: AppReviewsComponent },
   { path: "word-cloud", component: WordCloudComponent },
-  { path: "sentiment-word-cloud", component: SentimentWordCloudComponent }
+  { path: "sentiment-word-cloud", component: SentimentWordCloudComponent },
+  { path: "dashboard", component: DashboardComponent }
 ];
 
 @NgModule({

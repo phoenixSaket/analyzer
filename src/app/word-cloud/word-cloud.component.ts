@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../services/data.service';
 import * as keyword_extractor from 'keyword-extractor';
 import { Chart, LinearScale } from 'chart.js';
@@ -12,6 +12,7 @@ import { IosService } from '../services/ios.service';
   styleUrls: ['./word-cloud.component.css']
 })
 export class WordCloudComponent implements OnInit {
+  @ViewChild('wordCloudContainer', { static: false }) wordCloudContainer: ElementRef;
 
   public chart: any;
   public apps: any[] = [];
@@ -27,7 +28,6 @@ export class WordCloudComponent implements OnInit {
   words: any[];
   multiplicant: number = 0;
   multi: number = 0;
-  hasMulti: boolean = false;
 
   constructor(private data: DataService, private android: AndroidService, private ios: IosService) {
     Chart.register(WordCloudController, WordElement, LinearScale);
@@ -37,15 +37,14 @@ export class WordCloudComponent implements OnInit {
     this.apps = this.data.getTotalApps();
     this.totalApps = this.data.getTotalApps();
     this.chart?.destroy();
-    // this.loading = false;
+    this.loading = false;
   }
 
   toggler() {
     this.expand = !this.expand;
   }
 
-  appSelected(app: any, isInternalCall: boolean = true) {
-    this.hasMulti = isInternalCall;
+  appSelected(app: any, isInternalCall: boolean = true, shouldReload: boolean = true) {
     this.isSelected = true;
     this.expand = false;
     this.appValue = app.app.title + "  " + (app.isIOS ? 'IOS' : 'Android');
@@ -56,10 +55,14 @@ export class WordCloudComponent implements OnInit {
     this.array = [];
     this.loading = true;
 
-    if (app.isIOS) {
-      this.getIOSReviews(app.app);
+    if(shouldReload) {
+      if (app.isIOS) {
+        this.getIOSReviews(app.app);
+      } else {
+        this.getAndroidReviews(app.app);
+      }
     } else {
-      this.getAndroidReviews(app.app);
+      this.generateWordCloud(this.words, this.multiplicant);
     }
   }
 
@@ -197,8 +200,7 @@ export class WordCloudComponent implements OnInit {
     multlipicant = multlipicant > 0.5 ? multlipicant : 1 - multlipicant;
     multlipicant = multlipicant < 20 ? multlipicant : 20;
     multlipicant = multlipicant + this.multiplicant;
-    multlipicant = this.hasMulti ? this.multi : multlipicant;
-    this.multi = multlipicant;
+    this.multiplicant = multlipicant;
     this.generateWordCloud(z, multlipicant);
   }
 
@@ -250,29 +252,34 @@ export class WordCloudComponent implements OnInit {
   redraw() {
     this.chart?.destroy();
     setTimeout(() => {
-      this.appSelected(this.selectedApp);
+      this.appSelected(this.selectedApp, true, false);
     }, 200);
   }
 
   zoom() {
-    this.multiplicant = this.multiplicant + 0.1;
+    this.multiplicant = this.multiplicant + (0.1 * this.multiplicant);
     this.redraw();
   }
 
   zoomMinus() {
-    this.multiplicant = this.multiplicant - 0.1;
+    this.multiplicant = this.multiplicant - (0.1 * this.multiplicant);
     this.redraw();
   }
 
-  inputZoom(event: any) {
-    this.multiplicant = event.target.value;
-    if (!!event.target.value && event.target.value != 0) {
-      this.hasMulti = true;
-    }
-    this.multi = event.target.value;
-  }
+  saveWordCloud(): void {
+    const canvas = document.createElement('canvas');
+    const container = this.wordCloudContainer.nativeElement;
 
-  zoomChange() {
-    this.redraw();
+    canvas.width = container.width;
+    canvas.height = container.height;
+
+    const context = canvas.getContext('2d');
+    context.drawImage(container, 0, 0);
+
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = this.selectedApp.app.title + '_word_cloud.png';
+
+    link.click();
   }
 }

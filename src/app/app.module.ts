@@ -30,6 +30,9 @@ import { MatSelectModule } from "@angular/material/select";
 import { LoaderComponent } from './loader/loader.component';
 import { WordCloudComponent } from './word-cloud/word-cloud.component';
 import { SentimentWordCloudComponent } from './sentiment-word-cloud/sentiment-word-cloud.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CompareComponent } from './compare/compare.component';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { SentimentWordCloudComponent } from './sentiment-word-cloud/sentiment-wo
     FiltersComponent,
     LoaderComponent,
     WordCloudComponent,
-    SentimentWordCloudComponent
+    SentimentWordCloudComponent,
+    DashboardComponent,
+    CompareComponent
   ],
   imports: [
     BrowserModule,
@@ -65,8 +70,6 @@ import { SentimentWordCloudComponent } from './sentiment-word-cloud/sentiment-wo
     MatIconModule,
     MatListModule,
     MatSelectModule,
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]

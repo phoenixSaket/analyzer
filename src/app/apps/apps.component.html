@@ -1,29 +1,34 @@
 <div class="container">
+    <div class="title-page">Actions</div>
     <div class="apps-container">
-        <div class="apps " *ngFor="let app of apps">
-            <div class="circle-logo">
-                <img class="platform-img" [src]="'/assets/'+ (app.isIOS ? 'apple.png' : 'android-2.png')"
-                    alt="platform">
-            </div>
-            <img [src]="app.app.icon" alt="icon" class="icon shadows">
-        </div>
         <div class="apps">
             <div class="icon add-icon shadows material-symbols-outlined" routerLink="../add">
-               add
+                add
             </div>
             <div class="title">Add</div>
         </div>
-        <div class="apps">
+        <div class="apps" (click)="startComparingApps()">
             <div class="icon green add-icon shadows material-symbols-outlined">
-               compare_arrows
+                compare_arrows
             </div>
             <div class="title">Compare</div>
         </div>
         <div class="apps">
             <div class="icon red add-icon shadows material-symbols-outlined">
-               delete
+                delete
             </div>
             <div class="title">Delete</div>
+        </div>
+    </div>
+    <div class="title-page">{{startComparing ? 'Select apps for comparing' : 'Added Apps'}}</div>
+    <div class="apps-container">
+        <div class="apps" *ngFor="let app of apps"
+            (click)="startComparing? selectAppForComparing(app) : appSelected(app)"
+            [ngClass]="{'compare' : startComparing, 'not-comparing': !app.isComparing && startComparing, 'selected-for-comparing': app.isComparing}">
+            <div class="circle-logo shadows">
+                <img class="platform-img" [src]="'/assets/'+ (app.isIOS ? 'apple.png' : 'android.png')" alt="platform">
+            </div>
+            <img [src]="app.app.icon" alt="icon" class="icon shadows">
         </div>
     </div>
     <ng-container *ngTemplateOutlet="svg"></ng-container>

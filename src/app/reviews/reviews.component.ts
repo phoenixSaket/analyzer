@@ -15,7 +15,7 @@ import {
 } from "ng-apexcharts";
 import { ApexDataLabels, ApexPlotOptions, ApexTheme, ApexYAxis } from 'ng-apexcharts/lib/model/apex-types';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
+
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -154,7 +154,6 @@ export class ReviewsComponent implements OnInit {
                 this.appData = JSON.parse(resp.result);
                 console.log(this.appData)
                 this.ios.getAPPRatings(app.appId).subscribe((response: any) => {
-                  this.data.isLoading = false;
                   let histogram = JSON.parse(response.result).histogram;
                   let ratings: any[] = Object.values(histogram);
                   this.histogram = ratings;
@@ -182,13 +181,15 @@ export class ReviewsComponent implements OnInit {
                   }
 
                   this.chartOptions2.series = values;
+                  setTimeout(() => {
+                    this.data.isLoading = false;
+                  }, 100);
                 })
               })
 
             } else {
               this.android.getApp(app.appId).subscribe((resp: any) => {
                 this.appData = JSON.parse(resp.result);
-                this.data.isLoading = false;
                 let histogram = JSON.parse(resp.result).histogram;
                 let ratings: any[] = Object.values(histogram);
                 this.histogram = ratings;
@@ -216,10 +217,15 @@ export class ReviewsComponent implements OnInit {
                 }
 
                 this.chartOptions2.series = values;
+                setTimeout(() => {
+                  this.data.isLoading = false;
+                }, 100);
               });
 
             }
           }
+        } else {
+          this.router.navigate(["/"]);
         }
       });
     } catch (err: any) {
