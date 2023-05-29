@@ -1,1 +1,7 @@
-<p>compare works!</p>
+<div class="container shadows">
+    <div class="column" [ngClass]="{'heading' : m == 0}" *ngFor="let column of dataToShow; ;let m = index">
+        <div class="row" [ngClass]="{'heading' : i == 0}" *ngFor="let row of column; let i = index;">
+            <div>{{row}}</div>
+        </div>
+    </div>
+</div>

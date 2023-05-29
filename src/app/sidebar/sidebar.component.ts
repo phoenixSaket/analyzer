@@ -15,36 +15,13 @@ export class SidebarComponent implements OnInit {
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.data.newAppAdded.subscribe((data: any) => {
-    //   if (!!data) {
-    //     console.log("App", data);
-    //     apps.push(data);
-    //   }
-    // })
 
-    // this.apps = apps;
-
-    // this.apps = this.data.getTotalApps();
-    let apps = JSON.parse(JSON.stringify(this.data.getTotalApps()));
-
-    apps.forEach((app: any, index: number) => {
-      if (index < 5) {
-        this.apps.push(app);
+    this.data.checkRecents.subscribe((shouldCheck: boolean)=> {
+      if(shouldCheck) {
+        this.apps = this.data.getRecents();
+        console.log("This is it", this.apps)
       }
     })
-    this.data.newAppAdded.subscribe((isAdded: boolean) => {
-      if (isAdded) {
-        // this.apps = this.data.getTotalApps();
-        let apps = JSON.parse(JSON.stringify(this.data.getTotalApps()));
-
-        apps.forEach((app: any, index: number) => {
-          if (index < 5) {
-            this.apps.push(app);
-          }
-        })
-        console.log(this.apps);
-      }
-    });
 
   }
 

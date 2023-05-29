@@ -19,6 +19,8 @@ export class DataService {
   public totalApps: any;
   public allApps: any[] = [];
   public appsToCompare: any[] = [];
+  public recents: any[] = [];
+  public checkRecents: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private android: AndroidService, private ios: IosService, public dialog: MatDialog, private snackBar: MatSnackBar) {
   }
@@ -34,7 +36,7 @@ export class DataService {
   setCompareApps(app: any) {
     this.appsToCompare = this.addIfNotPresent(app, JSON.parse(JSON.stringify(this.appsToCompare)));
   }
-  
+
   getCompareApps(): any {
     return JSON.parse(JSON.stringify(this.appsToCompare));
   }
@@ -94,9 +96,39 @@ export class DataService {
     return array;
   }
 
+  checkIfPresent(app: any, array: any[]): boolean {
+    if (array.find(el => el.appId == app.appId) != undefined) {
+      return true;
+    }
+    return false;
+  }
+
+  addIfNotPresentRecent(entry: any, array: any[]): any[] {
+    if (array.length > 0) {
+      if (!this.checkIfPresent(entry, array)) {
+        array.push(entry);
+      }
+    } else {
+      array.push(entry);
+    }
+    return array;
+  }
+
   sortDescending(array: any[]): any[] {
     return array.sort((a: any, b: any) => {
       return b - a;
     });
+  }
+
+  getRecents(): any[] {
+    return this.recents;
+  }
+
+  setRecents(app: any) {
+    if (this.recents.length == 5) {
+      this.recents.shift();
+    }
+    this.recents = this.addIfNotPresentRecent(app, this.recents);
+    this.checkRecents.next(true);
   }
 }

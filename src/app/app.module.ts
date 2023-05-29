@@ -32,6 +32,7 @@ import { WordCloudComponent } from './word-cloud/word-cloud.component';
 import { SentimentWordCloudComponent } from './sentiment-word-cloud/sentiment-word-cloud.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompareComponent } from './compare/compare.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -70,6 +71,10 @@ import { CompareComponent } from './compare/compare.component';
     MatIconModule,
     MatListModule,
     MatSelectModule,
+    DragDropModule
+  ],
+  exports: [
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

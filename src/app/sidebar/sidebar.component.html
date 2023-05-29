@@ -29,13 +29,13 @@
             apps
             <span class="text">Apps</span>
         </div>
-        <!-- <div class="icon shadows platform" *ngFor="let app of apps" (click)="selectApp(app)">
+        <div class="icon shadows platform" *ngFor="let app of apps" (click)="selectApp(app)">
             <div class="circle-logo">
                 <img class="platform-img" [src]="'/assets/'+ (app.isIOS ? 'apple.png' : 'android-2.png')" alt="platform">
             </div>
             <img class="img" [ngClass]="isOpen ? 'open' : 'close'" [src]="app.app.icon" alt="icon">
             <span class="text">{{app.app.title}} <span class="small-text">{{app.isIOS ? 'IOS' : 'Android'}}</span></span>
-        </div> -->
+        </div>
     </div>
     <!-- <div class="bottom">
         <div class="icon shadows material-symbols-outlined">

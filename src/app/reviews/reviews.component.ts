@@ -164,15 +164,12 @@ export class ReviewsComponent implements OnInit {
                     values.push(parseFloat(((el * 100) / total).toFixed(2)));
                   })
                   this.chartOptions.series = [{
-                    data: values,
+                    data: ratings,
                     name: "Ratings"
                   }];
                   // this.chartOptions.title = { ...this.chartOptions, text: JSON.parse(resp.result).title };
                   this.chartOptions.dataLabels = {
                     enabled: true,
-                    formatter: function (val) {
-                      return val + "%";
-                    },
                     offsetY: -20,
                     style: {
                       fontSize: "12px",

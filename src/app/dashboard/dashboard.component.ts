@@ -10,6 +10,7 @@ import {
 import { ApexDataLabels, ApexPlotOptions, ApexTheme, ApexYAxis } from 'ng-apexcharts/lib/model/apex-types';
 import { AndroidService } from '../services/android.service';
 import { IosService } from '../services/ios.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -39,7 +40,8 @@ export type ChartOptions2 = {
 export class DashboardComponent implements OnInit {
   public apps: any[] = [];
 
-  public charts: Partial<ChartOptions>[] = [];
+  public charts: any[] = [];
+  public charts2: any[] = [];
 
   histogram: any[];
   total: any;
@@ -60,15 +62,21 @@ export class DashboardComponent implements OnInit {
     this.data.isLoading = true;
     let chartOptions: any = {
       chart: {
-        // width: '100%',
         height: 350,
-        type: "bar",
+        type: "bar"
       },
       xaxis: {
-        categories: ["1★", "2★", "3★", "4★", "5★"]
+        type: 'category',
+        categories: ["1 ★", "2 ★", "3 ★", "4 ★", "5 ★"],
+        labels: {
+          style: {
+            fontSize: '14px',
+            fontWeight: 'bold',
+            colors: '#1C2E4A'
+          }
+        }
       },
       yaxis: {
-        type: "numeric",
         show: false
       },
       plotOptions: {
@@ -80,20 +88,16 @@ export class DashboardComponent implements OnInit {
         },
         dataLabels: {
           enabled: true,
+          offsetY: -20,
           style: {
-            colors: ['#54628C']
-          },
-          offsetY: -30
+            fontSize: '12px',
+            fontWeight: 800,
+            colors: ['#1C2E4A'],
+            fontFamily: 'Cabin, sans-serif'
+          }
         },
       },
-      dataLabels : {
-        enabled: true,
-          style: {
-            colors: ['#ff0000']
-          },
-          offsetY: -30,
-        },
-        colors: ["#54628C"]
+      colors: ["#B3BAD1", "#808CB3", "#2B4570", "#3D4766", "#363E59"]
     };
 
     let chartOptions2: any = {
@@ -162,7 +166,7 @@ export class DashboardComponent implements OnInit {
           offsetY: -20
         }
       },
-      colors: ["#B3BAD1", "#808CB3", "#54628C", "#3D4766", "#363E59"]
+      colors: ["#B3BAD1", "#808CB3", "#2B4570", "#3D4766", "#363E59"]
     };
 
     if (!!app) {
@@ -180,25 +184,19 @@ export class DashboardComponent implements OnInit {
             })
 
             chartOptions.series = [{
-              data: values,
+              data: ratings,
               name: "Ratings"
             }];
 
-            chartOptions.plotOptions.dataLabels = {
-              formatter: function (val) {
-                return val + "%";
-              }
-            }
-
             chartOptions.app = app.app.title;
-            chartOptions.isIOS = true;            
-            this.charts.push(chartOptions);
+            chartOptions.isIOS = true;
 
             chartOptions2.series = values;
             chartOptions2.isIOS = true;
             chartOptions2.app = app.app.title;
 
-            this.charts.push(chartOptions2);
+            this.charts.push({ app: app.app.title, type: 'bar', isIOS: app.isIOS, bar: chartOptions, pie: chartOptions2, isVisible: 'bar' });
+
             setTimeout(() => {
               this.data.isLoading = false;
             }, 100);
@@ -216,30 +214,17 @@ export class DashboardComponent implements OnInit {
           ratings.forEach(el => {
             values.push(parseFloat(((el * 100) / total).toFixed(2)));
           })
+
           chartOptions.series = [{
-            data: values,
+            data: ratings,
             name: "Ratings"
           }];
-          chartOptions.dataLabels = {
-            enabled: true,
-            formatter: function (val) {
-              return val + "%";
-            },
-            offsetY: -20,
-            style: {
-              fontSize: "12px",
-              colors: ["#304758"]
-            }
-          }
 
           chartOptions.app = app.app.title;
-          chartOptions.isIOS = false;
-          this.charts.push(chartOptions);
-          
           chartOptions2.series = values;
           chartOptions2.app = app.app.title;
-          chartOptions2.isIOS = false;
-          this.charts.push(chartOptions2);
+
+          this.charts.push({ app: app.app.title, type: 'bar', isIOS: app.isIOS, bar: chartOptions, pie: chartOptions2, isVisible: 'bar' });
 
           setTimeout(() => {
             this.data.isLoading = false;
@@ -247,6 +232,20 @@ export class DashboardComponent implements OnInit {
         });
 
       }
+    }
+  }
+
+  drop(event: any) {
+    console.log(event);
+    moveItemInArray(this.charts, event.previousIndex, event.currentIndex);
+  }
+
+  changeChart(chart: any) {
+    console.log(chart)
+    if (chart.isVisible == 'pie') {
+      chart.isVisible = 'bar';
+    } else {
+      chart.isVisible = 'pie';
     }
   }
 }

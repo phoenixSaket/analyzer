@@ -23,6 +23,7 @@ export class AppsComponent implements OnInit {
   appSelected(app: any) {
     this.data.setCurrentApp(app);
     this.data.appSelected.next(true);
+    this.data.setRecents(app);
     this.router.navigate(["/reviews"]);
   }
 

@@ -33,7 +33,7 @@
     </div>
     <div class="buttons-container" *ngIf="startDeleting || startComparing">
         <button class="delete primary-button shadows" *ngIf="startDeleting">Delete</button>
-        <button class="compare-btn primary-button shadows" *ngIf="startComparing">compare</button>
+        <button class="compare-btn primary-button shadows" *ngIf="startComparing" routerLink="/compare">compare</button>
     </div>
 </div>
 <ng-container *ngTemplateOutlet="svg"></ng-container>

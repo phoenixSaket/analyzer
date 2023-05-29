@@ -1,14 +1,31 @@
 <div class="container">
-    <div class="tab-content">
-        <div class="chart shadows" *ngFor="let chart of charts">
-            <div class="name-container">
+    <div class="tab-content" cdkDropList (cdkDropListDropped)="drop($event)">
+        <div class="chart shadows" cdkDrag *ngFor="let chart of charts; let i = index">
+            <div class="name-container shadows">
                 <div class="name">
                     {{chart.app}}
                     <div class="platform">{{chart.isIOS ? 'IOS' : 'Android'}}</div>
                 </div>
+                <div class="icon" (click)="changeChart(chart)">
+                    <span class="material-symbols-outlined" *ngIf="chart.isVisible == 'bar'">
+                        bar_chart
+                    </span>
+                    <span class="material-symbols-outlined" *ngIf="chart.isVisible == 'pie'">
+                        pie_chart
+                    </span>
+                </div>
             </div>
-            <apx-chart [series]="chart.series" [colors]="chart.colors" [chart]="chart.chart" [labels]="chart?.labels"
-                [responsive]="chart?.responsive" [plotOptions]="chart.plotOptions"></apx-chart>
+            <apx-chart *ngIf="chart.isVisible == 'bar'" [series]="chart.bar.series" [colors]="chart.bar.colors"
+                [chart]="chart.bar.chart" [plotOptions]="chart.bar.plotOptions" [xaxis]="chart.bar.xaxis"
+                [yaxis]="chart.bar.yaxis" [dataLabels]="chart.bar.plotOptions.dataLabels"></apx-chart>
+            <apx-chart *ngIf="chart.isVisible == 'pie'" [series]="chart.pie.series" [colors]="chart.pie.colors"
+                [chart]="chart.pie.chart" [labels]="chart.pie.labels" [responsive]="chart.pie.responsive"
+                [plotOptions]="chart.pie.plotOptions"></apx-chart>
+            <div class="arrow shadows" (click)="changeChart(chart)">
+                <span class="material-symbols-outlined">
+                    arrow_circle_right
+                </span>
+            </div>
         </div>
     </div>
 </div>

@@ -46,7 +46,7 @@
 }
 
 .chart {
-    height: 365px;
+    height: 375px;
     width: 350px;
     border-radius: 15px;
     display: flex;
@@ -85,4 +85,36 @@
     font-size: 30px;
     font-weight: 800;
     color: var(--primary);
+}
+
+/* apx-chart {
+    pointer-events: none;
+} */
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.arrow {
+    position: absolute;
+    right: -17px;
+    top: calc(50% - 17px);
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 10px;
+    z-index: 2;
+    cursor: pointer;
+    color: var(--accent);
+}
+
+.arrow .material-symbols-outlined {
+    color: var(--accent);
 }
