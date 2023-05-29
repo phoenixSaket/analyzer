@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 export class AppsComponent implements OnInit {
   public apps: any[] = [];
   public startComparing: boolean = false;
+  public startDeleting: boolean = false;
   public isComparing: boolean = false;
+  public isDeleting: boolean = false;
 
   constructor(private data: DataService, private router: Router) { }
 
@@ -25,14 +27,34 @@ export class AppsComponent implements OnInit {
   }
 
   startComparingApps() {
-    console.log(this.startComparing)
+    if(this.startDeleting) this.startDeleting = false;
     this.startComparing = !this.startComparing;
+  }
+
+  startDeletingApps() {
+    if(this.startComparing) this.startComparing = false;
+    this.startDeleting = !this.startDeleting;
   }
 
   selectAppForComparing(app: any) {
     app.isComparing = !app.isComparing;
-    if(app.isComparing) {
+    if (app.isComparing) {
       this.data.setCompareApps(app);
+    }
+  }
+
+  selectAppForDeleting(app: any) {
+    app.isDeleting = !app.isDeleting;
+    console.log("App for delete", app)
+  }
+
+  isComparingOrDeleting(): string {
+    if(this.startComparing) {
+      return "comparing";
+    } else if (this.startDeleting) {
+      return "deleting";
+    } else {
+      return "default";
     }
   }
 }

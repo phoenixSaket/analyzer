@@ -13,26 +13,30 @@
             </div>
             <div class="title">Compare</div>
         </div>
-        <div class="apps">
+        <div class="apps" (click)="startDeletingApps()">
             <div class="icon red add-icon shadows material-symbols-outlined">
                 delete
             </div>
             <div class="title">Delete</div>
         </div>
     </div>
-    <div class="title-page">{{startComparing ? 'Select apps for comparing' : 'Added Apps'}}</div>
+    <div class="title-page">{{isComparingOrDeleting() == 'comparing' ? 'Select apps for comparing' : (isComparingOrDeleting() == 'deleting' ? 'Select Apps for deleting' : 'Added Apps')}}</div>
     <div class="apps-container">
         <div class="apps" *ngFor="let app of apps"
-            (click)="startComparing? selectAppForComparing(app) : appSelected(app)"
-            [ngClass]="{'compare' : startComparing, 'not-comparing': !app.isComparing && startComparing, 'selected-for-comparing': app.isComparing}">
+            (click)="startComparing? selectAppForComparing(app) : startDeleting ? selectAppForDeleting(app) : appSelected(app)"
+            [ngClass]="{'compare' : startComparing || startDeleting, 'not-comparing': !app.isComparing && !app.isDeleting && (startComparing || startDeleting), 'selected-for-comparing': app.isComparing && startComparing, 'selected-for-deleting': app.isDeleting && startDeleting}">
             <div class="circle-logo shadows">
                 <img class="platform-img" [src]="'/assets/'+ (app.isIOS ? 'apple.png' : 'android.png')" alt="platform">
             </div>
             <img [src]="app.app.icon" alt="icon" class="icon shadows">
         </div>
     </div>
-    <ng-container *ngTemplateOutlet="svg"></ng-container>
+    <div class="buttons-container" *ngIf="startDeleting || startComparing">
+        <button class="delete primary-button shadows" *ngIf="startDeleting">Delete</button>
+        <button class="compare-btn primary-button shadows" *ngIf="startComparing">compare</button>
+    </div>
 </div>
+<ng-container *ngTemplateOutlet="svg"></ng-container>
 
 <ng-template #svg>
     <div class="svg">

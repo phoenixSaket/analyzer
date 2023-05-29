@@ -1,6 +1,8 @@
 .container {
     margin: 30px 0;
     width: 100%;
+    position: relative;
+    overflow-y: auto;
 }
 
 .svg {
@@ -115,4 +117,42 @@
     background-color: var(--primary);
     padding: 5px;
     border-radius: 10px;
+}
+
+.selected-for-deleting {
+    border: 3px solid tomato;
+    background-color: tomato;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.primary-button {
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    width: 140px;
+    align-items: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.buttons-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.compare-btn {
+    background-color: #56B3B3;
+}
+
+.delete {
+    background-color: tomato;
 }
