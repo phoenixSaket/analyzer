@@ -19,9 +19,22 @@ export class SidebarComponent implements OnInit {
     this.data.checkRecents.subscribe((shouldCheck: boolean)=> {
       if(shouldCheck) {
         this.apps = this.data.getRecents();
-        console.log("This is it", this.apps)
       }
-    })
+    });
+
+    if(this.apps.length == 0) {
+      this.apps = [];
+      let apps = this.data.getTotalApps();
+      for (let index = 0; index < apps.length; index++) {
+        const app = apps[index];
+        if(index < 5) {
+          this.apps.push(app);
+        } else {
+          break;
+        }
+      }
+      this.data.recents = JSON.parse(JSON.stringify(this.apps));
+    }
 
   }
 

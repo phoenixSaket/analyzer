@@ -83,7 +83,7 @@
                             ★★★★★
                         </div>
                     </div>
-    
+
                     <div class="p-container">
                         <div class="progress" [style.width.%]="(hist * 100 )/ total"></div>
                         <div class="progress-total"></div>
@@ -98,17 +98,28 @@
                     pie_chart
                 </span>
                 <apx-chart [series]="chartOptions2.series" [colors]="chartOptions2.colors" [chart]="chartOptions2.chart"
-                    [labels]="chartOptions2.labels" [responsive]="chartOptions2.responsive" [plotOptions]="chartOptions2.plotOptions"></apx-chart>
+                    [labels]="chartOptions2.labels" [responsive]="chartOptions2.responsive"
+                    [plotOptions]="chartOptions2.plotOptions"></apx-chart>
             </div>
         </div>
     </div>
     <div class="screenshots">
         <img class="ss-img shadows" [src]="ss" alt="screenshot" *ngFor="let ss of appData.screenshots">
     </div>
-    <div>
-        <div class="box shadows summary">
-            <div class="line link" [innerHTML]="appData?.description?.toString()?.replaceAll('\n', '<br>')"></div>
-        </div>
+    <div class="box shadows summary">
+        <div class="line link" [innerHTML]="appData?.description?.toString()?.replaceAll('\n', '<br>')"></div>
     </div>
 
 </div>
+
+<ng-container *ngTemplateOutlet="svg"></ng-container>
+
+<ng-template #svg>
+    <div class="svg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#7180ac" fill-opacity="1"
+                d="M0,224L40,192C80,160,160,96,240,101.3C320,107,400,181,480,213.3C560,245,640,235,720,202.7C800,171,880,117,960,117.3C1040,117,1120,171,1200,160C1280,149,1360,75,1400,37.3L1440,0L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z">
+            </path>
+        </svg>
+    </div>
+</ng-template>

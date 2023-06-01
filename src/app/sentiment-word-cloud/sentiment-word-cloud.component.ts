@@ -109,10 +109,12 @@ export class SentimentWordCloudComponent implements OnInit {
 
   reallyGetIosReviews(id: any, page: number, max: number, type: string) {
     this.ios.getAppReviews(id, page).subscribe((response: any) => {
-      let resp = JSON.parse(response.result).feed.entry;
-      resp.forEach((el: any) => {
-        this.reviews.push(el);
-      })
+      let resp = JSON.parse(response.result)?.feed?.entry;
+      if(resp?.length > 0) {
+        resp.forEach((el: any) => {
+          this.reviews.push(el);
+        })
+      }
       if (page == max) {
         setTimeout(() => {
           this.getKeywordData(this.reviews, true, type);
@@ -222,7 +224,7 @@ export class SentimentWordCloudComponent implements OnInit {
               rotationSteps: 0,
               color: data.map((d) => {
                 if (d.isPositive == null) {
-                  return "#bcbcbc"
+                  return "#ababab"
                 } else if (d.isPositive) {
                   return "#8CA71D"
                 } else {

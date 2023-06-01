@@ -177,3 +177,12 @@
     height: auto;
     border-radius: 15px;
 }
+
+.svg {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    opacity: 0.3;
+}

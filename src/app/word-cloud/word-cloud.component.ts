@@ -104,10 +104,12 @@ export class WordCloudComponent implements OnInit {
 
   reallyGetIosReviews(id: any, page: number, max: number) {
     this.ios.getAppReviews(id, page).subscribe((response: any) => {
-      let resp = JSON.parse(response.result).feed.entry;
-      resp.forEach((el: any) => {
-        this.reviews.push(el);
-      });
+      let resp = JSON.parse(response.result)?.feed?.entry;
+      if(resp.length > 0) {
+        resp.forEach((el: any) => {
+          this.reviews.push(el);
+        });
+      }
       if (page == max) {
         setTimeout(() => {
           this.getKeywordData(this.reviews, true);

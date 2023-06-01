@@ -53,7 +53,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: var(--lighter);
+    background-color: var(--white);
     position: relative;
 }
 
@@ -117,4 +117,13 @@
 
 .arrow .material-symbols-outlined {
     color: var(--accent);
+}
+
+.svg {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    opacity: 0.3;
 }

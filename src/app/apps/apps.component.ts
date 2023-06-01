@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 
@@ -17,6 +17,7 @@ export class AppsComponent implements OnInit {
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit(): void {
+    this.data.appsToCompare = [];
     this.apps = this.data.getTotalApps();
   }
 
@@ -30,11 +31,31 @@ export class AppsComponent implements OnInit {
   startComparingApps() {
     if(this.startDeleting) this.startDeleting = false;
     this.startComparing = !this.startComparing;
+    if(!this.startComparing) {
+      this.data.appsToCompare = [];
+      this.apps.forEach((app: any)=> {
+        app.isComparing = false;
+      })
+    } else {
+      this.apps.forEach((app: any)=> {
+        app.isDeleting = false;
+      })
+    }
   }
 
   startDeletingApps() {
     if(this.startComparing) this.startComparing = false;
     this.startDeleting = !this.startDeleting;
+    if(!this.startDeleting) {
+      this.apps.forEach((app: any)=> {
+        app.isDeleting = false;
+      })
+    } else {
+      this.data.appsToCompare = [];
+      this.apps.forEach((app: any)=> {
+        app.isComparing = false;
+      })
+    }
   }
 
   selectAppForComparing(app: any) {

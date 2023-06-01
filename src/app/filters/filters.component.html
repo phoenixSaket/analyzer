@@ -1,5 +1,10 @@
 <div class="filter-container" *ngIf="showFilters">
-
+    <img class="logo" [src]="logo" alt="logo">
+    <img class="logo-inner" *ngIf="isIOS" src="assets/apple.png" alt="Apple">
+    <img class="logo-inner" *ngIf="!isIOS" src="assets/android.png" alt="Android">
+    <div class="title">
+        {{title}}
+    </div>
     <div class="ratings div">
         <div class="selected-label-ratings">
             <span class="material-symbols-outlined">

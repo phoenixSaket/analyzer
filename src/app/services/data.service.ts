@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
 
   public isLoading: boolean = false;
-  public selectedApp;
+  public selectedApp: any = null;
   public newAppAdded: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public appSelected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public compareApps: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -30,7 +30,7 @@ export class DataService {
   }
 
   getCurrentApp(): any {
-    return JSON.parse(JSON.stringify(this.selectedApp));
+    return JSON.parse(JSON.stringify(this.selectedApp)) || null;
   }
 
   setCompareApps(app: any) {
@@ -103,15 +103,18 @@ export class DataService {
     return false;
   }
 
-  addIfNotPresentRecent(entry: any, array: any[]): any[] {
+  addIfNotPresentRecent(entry: any, array: any[]): any {
+    let hasPushed: boolean = false;
     if (array.length > 0) {
       if (!this.checkIfPresent(entry, array)) {
         array.push(entry);
+        hasPushed = true;
       }
     } else {
       array.push(entry);
+      hasPushed = true;
     }
-    return array;
+    return {array: array, hasPushed: hasPushed};
   }
 
   sortDescending(array: any[]): any[] {
@@ -121,14 +124,34 @@ export class DataService {
   }
 
   getRecents(): any[] {
+    let recents = JSON.parse(JSON.stringify(this.recents)); 
+    if(recents.length == 0) {
+      recents = [];
+      let apps = this.getTotalApps();
+      for (let index = 0; index < apps.length; index++) {
+        const app = apps[index];
+        if(index < 5) {
+          recents.push(app);
+        } else {
+          break;
+        }
+      }
+    }
+    this.recents = recents;
     return this.recents;
   }
 
   setRecents(app: any) {
-    if (this.recents.length == 5) {
+    const response = this.addIfNotPresentRecent(app, this.recents);
+    this.recents = response.array;
+    let hasShifted: boolean = false;
+    if (this.recents.length == 6) {
       this.recents.shift();
+      hasShifted = true;
     }
-    this.recents = this.addIfNotPresentRecent(app, this.recents);
+    if(response.hasPushed && !hasShifted) {
+      this.recents.reverse();
+    }
     this.checkRecents.next(true);
   }
 }

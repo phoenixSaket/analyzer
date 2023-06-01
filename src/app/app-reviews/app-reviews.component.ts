@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { AndroidService } from '../services/android.service';
 import { DataService } from '../services/data.service';
 import { IosService } from '../services/ios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-app-reviews',
@@ -13,6 +14,9 @@ export class AppReviewsComponent implements AfterViewInit {
   public platform: boolean = false;
   public versions: any[] = [];
   public years: any[] = [];
+  public title: string = "";
+  public logo: string = "";
+  public isIOS: boolean = false;
   private currentApp: any;
   private backup: any[] = [];
   private isFilterApplied: number = 0;
@@ -22,13 +26,16 @@ export class AppReviewsComponent implements AfterViewInit {
   public ratingSorted: any = { sorted: false, type: 'A' };
   private sortingCriteria: any = {};
 
-  constructor(public data: DataService, private android: AndroidService, private ios: IosService) { }
+  constructor(public data: DataService, private android: AndroidService, private ios: IosService, private router: Router) { }
 
   ngAfterViewInit(): void {
     this.data.isLoading = true;
     let resp = this.data.getCurrentApp();
     // this.data.appLoader.subscribe((resp: any) => {
     if (!!resp) {
+      this.title = resp.app.title;
+      this.logo = resp.app.icon;
+      this.isIOS = resp.isIOS;
       if (resp.isIOS) {
         this.platform = true;
         this.getIOSReviews(resp);
@@ -48,6 +55,8 @@ export class AppReviewsComponent implements AfterViewInit {
           this.data.isLoading = false;
         })
       }
+    } else {
+      this.router.navigate(["/apps"]);
     }
     // })
   }
@@ -73,11 +82,13 @@ export class AppReviewsComponent implements AfterViewInit {
   getSequentialReviews(total: number, index: number) {
     if (index <= total) {
       this.getSinglePageReviews(index).then((reviews: any) => {
-        reviews.forEach(el => {
-          this.appData.push(el);
-        });
-        if (index == total) {
+        if(reviews?.length > 0) {
+          reviews.forEach(el => {
+            this.appData.push(el);
+          });
           this.data.isLoading = false;
+        }
+        if (index == total) {
           this.backup = JSON.parse(JSON.stringify(this.appData));
           this.appData.forEach((entry: any)=> {
             this.versions = this.data.addIfNotPresent(entry["im:version"].label, this.versions);
@@ -95,7 +106,7 @@ export class AppReviewsComponent implements AfterViewInit {
   getSinglePageReviews(index: number): Promise<any> {
     return new Promise((resolve) => {
       this.ios.getAppReviews(this.currentApp.id, index).subscribe((reviews: any) => {
-        resolve(JSON.parse(reviews.result).feed.entry);
+        resolve(JSON.parse(reviews.result)?.feed?.entry);
       })
     })
   }

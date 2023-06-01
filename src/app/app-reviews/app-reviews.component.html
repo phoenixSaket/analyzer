@@ -1,7 +1,7 @@
 <div class="container">
-    <app-filters [versions]="versions" [years]="years" [versionSorted]="" [dateSorted]="" [ratingSorted]=""
-        (searchKeyword)="searchSort($event)" (version)="versionFilter($event)" (year)="yearFilter($event)"
-        (ratingFilter)="ratingFilter($event)" (sortBy)="sortFilter($event)"></app-filters>
+    <app-filters [isIOS]="isIOS" [title]="title" [logo]="logo" [versions]="versions" [years]="years" [versionSorted]="" [dateSorted]=""
+        [ratingSorted]="" (searchKeyword)="searchSort($event)" (version)="versionFilter($event)"
+        (year)="yearFilter($event)" (ratingFilter)="ratingFilter($event)" (sortBy)="sortFilter($event)"></app-filters>
     <div class="android apps" *ngIf="!platform">
         <div class="app" *ngFor="let data of appData">
             <app-android [data]="data"></app-android>
@@ -20,3 +20,15 @@
         No matching reviews for the provided filters.
     </div>
 </div>
+
+<ng-container *ngTemplateOutlet="svg"></ng-container>
+
+<ng-template #svg>
+    <div class="svg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#7180ac" fill-opacity="1"
+                d="M0,224L40,192C80,160,160,96,240,101.3C320,107,400,181,480,213.3C560,245,640,235,720,202.7C800,171,880,117,960,117.3C1040,117,1120,171,1200,160C1280,149,1360,75,1400,37.3L1440,0L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z">
+            </path>
+        </svg>
+    </div>
+</ng-template>

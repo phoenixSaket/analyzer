@@ -12,6 +12,9 @@ export class FiltersComponent implements OnInit {
   @Input() versionSorted: any = { sorted: false, type: 'A' };
   @Input() dateSorted: any = { sorted: false, type: 'A' };
   @Input() ratingSorted: any = { sorted: false, type: 'A' };
+  @Input() title: string = "";
+  @Input() logo: string = "";
+  @Input() isIOS: boolean = false;
 
   @Output() searchKeyword: EventEmitter<string> = new EventEmitter<string>();
   @Output() version: EventEmitter<string> = new EventEmitter<string>();
