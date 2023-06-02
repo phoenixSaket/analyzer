@@ -113,9 +113,9 @@
 .filter-button {
     display: flex;
     align-items: center;
-    background-color: var(--primary);
-    width: 200px;
-    justify-content: space-between;
+    color: var(--white);
+    width: 100%;
+    justify-content: center;
 }
 
 .filter-img {
@@ -125,7 +125,7 @@
 }
 
 .text {
-    color: var(--primary);
+    color: var(--white);
 }
 
 /* Sorting */

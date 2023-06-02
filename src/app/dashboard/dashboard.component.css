@@ -127,3 +127,9 @@
     width: 100%;
     opacity: 0.3;
 }
+
+@media (max-width: 576px) {
+    .container {
+        margin: 40px -8px;
+    }
+}

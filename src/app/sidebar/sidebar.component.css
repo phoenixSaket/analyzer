@@ -177,4 +177,43 @@
     .open.circle {
         right: 0px;
     }
+
+    .container.close {
+        width: 0px;
+        left: 0;
+        position: relative;
+    }
+
+    .container-fake.close {
+        width: 0px;
+        display: none;
+    }
+
+    .close .icon, .close.img {
+        border-radius: 10px;
+        width: 00px;
+        height: 0px;
+    }
+
+    .close .top {
+        gap: 15px;
+        display: none;
+    }
+
+    .close .circle {
+        position: absolute;
+        left: 3px;
+        top: -5px;
+        z-index: 100000000000;
+        border-radius: 5px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .open .circle {
+        position: absolute;
+        right: 10px;
+        z-index: 100000000000;
+        border-radius: 2px;
+    }
 }

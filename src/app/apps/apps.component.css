@@ -22,7 +22,8 @@
     width: 100%;
 }
 
-.apps, .icon {
+.apps,
+.icon {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -88,7 +89,7 @@
     color: var(--white);
 }
 
-.platform-img { 
+.platform-img {
     width: 25px;
     height: 25px;
     filter: brightness(0) invert(100);
@@ -193,11 +194,16 @@
         display: flex;
         gap: 10px;
         padding: 25px 10px;
+        justify-content: center;
     }
 
     .icon {
-        width: 100px;
-        height: 100px;
+        width: 85px;
+        height: 85px;
         border-radius: 15px;
+    }
+
+    .primary-button {
+        padding: 15px 22.5px;
     }
 }

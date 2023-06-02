@@ -8,3 +8,9 @@
     width: inherit;
     overflow-x: hidden;
 }
+
+@media (max-width: 576px) {
+    .right-container {
+        padding-top: 20px;
+    }
+}

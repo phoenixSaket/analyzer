@@ -248,7 +248,12 @@ path {
 
 @media (max-width: 576px) {
     .title {
-        font-size: 3rem;
+        font-size: 2.1rem;
+    }
+
+    .content {
+        width: 90%;
+        font-size: 14px;
     }
 
     .coffee-container {
@@ -267,7 +272,7 @@ path {
     } 
 
     .mobile {
-        left: calc(25% - 10px);
+        left: unset;
     }
 
     .ss-1 {
@@ -286,5 +291,18 @@ path {
         overflow-x: auto;
         padding: 20px 0;
     }
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
     
+    .scetion {
+        width: calc(100% - 10px);
+    }
+
+    .container {
+        align-items: center;
+    }
 }
