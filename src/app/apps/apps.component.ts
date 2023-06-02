@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-apps',
@@ -14,7 +16,7 @@ export class AppsComponent implements OnInit {
   public isComparing: boolean = false;
   public isDeleting: boolean = false;
 
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.data.appsToCompare = [];
@@ -29,30 +31,30 @@ export class AppsComponent implements OnInit {
   }
 
   startComparingApps() {
-    if(this.startDeleting) this.startDeleting = false;
+    if (this.startDeleting) this.startDeleting = false;
     this.startComparing = !this.startComparing;
-    if(!this.startComparing) {
+    if (!this.startComparing) {
       this.data.appsToCompare = [];
-      this.apps.forEach((app: any)=> {
+      this.apps.forEach((app: any) => {
         app.isComparing = false;
       })
     } else {
-      this.apps.forEach((app: any)=> {
+      this.apps.forEach((app: any) => {
         app.isDeleting = false;
       })
     }
   }
 
   startDeletingApps() {
-    if(this.startComparing) this.startComparing = false;
+    if (this.startComparing) this.startComparing = false;
     this.startDeleting = !this.startDeleting;
-    if(!this.startDeleting) {
-      this.apps.forEach((app: any)=> {
+    if (!this.startDeleting) {
+      this.apps.forEach((app: any) => {
         app.isDeleting = false;
       })
     } else {
       this.data.appsToCompare = [];
-      this.apps.forEach((app: any)=> {
+      this.apps.forEach((app: any) => {
         app.isComparing = false;
       })
     }
@@ -67,16 +69,50 @@ export class AppsComponent implements OnInit {
 
   selectAppForDeleting(app: any) {
     app.isDeleting = !app.isDeleting;
-    console.log("App for delete", app)
+    console.log("App for delete", app);
+  }
+
+  deleteApps() {
+    let temp: any[] = [];
+    let deletingApps: any[] = [];
+
+    this.apps.forEach((app: any) => {
+      if (app.isDeleting) {
+        deletingApps.push(app);
+      }
+    })
+
+    const popupRef = this.dialog.open(PopupComponent, { data: deletingApps });
+    popupRef.afterClosed().subscribe(() => {
+      this.reset();
+    })
+  }
+  
+  reset() {
+    this.apps = [];
+    this.startComparing = false;
+    this.startDeleting = false;
+    this.isComparing = false;
+    this.isDeleting = false;
+    this.ngOnInit();
   }
 
   isComparingOrDeleting(): string {
-    if(this.startComparing) {
+    if (this.startComparing) {
       return "comparing";
     } else if (this.startDeleting) {
       return "deleting";
     } else {
       return "default";
     }
+  }
+
+  stopComparingOrDeleting() {
+    this.startComparing = false;
+    this.startDeleting = false;
+    this.apps.forEach((app: any) => {
+      app.isDeleting = false;
+      app.isComparing = false
+    })
   }
 }

@@ -16,7 +16,8 @@
     position: relative;
 }
 
-.home, .introduction {
+.home,
+.introduction {
     min-height: calc(100vh - 40px);
 }
 
@@ -129,7 +130,7 @@ path {
 .mobile {
     position: absolute;
     height: 500px;
-    width: auto;  
+    width: auto;
     left: 0px;
     z-index: 2;
 }
@@ -151,7 +152,7 @@ path {
     top: 10px;
     border-radius: 15px;
     outline: 2px solid black;
-    --multi : 240;
+    --multi: 240;
 }
 
 .pwa-section {
@@ -160,7 +161,9 @@ path {
     font-size: 16px;
 }
 
-.ss-1 {left: 10px;}
+.ss-1 {
+    left: 10px;
+}
 
 .button {
     border: none;
@@ -190,4 +193,55 @@ path {
     align-items: center;
     color: var(--white);
     border-radius: 10px;
+}
+
+.coffee-container {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.left,
+.right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coffee-image {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+}
+
+.right {
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+}
+
+.mail-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.line {
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 18px;
+    word-spacing: 5px;
+}
+
+.primary {
+    color: var(--primary);
+    font-weight: 700;
+    margin-top: 5px;
 }

@@ -33,6 +33,7 @@ import { SentimentWordCloudComponent } from './sentiment-word-cloud/sentiment-wo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompareComponent } from './compare/compare.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { PopupComponent } from './popup/popup.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     WordCloudComponent,
     SentimentWordCloudComponent,
     DashboardComponent,
-    CompareComponent
+    CompareComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

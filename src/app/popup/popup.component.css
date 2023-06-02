@@ -1,0 +1,77 @@
+.apps-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 30px 0;
+}
+
+.apps,
+.icon {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.apps {
+    gap: 15px;
+}
+
+.icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+}
+
+.circle-logo {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    border-radius: 10px;
+    z-index: 2;
+    color: var(--white);
+}
+
+.platform-img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(100);
+}
+
+.buttons-container {
+    justify-content: flex-end;
+}
+
+.red {
+    background-color: tomato;
+    color: var(--white)
+}
+
+.green {
+    background-color: var(--secondary);
+}
+
+.primary-btn {
+    font-weight: 800;
+    padding: 10px 50px;
+    font-size: 20px;
+    font-style: italic;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+span.material-symbols-outlined {
+    display: flex;
+    align-items: center;
+}

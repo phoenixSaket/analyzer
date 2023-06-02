@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { AndroidService } from '../services/android.service';
 import { DataService } from '../services/data.service';
 import { IosService } from '../services/ios.service';
 import { DetailsAndroidComponent } from './details-android/details-android.component';
 import { DetailsComponent } from './details/details.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-app',
@@ -19,7 +20,7 @@ export class AddAppComponent implements OnInit {
   public apps: any[] = [];;
   public selectedPlatform: string = "IOS";
 
-  constructor(private ios: IosService, private android: AndroidService, private dialog: MatDialog, private snackbar: MatSnackBar, private data: DataService) { }
+  constructor(private ios: IosService, private android: AndroidService, private dialog: MatDialog, private snackbar: MatSnackBar, private data: DataService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -39,15 +40,16 @@ export class AddAppComponent implements OnInit {
     const num: number = 20;
     const lang: string = "";
     const price: string = "";
+    this.data.isLoading = true;
     if (this.selectedPlatform == "IOS") {
       this.ios.searchApp(term, num, lang, price).subscribe((resp: any) => {
-        console.log("resp", JSON.parse(resp.result));
         this.apps = JSON.parse(resp.result);
+        this.data.isLoading = false;
       })
     } else {
       this.android.searchApp(term, num, lang, price).subscribe((resp: any) => {
-        console.log("resp", JSON.parse(resp.result));
         this.apps = JSON.parse(resp.result);
+        this.data.isLoading = false;
       })
     }
   }
@@ -57,7 +59,6 @@ export class AddAppComponent implements OnInit {
   }
 
   openApp(app: any) {
-    console.log("Open", app);
     if (this.selectedPlatform == 'IOS') {
       this.dialog.open(DetailsComponent, { data: app })
     } else {
@@ -70,20 +71,32 @@ export class AddAppComponent implements OnInit {
     if (this.selectedPlatform == "IOS") {
       shouldAddApp = this.saveToLocalStorage({ appId: app.id, isIOS: this.selectedPlatform == "IOS", app: app });
       if (shouldAddApp) {
-        // this.data.newAppAdded.next({ appId: app.id, isIOS: this.selectedPlatform == "IOS", appName: app.title, app: app });
-        // this.data.addApp({ appId: app.id, isIOS: this.selectedPlatform == "IOS", appName: app.title, app: app });
         this.data.newAppAdded.next(true);
+        let snackBarRef = this.snackbar.open("App Added", "Open Apps", {
+          duration: 10000, horizontalPosition: "end",
+          verticalPosition: "bottom",
+          panelClass: "app-added-snackbar"
+        });
+        snackBarRef.onAction().subscribe(() => {
+          this.router.navigate(["/apps"]);
+        })
       } else {
-        // this.openSnackbar("App already present");
+        this.openSnackbar("App already present");
       }
     } else {
       shouldAddApp = this.saveToLocalStorage({ appId: app.appId, isIOS: this.selectedPlatform == "IOS", app: app });
       if (shouldAddApp) {
-        // this.data.newAppAdded.next({ appId: app.appId, isIOS: this.selectedPlatform == "IOS", appName: app.title, app: app });
-        // this.data.addApp({ appId: app.id, isIOS: this.selectedPlatform == "IOS", appName: app.title, app: app });
         this.data.newAppAdded.next(true);
+        let snackbarRef = this.snackbar.open("App Added", "Open Apps", {
+          duration: 10000, horizontalPosition: "end",
+          verticalPosition: "bottom",
+          panelClass: "app-added-snackbar"
+        });
+        snackbarRef.onAction().subscribe(() => {
+          this.router.navigate(["/apps"]);
+        })
       } else {
-        // this.openSnackbar("App already present");
+        this.openSnackbar("App already present");
       }
     }
   }
@@ -94,7 +107,7 @@ export class AddAppComponent implements OnInit {
 
     let check: boolean = false;
     apps.forEach((el: any) => {
-      if (el.app == app.app) { check = true; shouldAddApp = false; };
+      if (el.app.appId == app.app.appId && el.app.score == app.app.score) { check = true; shouldAddApp = false; };
     });
 
     if (!check) {

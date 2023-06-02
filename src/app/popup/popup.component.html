@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Delete Apps ?</h1>
+<div mat-dialog-content>
+    <div class="title">
+        Are you sure you want to delete the following apps ?
+    </div>
+    <div class="apps-container">
+        <div class="apps" *ngFor="let app of data">
+            <div class="circle-logo shadows">
+                <img class="platform-img" [src]="'/assets/'+ (app.isIOS ? 'apple.png' : 'android.png')" alt="platform">
+            </div>
+            <img [src]="app.app.icon" alt="icon" class="icon shadows">
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions class="buttons-container">
+    <button mat-button mat-dialog-close class="primary-btn green">
+        Cancel
+        <span class="material-symbols-outlined">
+            cancel
+        </span>
+    </button>
+    <button mat-button mat-dialog-close class="primary-btn red" 
+    (click)="deleteApps()">
+        Yes
+        <span class="material-symbols-outlined">
+            delete
+        </span>
+    </button>
+</div>

@@ -1,6 +1,8 @@
 <div class="container">
-    <div class="title-page">Actions</div>
-    <div class="apps-container">
+    <div class="title-page" *ngIf="!(isComparingOrDeleting() == 'deleting' || isComparingOrDeleting() == 'comparing')">
+        Actions</div>
+    <div class="apps-container"
+        *ngIf="!(isComparingOrDeleting() == 'deleting' || isComparingOrDeleting() == 'comparing')">
         <div class="apps">
             <div class="icon add-icon shadows material-symbols-outlined" routerLink="../add">
                 add
@@ -20,7 +22,9 @@
             <div class="title">Delete</div>
         </div>
     </div>
-    <div class="title-page">{{isComparingOrDeleting() == 'comparing' ? 'Select apps for comparing' : (isComparingOrDeleting() == 'deleting' ? 'Select Apps for deleting' : 'Added Apps')}}</div>
+    <div class="title-page">
+        {{isComparingOrDeleting() == 'comparing' ? 'Select apps for comparing' : (isComparingOrDeleting() == 'deleting'
+        ? 'Select Apps for deleting' : 'Added Apps')}}</div>
     <div class="apps-container">
         <div class="apps" *ngFor="let app of apps"
             (click)="startComparing? selectAppForComparing(app) : startDeleting ? selectAppForDeleting(app) : appSelected(app)"
@@ -32,8 +36,25 @@
         </div>
     </div>
     <div class="buttons-container" *ngIf="startDeleting || startComparing">
-        <button class="delete primary-button shadows" *ngIf="startDeleting">Delete</button>
-        <button class="compare-btn primary-button shadows" *ngIf="startComparing" routerLink="/compare">compare</button>
+        <button class="primary-button shadows cancel" (click)="stopComparingOrDeleting()"
+            *ngIf="isComparingOrDeleting() == 'deleting' || isComparingOrDeleting() == 'comparing' ">
+            Cancel
+            <span class="material-symbols-outlined">
+                cancel
+            </span>
+        </button>
+        <button class="delete primary-button shadows" *ngIf="startDeleting" (click)="deleteApps()">
+            Delete
+            <span class="material-symbols-outlined">
+                delete
+            </span>
+        </button>
+        <button class="compare-btn primary-button shadows" *ngIf="startComparing" routerLink="/compare">
+            compare
+            <span class="material-symbols-outlined">
+                north_east
+            </span>
+        </button>
     </div>
 </div>
 <ng-container *ngTemplateOutlet="svg"></ng-container>

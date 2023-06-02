@@ -229,3 +229,8 @@ mat-form-field{
     width: 100%;
     opacity: 0.3;
 }
+
+.app-added-snackbar {
+    background-color: var(--primary);
+    color: var(--accent);
+}
