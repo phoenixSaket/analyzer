@@ -383,3 +383,10 @@
     border-radius: 5px;
     border: 2px solid var(--primary);
 }
+
+@media (max-width: 576px) {
+    .filter-container {
+        gap: 20px 10px;
+        width: calc(100% + 30px);
+    }
+}

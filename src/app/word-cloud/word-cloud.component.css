@@ -104,7 +104,8 @@ canvas {
     width: 100%;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px 20px;
+    flex-wrap: wrap;
 }
 
 

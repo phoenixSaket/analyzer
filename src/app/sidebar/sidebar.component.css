@@ -166,3 +166,15 @@
 .active {
     background-color: var(--light);
 }
+
+@media (max-width: 576px) {
+    .open {
+        width: calc(100% - 10px);
+        transition: ease-in-out 300ms;
+        z-index: 100000;
+    }
+
+    .open.circle {
+        right: 0px;
+    }
+}
