@@ -18,7 +18,6 @@ export class DetailsAndroidComponent implements OnInit {
 
     this.android.getApp(this.data.appId).subscribe((resp: any)=> {
       let response = JSON.parse(resp.result);
-      console.log(response);
       this.data = {...this.data, screenshots: response.screenshots, reviews: response.reviews, ratings: response.ratings, summary: response.summary, description: response.descriptionHTML, installs : response.installs, developerWebsite: response.developerWebsite, contentRating: response.contentRating, primaryGenre: response.genre, updated: response.updated, version: response.version}
     })
   }

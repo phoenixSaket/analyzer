@@ -228,7 +228,7 @@ export class DashboardComponent implements OnInit {
 
           setTimeout(() => {
             this.data.isLoading = false;
-          }, 100);
+          }, 10);
         });
 
       }
@@ -236,12 +236,10 @@ export class DashboardComponent implements OnInit {
   }
 
   drop(event: any) {
-    console.log(event);
     moveItemInArray(this.charts, event.previousIndex, event.currentIndex);
   }
 
   changeChart(chart: any) {
-    console.log(chart)
     if (chart.isVisible == 'pie') {
       chart.isVisible = 'bar';
     } else {

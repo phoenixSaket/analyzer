@@ -247,8 +247,7 @@ export class WordCloudComponent implements OnInit {
         },
       });
       this.loading = false;
-      console.log(this.chart)
-    }, 150);
+    }, 50);
   }
 
   redraw() {

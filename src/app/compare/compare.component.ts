@@ -15,6 +15,7 @@ import {
   ApexFill,
   ApexTooltip,
 } from "ng-apexcharts";
+import { AndroidService } from '../services/android.service';
 
 @Component({
   selector: 'app-compare',
@@ -44,7 +45,7 @@ export class CompareComponent implements OnInit {
   ];
   series: any[] = [];
 
-  constructor(private data: DataService, private ios: IosService, private router: Router) { }
+  constructor(private data: DataService, private ios: IosService, private android: AndroidService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -60,6 +61,16 @@ export class CompareComponent implements OnInit {
       if (element.isIOS) {
         this.ios.getApp(element.appId).subscribe((response: any) => {
           const appData = JSON.parse(response.result);
+
+          let released = new Date(appData.released).toDateString();
+          let remove = released.trim().split(" ").splice(0, 1)[0];
+          released = released.replace(remove, "").trim();
+          element.app.genre = appData.genre;
+
+          let updated = new Date(appData.updated).toDateString();
+          remove = updated.trim().split(" ").splice(0, 1)[0];
+          updated = updated.replace(remove, "").trim();
+
           element.app.genre = appData.genres.join(", ");
           this.ios.getAPPRatings(element.appId).subscribe((resp: any) => {
             let histogram = JSON.parse(resp.result).histogram;
@@ -71,8 +82,8 @@ export class CompareComponent implements OnInit {
               element.app.developer,
               element.app.genre,
               element.app.version,
-              new Date(element.app.released).toDateString(),
-              new Date(element.app.updated).toDateString(),
+              released,
+              updated,
               total,
               { rating: histogram["1"], percent: ((histogram["1"] * 100) / total).toFixed(0) },
               { rating: histogram["2"], percent: ((histogram["2"] * 100) / total).toFixed(0) },
@@ -94,7 +105,49 @@ export class CompareComponent implements OnInit {
           });
         })
       } else {
+        this.android.getApp(element.appId).subscribe((response: any) => {
+          const appData = JSON.parse(response.result);
+          console.log("Android", appData);
 
+          let released = new Date(appData.released).toDateString();
+          let remove = released.trim().split(" ").splice(0, 1)[0];
+          released = released.replace(remove, "").trim();
+          element.app.genre = appData.genre;
+
+          let updated = new Date(appData.updated).toDateString();
+          remove = updated.trim().split(" ").splice(0, 1)[0];
+          updated = updated.replace(remove, "").trim();
+
+          let histogram = appData.histogram;
+          const total = histogram["1"] + histogram["2"] + histogram["3"] + histogram["4"] + histogram["5"];
+          data.push(
+            element.app.title,
+            element.isIOS ? 'IOS' : 'Android',
+            element.app.score,
+            element.app.developer,
+            element.app.genre,
+            appData.version,
+            released,
+            updated,
+            total,
+            { rating: histogram["1"], percent: ((histogram["1"] * 100) / total).toFixed(0) },
+            { rating: histogram["2"], percent: ((histogram["2"] * 100) / total).toFixed(0) },
+            { rating: histogram["3"], percent: ((histogram["3"] * 100) / total).toFixed(0) },
+            { rating: histogram["4"], percent: ((histogram["4"] * 100) / total).toFixed(0) },
+            { rating: histogram["5"], percent: ((histogram["5"] * 100) / total).toFixed(0) }
+          );
+
+          let histogramPercent = [
+            ((histogram["1"] * 100) / total).toFixed(0),
+            ((histogram["2"] * 100) / total).toFixed(0),
+            ((histogram["3"] * 100) / total).toFixed(0),
+            ((histogram["4"] * 100) / total).toFixed(0),
+            ((histogram["5"] * 100) / total).toFixed(0)
+          ];
+
+          this.dataToShow.push(data);
+          this.loadChart(histogramPercent, element.app.title);
+        })
       }
 
     });

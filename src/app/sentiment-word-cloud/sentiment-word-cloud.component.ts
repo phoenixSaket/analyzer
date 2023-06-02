@@ -142,8 +142,6 @@ export class SentimentWordCloudComponent implements OnInit {
   }
 
   generateWordCloud(data: any[], multlipicant: number) {
-    console.log("Redrawing", this.multi)
-
     setTimeout(() => {
       const config = {
         data: {

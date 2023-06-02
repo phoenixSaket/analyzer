@@ -26,7 +26,6 @@ export class AddAppComponent implements OnInit {
   }
 
   checked(item: string) {
-    console.log(item);
     this.selectedPlatform = item;
     this.apps = [];
     this.searchApp(null);

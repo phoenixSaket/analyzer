@@ -69,7 +69,6 @@ export class AppsComponent implements OnInit {
 
   selectAppForDeleting(app: any) {
     app.isDeleting = !app.isDeleting;
-    console.log("App for delete", app);
   }
 
   deleteApps() {

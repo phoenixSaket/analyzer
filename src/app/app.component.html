@@ -4,6 +4,6 @@
   </div>
   <div class="right-container">
     <router-outlet></router-outlet>
-    <app-loader [ngStyle]="{'display': data.isLoading ? '' : 'none' }"></app-loader>
+    <app-loader [ngStyle]="{'display': data?.isLoading ? '' : 'none' }"></app-loader>
   </div>
 </div>

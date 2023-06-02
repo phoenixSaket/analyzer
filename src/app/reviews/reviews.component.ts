@@ -148,11 +148,9 @@ export class ReviewsComponent implements OnInit {
           let app = this.data.selectedApp;
           this.data.isLoading = true;
           if (!!app) {
-            console.log("Selected app", app);
             if (app.isIOS) {
               this.ios.getApp(app.appId).subscribe((resp: any) => {
                 this.appData = JSON.parse(resp.result);
-                console.log(this.appData)
                 this.ios.getAPPRatings(app.appId).subscribe((response: any) => {
                   let histogram = JSON.parse(response.result).histogram;
                   let ratings: any[] = Object.values(histogram);
@@ -226,7 +224,6 @@ export class ReviewsComponent implements OnInit {
         }
       });
     } catch (err: any) {
-      console.log("ERROR", err);
     }
 
   }

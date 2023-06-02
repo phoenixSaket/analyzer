@@ -43,7 +43,6 @@ export class AppReviewsComponent implements AfterViewInit {
       } else {
         this.platform = false;
         this.android.getAppReviews(resp.app.appId).subscribe((data: any) => {
-          console.log("data", JSON.parse(data.result));
           this.appData = JSON.parse(data.result).data;
           this.backup = JSON.parse(JSON.stringify(this.appData));
           this.appData.forEach((entry: any) => {
@@ -307,10 +306,8 @@ export class AppReviewsComponent implements AfterViewInit {
         this.appData = temp;
       }
 
-      // console.log('Filtered', this.appData);
     } else {
       this.appData = this.backup;
-      console.log(this.appData);
       let rating = !!this.sortingCriteria.rating;
       let year = !!this.sortingCriteria.year;
       let version = !!this.sortingCriteria.version;
@@ -419,8 +416,6 @@ export class AppReviewsComponent implements AfterViewInit {
         });
         this.appData = temp;
       }
-
-      console.log('Filtered', this.appData);
     }
   }
 

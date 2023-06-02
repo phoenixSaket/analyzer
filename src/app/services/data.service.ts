@@ -42,7 +42,6 @@ export class DataService {
   }
 
   addApp(app: any) {
-    // console.log("Add app", app);
     this.allApps = this.getTotalApps();
     this.allApps.push(app);
     localStorage.setItem("apps-analyzer", JSON.stringify(this.allApps));
