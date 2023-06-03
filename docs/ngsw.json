@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1685782505225,
+  "timestamp": 1685782680661,
   "index": "https://phoenixSaket.github.io/analyzer/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "https://phoenixSaket.github.io/analyzer/favicon.ico",
         "https://phoenixSaket.github.io/analyzer/index.html",
-        "https://phoenixSaket.github.io/analyzer/main.5fc2ea22470a73b6.js",
+        "https://phoenixSaket.github.io/analyzer/main.8f579ebff35d5141.js",
         "https://phoenixSaket.github.io/analyzer/manifest.webmanifest",
         "https://phoenixSaket.github.io/analyzer/polyfills.4624ee438d5ded35.js",
         "https://phoenixSaket.github.io/analyzer/runtime.a6d0e3738eff28a6.js",
@@ -279,8 +279,8 @@
     "https://phoenixSaket.github.io/analyzer/assets/icons/windows11/Wide310x150Logo.scale-400.png": "f6c81ebd1c488ec00527f3a4e7630e0553fce275",
     "https://phoenixSaket.github.io/analyzer/assets/not-found.png": "35b81fa1aad4ffd24caf3c305defcd939c32776e",
     "https://phoenixSaket.github.io/analyzer/favicon.ico": "36c851188e5966dba6559292c42479e045fd4160",
-    "https://phoenixSaket.github.io/analyzer/index.html": "b62398cd03f8292535e015a4b6111608df5d64c4",
-    "https://phoenixSaket.github.io/analyzer/main.5fc2ea22470a73b6.js": "88870b694ec6460a9ff95ed1fea027ab46284904",
+    "https://phoenixSaket.github.io/analyzer/index.html": "7a338fe744d9c3a8c0c6aaf48f4a1633b21a4009",
+    "https://phoenixSaket.github.io/analyzer/main.8f579ebff35d5141.js": "c5e9d4f48b6ef5c7975899050b02f001d100033b",
     "https://phoenixSaket.github.io/analyzer/manifest.webmanifest": "0010a4183fb3b5a23260ddfc211001fbcc970971",
     "https://phoenixSaket.github.io/analyzer/polyfills.4624ee438d5ded35.js": "25007814791619ac79f778f3f568633ab561f99f",
     "https://phoenixSaket.github.io/analyzer/runtime.a6d0e3738eff28a6.js": "46a070c4e7335f2b65695824582dfe57c603e9f3",
