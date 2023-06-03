@@ -100,6 +100,8 @@ path {
     border-bottom: 1px dashed var(--primary);
     color: var(--primary);
     text-shadow: 1.5px 1.5px var(--light-blue);
+    text-transform: uppercase;
+    font-style: italic;
 }
 
 .text {
@@ -110,12 +112,10 @@ path {
 }
 
 .mobile-container {
-    width: 300px;
+    width: 65%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
-    position: relative;
-    height: 500px;
 }
 
 .mobile-inner {
@@ -128,42 +128,30 @@ path {
 }
 
 .mobile {
-    position: absolute;
-    height: 500px;
     width: auto;
-    left: 0px;
-    z-index: 2;
+    max-width: 100%;
+    height: 100%;
+    max-height: 700px;
 }
 
 .mobile-content {
-    /* width: 350px; */
-    font-size: 20px;
-    text-align: left;
+    width: 35%;
+    text-align: center;
     justify-content: center;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
-.screenshot {
-    z-index: 1;
-    height: 480px;
-    top: 10px;
-    border-radius: 15px;
-    outline: 2px solid black;
-    --multi: 240;
+.text-container.feature {
+    width: calc(100% - 50px);
+    min-width: 300px;
 }
 
-.pwa-section {
-    margin: 5px;
-    width: 100%;
-    font-size: 16px;
-}
-
-.ss-1 {
-    left: 10px;
-}
+/* .text-container .feature-title {
+    border-bottom: unset;
+} */
 
 .button {
     border: none;
@@ -196,7 +184,6 @@ path {
 }
 
 .coffee-container {
-    padding: 30px;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -218,8 +205,7 @@ path {
 
 .right {
     flex-direction: column;
-    gap: 5px;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .mail-link {
@@ -231,13 +217,7 @@ path {
     font-weight: 700;
     font-size: 18px;
     margin-top: 20px;
-}
-
-.line {
-    font-style: italic;
-    text-transform: uppercase;
-    font-size: 18px;
-    word-spacing: 5px;
+    justify-content: center;
 }
 
 .primary {
@@ -246,14 +226,20 @@ path {
     margin-top: 5px;
 }
 
+.coffee-container.feature {
+    width: calc(100% - 60px);
+    min-width: 300px;
+    max-width: 500px;
+}
+
 @media (max-width: 576px) {
     .title {
-        font-size: 2.1rem;
+        font-size: 3.3em;
     }
 
     .content {
         width: 90%;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .coffee-container {
@@ -264,19 +250,22 @@ path {
     .mobile-container {
         width: 100%;
         justify-content: center;
-        margin-bottom: 15px;
+        margin-bottom: 30px;
     }
 
-    .left, .right {
+    .left,
+    .right {
         width: 100%;
-    } 
+    }
 
     .mobile {
-        left: unset;
+        width: calc(100% - 50px);
+        height: auto;
+        max-height: 700px;
     }
 
-    .ss-1 {
-        left: 25%;
+    .mobile-content {
+        width: 100%;
     }
 
     .features-container {
@@ -297,7 +286,7 @@ path {
         justify-content: center;
         width: 100%;
     }
-    
+
     .scetion {
         width: calc(100% - 10px);
     }

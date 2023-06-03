@@ -11,23 +11,23 @@ export class SidebarComponent implements OnInit {
 
   public isOpen: boolean = false;
   public apps: any[] = [];
+  public width: number = window.innerWidth;
 
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit(): void {
-
-    this.data.checkRecents.subscribe((shouldCheck: boolean)=> {
-      if(shouldCheck) {
+    this.data.checkRecents.subscribe((shouldCheck: boolean) => {
+      if (shouldCheck) {
         this.apps = this.data.getRecents();
       }
     });
 
-    if(this.apps.length == 0) {
+    if (this.apps.length == 0) {
       this.apps = [];
       let apps = this.data.getTotalApps();
       for (let index = 0; index < apps.length; index++) {
         const app = apps[index];
-        if(index < 5) {
+        if (index < 5) {
           this.apps.push(app);
         } else {
           break;
@@ -35,7 +35,6 @@ export class SidebarComponent implements OnInit {
       }
       this.data.recents = JSON.parse(JSON.stringify(this.apps));
     }
-
   }
 
   setActive(event: any) {
@@ -43,11 +42,17 @@ export class SidebarComponent implements OnInit {
       element.classList.remove("active");
     });
     event.target.classList.add("active");
+    if (this.width <= 500) {
+      this.isOpen = false;
+    }
   }
 
   selectApp(app: any) {
     this.data.setCurrentApp(app);
     this.data.appSelected.next(true);
     this.router.navigate(["/reviews"]);
+    if (this.width <= 500) {
+      this.isOpen = false;
+    }
   }
 }
