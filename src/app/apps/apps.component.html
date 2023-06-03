@@ -30,7 +30,7 @@
             (click)="startComparing? selectAppForComparing(app) : startDeleting ? selectAppForDeleting(app) : appSelected(app)"
             [ngClass]="{'compare' : startComparing || startDeleting, 'not-comparing': !app.isComparing && !app.isDeleting && (startComparing || startDeleting), 'selected-for-comparing': app.isComparing && startComparing, 'selected-for-deleting': app.isDeleting && startDeleting}">
             <div class="circle-logo shadows">
-                <img class="platform-img" [src]="'/assets/'+ (app.isIOS ? 'apple.png' : 'android.png')" alt="platform">
+                <img class="platform-img" [src]="'assets/'+ (app.isIOS ? 'apple.png' : 'android.png')" alt="platform">
             </div>
             <img [src]="app.app.icon" alt="icon" class="icon shadows">
         </div>
