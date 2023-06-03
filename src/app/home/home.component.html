@@ -58,28 +58,34 @@
         </div>
         <div class="mobile-inner">
             <div class="mobile-container">
-                <img class="mobile"
-                    src="https://raw.githubusercontent.com/phoenixSaket/reviews/main/src/assets/mobile.png"
-                    alt="mobile">
-                <div class="image-container">
-                    <img class="screenshot mobile ss-1" [src]="images[selectedImgIndex]" alt="mobile">
-                </div>
+                <img class="mobile" src="assets/mockup.png" alt="showcase">
             </div>
             <div class="mobile-content">
-                <div class="pwa-section">
-                    Download the Reviews Analyzer Native PWA app
-                </div>
-                <div class="pwa-section">
-                    No updates required
-                </div>
-                <div class="pwa-section">
-                    Stay up to date with the latest and greatest always
-                </div>
-                <div class="pwa-section">
-                    <button class="button" (click)="download('android')">Download Android App</button>
-                </div>
-                <div class="pwa-section">
-                    <button class="button" (click)="download('ios')">Download iOS App Source Code</button>
+                <div class="text-container feature shadows">
+                    <div class="icon shadows material-symbols-outlined">
+                        <span class="material-symbols-outlined">
+                            download
+                        </span>
+                    </div>
+                    <ng-container *ngTemplateOutlet="waveTop"></ng-container>
+                    <div class="feature-title">
+                        Available Everywhere
+                    </div>
+                    <div class="text">
+                        <div class="pwa-section">
+                            Install the Analyzer PWA app
+                        </div>
+                        <div class="pwa-section">
+                            Available on all platforms
+                        </div>
+                        <div class="pwa-section">
+                            No updates required
+                        </div>
+                        <div class="pwa-section">
+                            Stay up to date with the latest and greatest always
+                        </div>
+                    </div>
+                    <ng-container *ngTemplateOutlet="wave"></ng-container>
                 </div>
             </div>
         </div>
@@ -94,28 +100,42 @@
                 <img src="assets/coffee.png" alt="Coffee" class="coffee-image">
             </div>
             <div class="right">
-                <div class="line">
-                    Like what you see ?
-                </div>
-                <div class="line">
-                    Have some thoughts you would like to share ?
-                </div>
-                <div class="line">
-                    Is this tool of helpful to you ?
-                </div>
-                <div class="line primary">
-                    Please reach out to me at to share your thoughts.
-                </div>
-                <div class="line primary">
-                    Or just to buy me a coffee :-)
-                </div>
-                <div class="">
-                    <a class="mail-link" href="mailto:phoenix.review.dashboard@gmail.com">
+                <div class="coffee-container feature shadows">
+                    <div class="icon shadows material-symbols-outlined">
                         <span class="material-symbols-outlined">
-                            mail
+                            contacts
                         </span>
-                        phoenix.review.dashboard@gmail.com
-                    </a>
+                    </div>
+                    <ng-container *ngTemplateOutlet="waveTop"></ng-container>
+                    <div class="feature-title">
+                        Let's get in touch
+                    </div>
+                    <div class="text">
+                        <div class="pwa-section">
+                            Like what you see ?
+                        </div>
+                        <div class="pwa-section">
+                            Have some thoughts you would like to share ?
+                        </div>
+                        <div class="pwa-section">
+                            Is this tool of helpful to you ?
+                        </div>
+                        <div class="pwa-section">
+                            Please reach out to me at to share your thoughts.
+                        </div>
+                        <div class="pwa-section">
+                            Or just to buy me a coffee :-)
+                        </div>
+                        <div class="pwa-section">
+                            <a class="mail-link" href="mailto:phoenix.review.dashboard@gmail.com">
+                                <span class="material-symbols-outlined">
+                                    mail
+                                </span>
+                                Send Mail
+                            </a>
+                        </div>
+                    </div>
+                    <ng-container *ngTemplateOutlet="wave"></ng-container>
                 </div>
             </div>
         </div>

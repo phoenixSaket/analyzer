@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1685782680661,
+  "timestamp": 1685812240297,
   "index": "https://phoenixSaket.github.io/analyzer/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "https://phoenixSaket.github.io/analyzer/favicon.ico",
         "https://phoenixSaket.github.io/analyzer/index.html",
-        "https://phoenixSaket.github.io/analyzer/main.8f579ebff35d5141.js",
+        "https://phoenixSaket.github.io/analyzer/main.f673d15ce018920b.js",
         "https://phoenixSaket.github.io/analyzer/manifest.webmanifest",
         "https://phoenixSaket.github.io/analyzer/polyfills.4624ee438d5ded35.js",
         "https://phoenixSaket.github.io/analyzer/runtime.a6d0e3738eff28a6.js",
@@ -150,6 +150,8 @@
         "https://phoenixSaket.github.io/analyzer/assets/icons/windows11/Wide310x150Logo.scale-150.png",
         "https://phoenixSaket.github.io/analyzer/assets/icons/windows11/Wide310x150Logo.scale-200.png",
         "https://phoenixSaket.github.io/analyzer/assets/icons/windows11/Wide310x150Logo.scale-400.png",
+        "https://phoenixSaket.github.io/analyzer/assets/mockup-2.png",
+        "https://phoenixSaket.github.io/analyzer/assets/mockup.png",
         "https://phoenixSaket.github.io/analyzer/assets/not-found.png"
       ],
       "patterns": []
@@ -164,7 +166,7 @@
     "https://phoenixSaket.github.io/analyzer/assets/apple.png": "c63fba18206dca14439023ec44669018016f4c06",
     "https://phoenixSaket.github.io/analyzer/assets/avatar-1.png": "94595ad2829b5e52ab560c5bec2a0032200facf9",
     "https://phoenixSaket.github.io/analyzer/assets/avatar.png": "e9a0fc9fb10162c0067a88580d5a17241300c911",
-    "https://phoenixSaket.github.io/analyzer/assets/coffee.png": "759641ad622b7c3abef1022cdf078902c1e571c1",
+    "https://phoenixSaket.github.io/analyzer/assets/coffee.png": "3f8a11f53997bd8be7329e091437242c6b774791",
     "https://phoenixSaket.github.io/analyzer/assets/icons/android/android-launchericon-144-144.png": "05727ba883f0cceb2f5803d68c89093ffd803af6",
     "https://phoenixSaket.github.io/analyzer/assets/icons/android/android-launchericon-192-192.png": "2cb9936c10113869b0f5784e8eee00f39d858177",
     "https://phoenixSaket.github.io/analyzer/assets/icons/android/android-launchericon-48-48.png": "f5d25e6f9ac67caf25f9a7a721c7dd1037682fff",
@@ -277,10 +279,12 @@
     "https://phoenixSaket.github.io/analyzer/assets/icons/windows11/Wide310x150Logo.scale-150.png": "97ac046f30893b81a55eb514f69cc5881a5ed74a",
     "https://phoenixSaket.github.io/analyzer/assets/icons/windows11/Wide310x150Logo.scale-200.png": "fcdce0d0c3bcfcb8b6ff747bb281b38bbcac2555",
     "https://phoenixSaket.github.io/analyzer/assets/icons/windows11/Wide310x150Logo.scale-400.png": "f6c81ebd1c488ec00527f3a4e7630e0553fce275",
+    "https://phoenixSaket.github.io/analyzer/assets/mockup-2.png": "1a30c44c4f1360cb16de129a93af849eec39ea5a",
+    "https://phoenixSaket.github.io/analyzer/assets/mockup.png": "6c6211706bb435c46a4a3688657b1af52bdf973c",
     "https://phoenixSaket.github.io/analyzer/assets/not-found.png": "35b81fa1aad4ffd24caf3c305defcd939c32776e",
     "https://phoenixSaket.github.io/analyzer/favicon.ico": "36c851188e5966dba6559292c42479e045fd4160",
-    "https://phoenixSaket.github.io/analyzer/index.html": "7a338fe744d9c3a8c0c6aaf48f4a1633b21a4009",
-    "https://phoenixSaket.github.io/analyzer/main.8f579ebff35d5141.js": "c5e9d4f48b6ef5c7975899050b02f001d100033b",
+    "https://phoenixSaket.github.io/analyzer/index.html": "83e06ba35891d892f68e03ce5d73f34d9bdab8e7",
+    "https://phoenixSaket.github.io/analyzer/main.f673d15ce018920b.js": "3d90d12ea5bb5f519780e252c8ea5c93cbeadfe9",
     "https://phoenixSaket.github.io/analyzer/manifest.webmanifest": "0010a4183fb3b5a23260ddfc211001fbcc970971",
     "https://phoenixSaket.github.io/analyzer/polyfills.4624ee438d5ded35.js": "25007814791619ac79f778f3f568633ab561f99f",
     "https://phoenixSaket.github.io/analyzer/runtime.a6d0e3738eff28a6.js": "46a070c4e7335f2b65695824582dfe57c603e9f3",
