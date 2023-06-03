@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
 
   public isOpen: boolean = false;
   public apps: any[] = [];
-  public width: number = window.innerWidth;
+  public width: number = window.innerWidth || screen.availWidth;
 
   constructor(private data: DataService, private router: Router) { }
 
