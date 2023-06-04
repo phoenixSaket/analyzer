@@ -15,6 +15,8 @@ import {
 } from "ng-apexcharts";
 import { ApexDataLabels, ApexPlotOptions, ApexTheme, ApexYAxis } from 'ng-apexcharts/lib/model/apex-types';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
 
 
 export type ChartOptions = {
@@ -50,7 +52,7 @@ export class ReviewsComponent implements OnInit {
   public histogram: any[] = [];
   public total: number = 0;
 
-  constructor(public data: DataService, private ios: IosService, private android: AndroidService, private router: Router) {
+  constructor(public data: DataService, private ios: IosService, private android: AndroidService, private router: Router, public dialog: MatDialog) {
     this.chartOptions = {
       chart: {
         // width: '100%',
@@ -231,6 +233,16 @@ export class ReviewsComponent implements OnInit {
   openReviews() {
     this.router.navigate(["/app-reviews"]);
     // this.data.isLoading = true;
+  }
+
+  deleteApp() {
+    let temp: any[] = [];
+    let deletingApps: any[] = [this.data.selectedApp];
+
+    const popupRef = this.dialog.open(PopupComponent, { data: deletingApps });
+    popupRef.afterClosed().subscribe(() => {
+      this.router.navigate(["/apps"]);
+    })
   }
 
 }
