@@ -11,9 +11,21 @@ export class SidebarComponent implements OnInit {
 
   public isOpen: boolean = false;
   public apps: any[] = [];
-  public width: number = window.innerWidth || screen.availWidth;
+  public isMobile: boolean = false;
 
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService, private router: Router) {
+    if (navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPad/i)
+      || navigator.userAgent.match(/iPod/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/Windows Phone/i)) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+  }
 
   ngOnInit(): void {
     this.data.checkRecents.subscribe((shouldCheck: boolean) => {
@@ -42,7 +54,7 @@ export class SidebarComponent implements OnInit {
       element.classList.remove("active");
     });
     event.target.classList.add("active");
-    if (this.width <= 500) {
+    if (this.isMobile) {
       this.isOpen = false;
     }
   }
@@ -51,7 +63,7 @@ export class SidebarComponent implements OnInit {
     this.data.setCurrentApp(app);
     this.data.appSelected.next(true);
     this.router.navigate(["/reviews"]);
-    if (this.width <= 500) {
+    if (this.isMobile) {
       this.isOpen = false;
     }
   }
