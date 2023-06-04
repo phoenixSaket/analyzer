@@ -75,3 +75,9 @@ span.material-symbols-outlined {
     display: flex;
     align-items: center;
 }
+
+@media (max-width: 576px) {
+    .primary-btn {
+        padding: 7px 15px;
+    }
+}

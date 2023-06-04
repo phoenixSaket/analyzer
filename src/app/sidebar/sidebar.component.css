@@ -168,6 +168,15 @@
 }
 
 @media (max-width: 576px) {
+    .icon:hover {
+        background-color: var(--light-blue);
+        font-size: 30px;
+    }
+
+    .circle:hover {
+        background-color: var(--light);
+    }
+
     .open {
         width: calc(100% - 10px);
         transition: ease-in-out 300ms;
