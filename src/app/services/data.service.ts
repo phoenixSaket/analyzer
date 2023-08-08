@@ -21,6 +21,7 @@ export class DataService {
   public appsToCompare: any[] = [];
   public recents: any[] = [];
   public checkRecents: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public selectedSentiment: any = {};
 
   constructor(private http: HttpClient, private android: AndroidService, private ios: IosService, public dialog: MatDialog, private snackBar: MatSnackBar) {
   }

@@ -6,6 +6,8 @@ import * as keyword_extractor from "keyword-extractor";
 import { AndroidService } from '../services/android.service';
 import { DataService } from '../services/data.service';
 import { IosService } from '../services/ios.service';
+import { Router } from '@angular/router';
+import { SentimentReviewsComponent } from '../sentiment-reviews/sentiment-reviews.component';
 // import { WordDialogComponent } from '../word-dialog/word-dialog.component';
 
 @Component({
@@ -39,7 +41,8 @@ export class SentimentWordCloudComponent implements OnInit {
     private data: DataService,
     private ios: IosService,
     private android: AndroidService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {
     Chart.register(WordCloudController, WordElement, LinearScale);
   }
@@ -207,12 +210,34 @@ export class SentimentWordCloudComponent implements OnInit {
       const ctx = canvas?.getContext('2d', { willReadFrequently: true });
       let x = new Chart(ctx, {
         type: WordCloudController.id,
-        data: config.data,
+        data: {
+          // text
+          labels: data.map((d) => d.text),
+          datasets: [
+            {
+              label: '',
+              fit: false,
+              maintainAspectRatio: true,
+              // size in pixel
+              data: data.map((d) => (d.number) * (multlipicant)),
+            },
+          ]
+        },
         options: {
+          onClick: (event, elements, chart) => { this.clicked(event, elements, chart) },
+          // onHover(event, elements, chart) {
+          //   console.log(elements);
+          //   console.log(chart);
+          //   console.log(event);
+          // },
           plugins: {
             legend: {
               display: false,
             },
+            title: {
+              text: "Chart",
+              display: false
+            }
           },
           datasets: {
             wordCloud: {
@@ -229,7 +254,7 @@ export class SentimentWordCloudComponent implements OnInit {
                   return "#DC4333"
                 }
               }),
-              showTooltips: false
+              showTooltips: true
             },
           }
         }
@@ -475,6 +500,51 @@ export class SentimentWordCloudComponent implements OnInit {
     link.download = this.selectedApp.app.title + '_sentiment_word_cloud.png';
 
     link.click();
+  }
+
+  clicked(event: any, elements: any, chart: any) {
+    console.log({ event, elements, chart })
+    this.data.selectedSentiment = {}
+    setTimeout(() => {
+      const selected = elements[0]?.element?.text;
+      const selectedIndex = elements[0]?.index;
+      const selectedColor = chart.config._config.options.datasets.wordCloud.color[selectedIndex];
+      let sentiment: string = "";
+  
+      switch (selectedColor) {
+        case "#ababab" || "#ABABAB":
+          sentiment = "Neutral";
+          break;
+        case "#8CA71D" || "#8ca71d":
+          sentiment = "Positive";
+          break;
+        case "#DC4333" || "#dc4333" :
+          sentiment = "Negative";
+          break;
+      }
+  
+      let ratings: number[] = [];
+
+      if(sentiment == "Positive") {
+        ratings = [3, 4, 5];
+      } else if (sentiment == "Negative") {
+        ratings = [1, 2, 3];
+      } else {
+        ratings = [1, 2, 3, 4, 5];
+      }
+
+      this.data.selectedSentiment = {
+        ratings : ratings,
+        keyword: selected,
+        app: this.selectedApp,
+        isComingFrom: 'cloud',
+        sentiment: sentiment
+      }
+      // this.router.navigate(["/sentiment-reviews"]);
+      if(!!selected) {
+        this.dialog.open(SentimentReviewsComponent, { data: this.data.selectedSentiment, width: "90%", height: "81vh" })
+      }
+    }, 300);
   }
 
 }
