@@ -36,6 +36,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { PopupComponent } from './popup/popup.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { SentimentReviewsComponent } from './sentiment-reviews/sentiment-reviews.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { environment } from '../environments/environment';
     SentimentWordCloudComponent,
     DashboardComponent,
     CompareComponent,
-    PopupComponent
+    PopupComponent,
+    SentimentReviewsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Showing {{data.sentiment}} reviews for "{{data.app.app.title}}" containing keyword "{{data.keyword}}"</h1>
+<div mat-dialog-content>
+    <div class="reviews-container reviews-container-sentiment" *ngIf="isIOS">
+        <app-ios *ngFor="let review of reviews" [data]="review"></app-ios>
+    </div>
+    <div class="reviews-container reviews-container-sentiment" *ngIf="!isIOS">
+        <app-android *ngFor="let review of reviews" [data]="review"></app-android>
+    </div>
+</div>
+<div mat-dialog-actions end class="buttons-container">
+    <button mat-button end mat-dialog-close class="primary-btn red">
+        Close
+    </button>
+</div>
