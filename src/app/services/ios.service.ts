@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class IosService {
 
   public url = "https://review-un6v.onrender.com/ios/";
-  public backupUrl = "https://reviews-be.cyclic.app/ios/";
+  public backupUrl = "https://review-un6v.onrender.com/ios/";
 
 
   public iosAppsDefault = ['584785907', '1112137390', '1337168006', '1337166340', '1340456041'];
@@ -36,7 +36,7 @@ export class IosService {
   }
 
   sentimentAnalysis(text: string[]) {
-    let url = "https://sleepy-fox-wrap.cyclic.app/ios/" + "sentiment";
+    let url = "https://review-un6v.onrender.com/ios/" + "sentiment";
     return this.http.post(url, {string: text});
   }
 }

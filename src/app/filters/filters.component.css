@@ -302,6 +302,8 @@
     font-style: italic;
     line-height: 16px;
     font-size: 16px;
+    display: flex;
+    align-items: center;
 }
 
 .selected-label {
@@ -382,6 +384,23 @@
     height: 40px;
     border-radius: 5px;
     border: 2px solid var(--primary);
+}
+
+.display {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    background: #f0f0f0;
+    border: 2px solid var(--primary);
+    transition-duration: 100ms;
+    color: var(--primary);
+    font-weight: 700;
+    /* width: 100%; */
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 576px) {

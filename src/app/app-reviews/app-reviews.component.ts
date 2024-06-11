@@ -22,9 +22,10 @@ export class AppReviewsComponent implements AfterViewInit {
   private isFilterApplied: number = 0;
   
   public versionSorted: any = { sorted: false, type: 'A' };
-  public dateSorted: any = { sorted: false, type: 'A' };
+  public dateSorted: any = { sorted: true, type: 'D' };
   public ratingSorted: any = { sorted: false, type: 'A' };
   private sortingCriteria: any = {};
+  viewStyle: string= "grid";
 
   constructor(public data: DataService, private android: AndroidService, private ios: IosService, private router: Router) { }
 
@@ -450,5 +451,126 @@ export class AppReviewsComponent implements AfterViewInit {
 
   sortFilter(event: any) {
 
+    switch (event) {
+      case 'version':
+        if (this.isIOS) {
+          this.appData.sort((a: any, b: any) => {
+            let aVersion = a['im:version'].label.replaceAll('.', '');
+            let bVersion = b['im:version'].label.replaceAll('.', '');
+
+            if (this.versionSorted.type == 'A') return aVersion - bVersion;
+            else if (this.versionSorted.type == 'D') return bVersion - aVersion;
+
+            return 0;
+          });
+        } else {
+          this.appData.sort((a: any, b: any) => {
+            let aVersion = a.version ? parseInt(a.version).toFixed(2) : '0';
+            let bVersion = b.version ? parseInt(b.version).toFixed(2) : '0';
+
+            if (a.version == '0') {
+              a.version = null;
+            }
+
+            if (b.version == '0') {
+              b.version = null;
+            }
+
+            if (this.versionSorted.type == 'A')
+              return parseInt(aVersion) - parseInt(bVersion);
+            else if (this.versionSorted.type == 'D')
+              return parseInt(bVersion) - parseInt(aVersion);
+
+            return 0;
+          });
+        }
+
+        this.versionSorted.type = this.versionSorted.type == 'A' ? 'D' : 'A';
+        this.versionSorted.sorted = true;
+        this.dateSorted.sorted = false;
+        this.ratingSorted.sorted = false;
+        break;
+      case 'rating':
+        if (this.isIOS) {
+          this.appData.sort((a: any, b: any) => {
+            return this.ratingSorted.type == 'D'
+              ? a['im:rating'].label > b['im:rating'].label
+                ? -1
+                : 1
+              : a['im:rating'].label > b['im:rating'].label
+                ? 1
+                : -1;
+          });
+        } else {
+          this.appData.sort((a: any, b: any) => {
+            return this.ratingSorted.type == 'D'
+              ? a.score > b.score
+                ? -1
+                : 1
+              : a.score > b.score
+                ? 1
+                : -1;
+          });
+        }
+
+        this.ratingSorted.type = this.ratingSorted.type == 'A' ? 'D' : 'A';
+        this.ratingSorted.sorted = true;
+        this.dateSorted.sorted = false;
+        this.versionSorted.sorted = false;
+        break;
+      case 'date':
+        if (this.isIOS) {
+          this.appData.sort((a: any, b: any) => {
+            return this.dateSorted.type == 'D'
+              ? new Date(a.updated.label) > new Date(b.updated.label)
+                ? -1
+                : 1
+              : new Date(a.updated.label) > new Date(b.updated.label)
+                ? 1
+                : -1;
+          });
+        } else {
+          this.appData.sort((a: any, b: any) => {
+            return this.dateSorted.type == 'D'
+              ? new Date(a.date) > new Date(b.date)
+                ? -1
+                : 1
+              : new Date(a.date) > new Date(b.date)
+                ? 1
+                : -1;
+          });
+        }
+
+        this.dateSorted.type = this.dateSorted.type == 'A' ? 'D' : 'A';
+        this.dateSorted.sorted = true;
+        this.ratingSorted.sorted = false;
+        this.versionSorted.sorted = false;
+        break;
+
+      default:
+        break;
+    }
+
+    // switch(event) {
+    //   case "date":
+    //     this.appData.sort((a: any, b: any) => {
+    //       return new Date(a.date) > new Date(b.date) ? 1 : -1
+    //     })
+    //     break;
+    //   case "version":
+    //     this.appData.sort((a: any, b: any)=> {
+    //       return a
+    //     })
+    //     break;
+    //   case "rating":
+    //     break;
+    //   default:
+    //     break;
+    // }
+    
+  }
+
+  viewStyleChanged(event: string) {
+    this.viewStyle = event;
   }
 }

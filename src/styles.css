@@ -101,3 +101,9 @@ mark.highlight {
     display: flex;
     gap: 10px;
 }
+
+@media (max-width: 576px) {
+    .cdk-overlay-pane {
+        max-width: 96dvw !important;
+    }
+}

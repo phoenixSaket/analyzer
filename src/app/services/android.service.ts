@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AndroidService {
 
   public url = "https://review-un6v.onrender.com/android/";
-  public backupUrl = "https://reviews-be.cyclic.app/android/";
+  public backupUrl = "https://review-un6v.onrender.com/android/";
 
   // public url = "https://reviews-be.cyclic.app/android/";
   // public backupUrl = "https://review-un6v.onrender.com/android/";
@@ -50,7 +50,7 @@ export class AndroidService {
   }
 
   sentimentAnalysis(text: string[]) {
-    let url = "https://sleepy-fox-wrap.cyclic.app/android/" + "sentiment";
+    let url = "https://review-un6v.onrender.com/ios/" + "sentiment";
     return this.http.post(url, { string: text });
   }
 }

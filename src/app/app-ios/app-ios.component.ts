@@ -7,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AppIosComponent implements OnInit {
 
-  @Input() data: any = {};
+  @Input() data: any = {};  
+  @Input() view: string;
   public rating: any[] = [];
   constructor() { }
 
