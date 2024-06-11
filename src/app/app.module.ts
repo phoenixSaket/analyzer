@@ -37,6 +37,7 @@ import { PopupComponent } from './popup/popup.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SentimentReviewsComponent } from './sentiment-reviews/sentiment-reviews.component';
+import { GenAiComponent } from './gen-ai/gen-ai.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { SentimentReviewsComponent } from './sentiment-reviews/sentiment-reviews
     DashboardComponent,
     CompareComponent,
     PopupComponent,
-    SentimentReviewsComponent
+    SentimentReviewsComponent,
+    GenAiComponent
   ],
   imports: [
     BrowserModule,

@@ -12,13 +12,18 @@
     width: calc(100% - 20px);
     background-color: #f2f2f2ab;
     margin: 20px 0;
-    border-radius: 10px 10px 0 0;
+    border-radius: 12px;
     position: relative;
+    min-height: calc(100vh - 40px);
 }
 
 .home,
 .introduction {
     min-height: calc(100vh - 40px);
+}
+
+svg {
+    border-radius: 12px;
 }
 
 .center {
@@ -33,6 +38,16 @@
     text-transform: uppercase;
     border-bottom: 3px solid var(--primary);
     text-shadow: 4px 4px var(--light-blue);
+    margin-bottom: 4rem;
+}
+
+.home .title {
+    margin-bottom: 1rem;
+}
+
+.home .subtitle {
+    font-size: 1.5rem;
+    color: var(--primary);
 }
 
 .subtitle {
@@ -83,6 +98,12 @@
     min-width: 300px;
     background-color: #ffffff;
     cursor: default;
+    border-radius: 12px;
+    transition-duration: 200ms;
+}
+
+.features-container .feature:hover {
+    transform: scale(1.10);
 }
 
 path {
@@ -149,9 +170,9 @@ path {
     min-width: 300px;
 }
 
-/* .text-container .feature-title {
-    border-bottom: unset;
-} */
+.svg {
+    filter: blur(4px);
+}
 
 .button {
     border: none;
@@ -218,6 +239,11 @@ path {
     font-size: 18px;
     margin-top: 20px;
     justify-content: center;
+    transition-duration: 200ms;
+}
+
+.mail-link:hover {
+    transform: scale(1.2);
 }
 
 .primary {
@@ -293,5 +319,13 @@ path {
 
     .container {
         align-items: center;
+    }
+
+    .features-container .feature:hover {
+        transform: none;
+    }
+
+    .mail-link:hover {
+        transform: none;
     }
 }

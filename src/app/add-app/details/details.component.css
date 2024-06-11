@@ -67,6 +67,12 @@
 
 .title {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title .left {
+    display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
@@ -85,6 +91,8 @@
     display: flex;
     gap: 20px;
     align-items: center;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
 }
 
 .link {
@@ -184,4 +192,65 @@
     border-radius: 0;
     font-size: unset;
     font-weight: 700;
+}
+
+.primary-button {
+    padding: 16px;
+    background-color: var(--primary);
+    outline: none;
+    border: none;
+    border-radius:  8px;
+    display: flex;
+    color: var(--white);
+    justify-content: space-between;
+    width: max-content;
+    align-items: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-style: italic;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon {
+    position: unset;
+    top: unset;
+    right: unset;
+    background-color: unset;
+    color: var(--white);
+    font-size: 30px;
+}
+
+@media (max-width: 576px) {
+    .title {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .add-app, .genre {
+        width: 100%;
+    }
+
+    .primary-button {
+        width: 100%;
+        justify-content: center;
+        padding: 8px;
+    }
+
+    .mix-container > .w-50 {
+        width: 100%;
+        padding: 10px 0;
+    } 
+    
+    .genre, .description {
+        padding: 10px 0;
+    }
+
+    .link {
+        flex-wrap: nowrap;
+    }
 }

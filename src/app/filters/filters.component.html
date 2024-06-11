@@ -96,7 +96,15 @@
                     </span>
                     Sort
                 </div>
-                <div class="label">{{selectedSort ? sortValue : 'Sort'}}</div>
+                <div class="label">
+                    {{selectedSort ? sortValue : 'Sort'}}
+                    <span class="material-symbols-outlined" *ngIf="selectedSort && getArrow() == 'down'">
+                        arrow_upward
+                    </span>
+                    <span class="material-symbols-outlined" *ngIf="selectedSort && getArrow() == 'up'">
+                        arrow_downward
+                    </span>
+                </div>
                 <div class="chevron">
                     <span class="material-symbols-outlined" *ngIf="expandSort">
                         expand_less
@@ -108,10 +116,19 @@
             </div>
             <div class="options" *ngIf="expandSort">
                 <div class="option" (click)="sortChange(sort.value)" *ngFor="let sort of sortingArray">
-                    {{sort.text}}
+                    {{sort.text}} 
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="display">
+        <span class="material-symbols-outlined" *ngIf="displayStyle == 'grid'" (click)="changeViewPattern('list')">
+            grid_view
+        </span>
+        <span class="material-symbols-outlined" *ngIf="displayStyle == 'list'" (click)="changeViewPattern('grid')">
+            view_list
+        </span>
     </div>
 </div>
 

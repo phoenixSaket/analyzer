@@ -1,15 +1,25 @@
 <h2 mat-dialog-title class="title">
-    <img [src]="data.icon" alt="logo" class="logo shadows">
-    <div class="text">
-        <div class="text-line">
-            {{data.title}}
+    <div class="left">
+        <img [src]="data.icon" alt="logo" class="logo shadows">
+        <div class="text">
+            <div class="text-line">
+                {{data.title}}
+            </div>
+            <div class="text-line small italic">
+                {{data.appId}}
+            </div>
+            <div class="text-line small italic">
+                {{data.developer}}
+            </div>
         </div>
-        <div class="text-line small italic">
-            {{data.appId}}
-        </div>
-        <div class="text-line small italic">
-            {{data.developer}}
-        </div>
+    </div>
+    <div class="add-app">
+        <button class="primary-button" (click)="addApp()">
+            <span class="icon material-symbols-outlined">
+                add
+            </span>
+            Add App
+        </button>
     </div>
 </h2>
 <mat-dialog-content>
@@ -95,13 +105,13 @@
                     </span>
                 </div>
             </div>
-            <div class="w-50 simple-box">
-                <div class="genre" *ngFor="let genre of data.genres">
+            <div class="w-50 simple-box" *ngIf="data.genres?.length > 0">
+                <div class="genre">
                     <div class="heading">
-                        Genre
+                        Genre(s)
                     </div>
                     <div class="line">
-                        {{genre}}
+                        {{data.genres?.join(', ')}}
                     </div>
                 </div>
             </div>

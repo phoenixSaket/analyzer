@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AppAndroidComponent implements OnInit {
 
   @Input() data: any = {};
+  @Input() view: string;
   public rating: any[] = [];
 
   constructor() { }

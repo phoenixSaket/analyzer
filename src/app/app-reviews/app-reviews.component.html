@@ -1,14 +1,12 @@
 <div class="container">
-    <app-filters [isIOS]="isIOS" [title]="title" [logo]="logo" [versions]="versions" [years]="years" [versionSorted]="" [dateSorted]=""
-        [ratingSorted]="" (searchKeyword)="searchSort($event)" (version)="versionFilter($event)"
-        (year)="yearFilter($event)" (ratingFilter)="ratingFilter($event)" (sortBy)="sortFilter($event)"></app-filters>
+    <app-filters [isIOS]="isIOS" [title]="title" [logo]="logo" [versions]="versions" [years]="years" [versionSorted]="versionSorted" [dateSorted]="dateSorted"
+        [ratingSorted]="ratingSorted" (searchKeyword)="searchSort($event)" (version)="versionFilter($event)"
+        (year)="yearFilter($event)" (ratingFilter)="ratingFilter($event)" (sortBy)="sortFilter($event)" (viewStyle)="viewStyleChanged($event)"></app-filters>
     <div class="android apps" *ngIf="!platform">
-        <div class="app" *ngFor="let data of appData">
-            <app-android [data]="data"></app-android>
-        </div>
+        <app-android *ngFor="let data of appData" [view]="viewStyle" [ngClass]="viewStyle == 'list' ? 'w-100' : ''" [data]="data"></app-android>
     </div>
     <div class="ios apps" *ngIf="platform">
-        <app-ios *ngFor="let data of appData" [data]="data"></app-ios>
+        <app-ios [view]="viewStyle" [ngClass]="viewStyle == 'list' ? 'w-100' : ''" *ngFor="let data of appData" [data]="data"></app-ios>
     </div>
 </div>
 

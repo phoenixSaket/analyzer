@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PointStyle } from 'chart.js';
 
 @Component({
   selector: 'app-filters',
@@ -10,7 +11,7 @@ export class FiltersComponent implements OnInit {
   @Input() versions: any[] = [];
   @Input() years: any[] = [];
   @Input() versionSorted: any = { sorted: false, type: 'A' };
-  @Input() dateSorted: any = { sorted: false, type: 'A' };
+  @Input() dateSorted: any = { sorted: true, type: 'D' };
   @Input() ratingSorted: any = { sorted: false, type: 'A' };
   @Input() title: string = "";
   @Input() logo: string = "";
@@ -21,6 +22,7 @@ export class FiltersComponent implements OnInit {
   @Output() year: EventEmitter<string> = new EventEmitter<string>();
   @Output() ratingFilter: EventEmitter<any> = new EventEmitter<any>();
   @Output() sortBy: EventEmitter<string> = new EventEmitter<string>();
+  @Output() viewStyle: EventEmitter<string> = new EventEmitter<string>();
 
   public showFilters: boolean = screen.width > 500 ? true : false;
   public showFilterButton: boolean = screen.width < 500 ? true : false;
@@ -43,6 +45,7 @@ export class FiltersComponent implements OnInit {
   public expandVersion: boolean = false;
   public expandYear: boolean = false;
   public expandSort: boolean = false;
+  displayStyle: string = "grid";
 
   // Selected Values
 
@@ -130,6 +133,23 @@ export class FiltersComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  changeViewPattern(style: string) {
+    this.displayStyle = style;
+    this.viewStyle.emit(style);
+  }
+
+  getArrow(): string {
+    let r: string = "up";
+    if(this.versionSorted.sorted) {
+      r = this.versionSorted.type == "A" ? 'up': 'down';
+    } else if (this.ratingSorted.sorted) {
+      r = this.ratingSorted.type == "A" ? 'up': 'down';
+    } else if (this.dateSorted.sorted) {
+      r = this.dateSorted.type == "A" ? 'up': 'down';
+    }
+    return r;
   }
 
 }

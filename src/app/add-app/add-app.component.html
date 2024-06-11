@@ -1,11 +1,11 @@
 <div class="container">
     <div class="top">
-
         <form class="form" (submit)="searchApp($event)">
             <div class="platform">
                 <!-- <mat-radio-group class="radio-button-container"> -->
                 <!-- <mat-radio-button class="example-radio-button" (change)="checked(platform)" -->
-                <div class="plat shadows" *ngFor="let platform of platforms" [value]="platform" (click)="checked(platform)">
+                <div class="plat shadows" *ngFor="let platform of platforms" [value]="platform"
+                    (click)="checked(platform)">
                     <span class="material-symbols-outlined " *ngIf="selectedPlatform == platform">
                         <span class="dot"></span>
                     </span>
@@ -17,17 +17,19 @@
                 <!-- </mat-radio-group> -->
             </div>
 
-            <input class="search shadows" value="" placeholder="Search by App Name" (change)="inputApp($event)">
-            <button class="primary-button shadows">
-                <span class="white">Search</span>
-                <span class="material-symbols-outlined search-text white">
-                    search
-                </span></button>
+            <div class="search-box">
+                <input class="search shadows" value="" placeholder="Search by App Name" (change)="inputApp($event)">
+                <button class="primary-button shadows">
+                    <!-- <span class="white">Search</span> -->
+                    <span class="material-symbols-outlined search-text white">
+                        search
+                    </span></button>
+            </div>
         </form>
 
     </div>
 
-    <div class="results">
+    <div class="results" *ngIf="apps?.length > 0">
         <div class="apps" *ngFor="let app of apps">
             <div class="app shadows">
                 <div class="icon-add shadows material-symbols-outlined" (click)="addApp(app)">
