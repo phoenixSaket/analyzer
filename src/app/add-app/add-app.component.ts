@@ -35,6 +35,10 @@ export class AddAppComponent implements OnInit {
     if (!!event) {
       event.preventDefault();
     }
+    if((event == null || event == undefined) && this.appName.length <= 0) {
+      return;
+    }
+    this.data.isLoading = false;
     let term: string = this.appName;
     const num: number = 20;
     const lang: string = "";

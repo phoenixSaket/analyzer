@@ -1,0 +1,47 @@
+<div class="container shadow">
+    <div class="top-container">
+        <div class="dropdown-container shadows">
+            <div class="top" (click)="toggler()">
+                <div class="label">{{isSelected ? appValue : 'Select App'}}</div>
+                <div class="chevron">
+                    <span class="material-symbols-outlined" *ngIf="expand">
+                        expand_less
+                    </span>
+                    <span class="material-symbols-outlined" *ngIf="!expand">
+                        expand_more
+                    </span>
+                </div>
+            </div>
+            <div class="options" *ngIf="expand">
+                <div class="option" (click)="appSelected(app, false)" *ngFor="let app of apps">
+                    {{app.app.title}}
+                    <span class="platform">{{app.isIOS ? 'IOS' : 'Android'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="center-container">
+        <h1>How to use AI Chat Tools</h1>
+
+        <ol class="lines">
+            <li class="line">Add an app if not added already.</li>
+            <li class="line">Need to add an app?  <span class="link" (click)="addApp()">Click here to add an app.</span></li>
+            <li class="line">Select the app from the app selector at the top.</li>
+            <li class="line">Wait for the chat to be initailized.</li>
+            <li class="line">You are all set. Continue your discussion with your AI buddy.</li>
+        </ol>
+    </div>
+
+    <div class="bottom-container">
+        <div class="message-box shadows">
+            <input type="text" placeholder="Enter your message" class="prompt" (change)="promptInput($event)" (keypress.enter)="promptInput($event, 'enter')">
+            <button class="submit shadows">
+                <span class="btn-text">Send</span>
+                <span class="icon material-symbols-outlined">
+                    send
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
