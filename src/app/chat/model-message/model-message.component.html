@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="message shadow" *ngIf="!hideOriginalMessage" #messageRef [innerHTML]="message"></div>
+    <div class="message shadow" *ngIf="hideOriginalMessage">
+        Sure!<br>
+        Let's discuss about {{app.appName}}&nbsp;{{app.isIOS ? '(IOS)': '(Android)'}}.<br>
+        To give you a head start, there are some predefined chat starters present below.<br>
+        You can write your own chat as well.<br><br>
+        Let's get started.
+    </div>
+    <div class="copy-container">
+        <div class="copy" *ngIf="!hideOriginalMessage" (click)="copy(messageRef)">
+            <mat-icon><span class="material-symbols-outlined">
+                content_copy
+                </span></mat-icon>
+            Copy
+        </div>
+    </div>
+</div>

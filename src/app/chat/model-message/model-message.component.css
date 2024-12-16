@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: inherit;
+}
+
+.message {
+    width: max-content;
+    max-width: 100%;
+    text-align: left;
+    padding: 16px 32px;
+    background-color: #d5e5fb;
+    color: var(--graph);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.copy-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.copy {
+    padding: 12px 20px;
+    background-color: var(--secondary);
+    color: var(--white);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition-duration: 200ms;
+}
+
+.copy:hover {
+    background-color: var(--primary);
+}

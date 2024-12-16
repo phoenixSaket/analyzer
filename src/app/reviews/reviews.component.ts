@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AndroidService } from '../services/android.service';
 import { DataService } from '../services/data.service';
 import { IosService } from '../services/ios.service';
@@ -7,16 +7,15 @@ import {
   ApexAxisChartSeries,
   ApexChart,
   ApexXAxis,
-  ApexTitleSubtitle,
   ApexNonAxisChartSeries,
   ApexResponsive,
-  ApexStroke,
-  ApexFill
 } from "ng-apexcharts";
 import { ApexDataLabels, ApexPlotOptions, ApexTheme, ApexYAxis } from 'ng-apexcharts/lib/model/apex-types';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
+import { GenerativeService, platform, promptKeywords } from '../services/generative.service';
+import * as showdown from 'showdown';
 
 
 export type ChartOptions = {
@@ -52,7 +51,32 @@ export class ReviewsComponent implements OnInit {
   public histogram: any[] = [];
   public total: number = 0;
 
-  constructor(public data: DataService, private ios: IosService, private android: AndroidService, private router: Router, public dialog: MatDialog) {
+  genAI = {
+    latestReviewLoading: true,
+    latestReview: "",
+    issuesLoading: true,
+    issues: "",
+    improvementsLoading: true,
+    improvements: "",
+    summaryLoading: true,
+    summary: "" 
+  };
+
+  expand = {
+    issues: false,
+    improvements: false,
+    summary: false,
+    latestReview: false
+  };
+
+  constructor(
+    public data: DataService, 
+    private ios: IosService, 
+    private android: AndroidService, 
+    private router: Router, 
+    public dialog: MatDialog,
+    private generative: GenerativeService
+  ) {
     this.chartOptions = {
       chart: {
         // width: '100%',
@@ -147,6 +171,7 @@ export class ReviewsComponent implements OnInit {
     try {
       this.data.appSelected.subscribe((newAppSelected: boolean) => {
         if (newAppSelected) {
+          this.resetValues();
           let app = this.data.selectedApp;
           this.data.isLoading = true;
           if (!!app) {
@@ -182,8 +207,7 @@ export class ReviewsComponent implements OnInit {
                     this.data.isLoading = false;
                   }, 100);
                 })
-              })
-
+              });
             } else {
               this.android.getApp(app.appId).subscribe((resp: any) => {
                 this.appData = JSON.parse(resp.result);
@@ -218,21 +242,75 @@ export class ReviewsComponent implements OnInit {
                   this.data.isLoading = false;
                 }, 100);
               });
-
             }
           }
+          this.getGenAiData(app);
         } else {
           this.router.navigate(["/"]);
         }
       });
     } catch (err: any) {
+      console.log("ReviewsComponent.ngOnInit caught an error:", err);
     }
+  }
 
+  resetValues() {
+    this.genAI = {
+      latestReviewLoading: true,
+      latestReview: "",
+      issuesLoading: true,
+      issues: "",
+      improvementsLoading: true,
+      improvements: "",
+      summaryLoading: true,
+      summary: "" 
+    };
+  
+    this.expand = {
+      issues: false,
+      improvements: false,
+      summary: false,
+      latestReview: false
+    };
+  }
+
+  getGenAiData(app: any) {
+    const keywords = promptKeywords;
+
+    keywords.forEach((key: string) => {
+      this.generative.getSummaryV2(key, app.appId, "", app.isIOS ? platform.ios : platform.android).subscribe((response: any) => {
+        switch (key) {
+          case "summary":
+            this.genAI.summary = this.formatContent(response.message);
+            this.genAI.summaryLoading = false;
+            break;
+          case "issues":
+            this.genAI.issues = this.formatContent(response.message);
+            this.genAI.issuesLoading = false;
+            break;
+          case "improvements":
+            this.genAI.improvements = this.formatContent(response.message);
+            this.genAI.improvementsLoading = false;
+            break;
+          case "latest":
+            this.genAI.latestReview = this.formatContent(response.message);
+            this.genAI.latestReviewLoading = false;
+            break; 
+          default:
+            break;
+        };
+      });
+    })
+  }
+
+  formatContent(content: string): string {
+    const converter = new showdown.Converter();
+    const html = converter.makeHtml(content);
+    return html;
   }
 
   openReviews() {
     this.router.navigate(["/app-reviews"]);
-    // this.data.isLoading = true;
   }
 
   deleteApp() {
@@ -243,6 +321,25 @@ export class ReviewsComponent implements OnInit {
     popupRef.afterClosed().subscribe(() => {
       this.router.navigate(["/apps"]);
     })
+  }
+
+  expandContent(type: string) {
+    switch (type) {
+      case "issues":
+        this.expand.issues = !this.expand.issues;
+        break;
+      case "improvements":
+        this.expand.improvements = !this.expand.improvements;
+        break;
+      case "summary":
+        this.expand.summary = !this.expand.summary;
+        break;
+      case "latestReview":
+        this.expand.latestReview = !this.expand.latestReview;
+        break;
+      default:
+        break;
+    }
   }
 
 }

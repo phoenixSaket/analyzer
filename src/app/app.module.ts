@@ -38,6 +38,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SentimentReviewsComponent } from './sentiment-reviews/sentiment-reviews.component';
 import { GenAiComponent } from './gen-ai/gen-ai.component';
+import { ChatComponent } from './chat/chat.component';
+import { UserMessageComponent } from './chat/user-message/user-message.component';
+import { ModelMessageComponent } from './chat/model-message/model-message.component';
+import { MiniLoaderComponent } from './mini-loader/mini-loader.component';
 
 
 @NgModule({
@@ -61,7 +65,11 @@ import { GenAiComponent } from './gen-ai/gen-ai.component';
     CompareComponent,
     PopupComponent,
     SentimentReviewsComponent,
-    GenAiComponent
+    GenAiComponent,
+    ChatComponent,
+    UserMessageComponent,
+    ModelMessageComponent,
+    MiniLoaderComponent
   ],
   imports: [
     BrowserModule,

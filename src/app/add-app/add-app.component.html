@@ -36,14 +36,14 @@
                     add
                 </div>
                 <div class="icon">
-                    <img [src]="app.icon" class="img">
+                    <img [src]="app.icon" class="img" (error)="src =+ '.jpg'">
                 </div>
                 <div class="details">
                     <div class="name">{{app.title}}</div>
                     <div class="id">{{app.appId}}</div>
                     <div class="developer">{{app.developer}}</div>
                     <div class="developer" *ngIf="platform == 'IOS'">{{app.genres.join(", ")}}</div>
-                    <div class="score">{{app.score.toFixed(2)}} / 5</div>
+                    <div class="score" *ngIf="!!app?.score">{{app.score?.toFixed(2)}} / 5</div>
                     <div class="open" (click)="openApp(app)">
                         <span class="material-symbols-outlined bold">
                             info
