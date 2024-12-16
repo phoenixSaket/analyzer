@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="center-container">
+    <div class="center-container" *ngIf="!isAppSelected">
         <h1>How to use AI Chat Tools</h1>
 
         <ol class="lines">
@@ -33,15 +33,28 @@
         </ol>
     </div>
 
-    <div class="bottom-container">
+    <div class="messages" id="messages" *ngIf="history?.length > 0">
+        <div class="message" *ngFor="let message of history; let i = index;">
+            <app-user-message class="w-75" *ngIf="message.role == 'user'" [message]="message.parts[0].text" [hideOriginalMessage]="i == 0" [app]="selectedApp"></app-user-message>
+            <app-model-message class="w-75" *ngIf="message.role == 'model'" [message]="message.parts[0].text" [hideOriginalMessage]="i == 1" [app]="selectedApp"></app-model-message>
+        </div>
+    </div>
+
+    <div class="message-box-container">
+        <app-loader *ngIf="loading"></app-loader>
+        <div class="pre-defined" *ngIf="isAppSelected">
+            <div class="prompt-input pre-defined-prompt" *ngFor="let prompt of preDefinedPrompts" (click)="changePrompt(prompt)">
+                {{prompt}}
+            </div>
+        </div>
         <div class="message-box shadows">
-            <input type="text" placeholder="Enter your message" class="prompt" (change)="promptInput($event)" (keypress.enter)="promptInput($event, 'enter')">
-            <button class="submit shadows">
+            <input matInput placeholder="Enter your message" class="prompt" name="prompt" id="prompt" type="text" name="prompt" [value]="message" (keydown)="promptInput($event)" autocomplete="off">
+            <button class="send-btn" mat-raised-button color="primary" type="button" [ngClass]="{'disabled': isButtonDisabled}" [disabled]="isButtonDisabled" (click)="sendMessage()">
                 <span class="btn-text">Send</span>
                 <span class="icon material-symbols-outlined">
                     send
                 </span>
             </button>
-        </div>
+        </div>    
     </div>
 </div>

@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --output-path docs --base-href /analyzer/"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +29,7 @@
     "keyword-extractor": "^0.0.25",
     "ng-apexcharts": "^1.7.5",
     "rxjs": "~7.5.0",
+    "showdown": "^2.1.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

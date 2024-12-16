@@ -18,6 +18,8 @@
     --gray: #d9d9d9;
     --text: #323232;
     --section-bg: #f2f2f2ab;
+    --green: #56B3B3;
+    --red: #ef626c;
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-label {
@@ -107,4 +109,16 @@ mark.highlight {
     .cdk-overlay-pane {
         max-width: 96dvw !important;
     }
+}
+
+.send-btn .mat-button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.content-html,  app-model-message .message > * {
+    width: 100% !important;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
 }

@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   constructor(public data: DataService) { }
 
   ngOnInit(): void {
-    this.rotator();
+    // this.rotator();
   }
 
   rotator() {

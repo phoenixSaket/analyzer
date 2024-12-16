@@ -103,6 +103,49 @@
             </div>
         </div>
     </div>
+
+    <div class="content box green">
+        <div class="content-title">GEN AI Helpers</div>
+        <div class="content-subtitle">
+            Click on the below tiles to view the corresponsing details using AI.
+        </div>
+    </div>
+
+    <div class="ai-summary">
+
+        <div [ngClass]="expand.summary ? 'w-100' : 'w-25'" (click)="expandContent('summary')">
+            <div class="box box-ai shadows" [ngClass]="expand.summary ? 'expanded': 'not-expanded'">
+                <app-mini-loader *ngIf="genAI.summaryLoading"></app-mini-loader>
+                <div class="title">Summary</div>
+                <div class="content-html" *ngIf="expand.summary" [innerHTML]="genAI.summary"></div>
+            </div>
+        </div>
+
+        <div [ngClass]="expand.latestReview ? 'w-100' : 'w-25'" (click)="expandContent('latestReview')">
+            <div class="box box-ai shadows" [ngClass]="expand.latestReview ? 'expanded': 'not-expanded'">
+                <app-mini-loader *ngIf="genAI.latestReviewLoading"></app-mini-loader>
+                <div class="title">Latest Reviews</div>
+                <div class="content-html" *ngIf="expand.latestReview" [innerHTML]="genAI.latestReview"></div>
+            </div>
+        </div>
+
+        <div [ngClass]="expand.issues ? 'w-100' : 'w-25'" (click)="expandContent('issues')">
+            <div class="box box-ai shadows" [ngClass]="expand.issues ? 'expanded': 'not-expanded'">
+                <app-mini-loader *ngIf="genAI.issuesLoading"></app-mini-loader>
+                <div class="title">Issues</div>
+                <div class="content-html" *ngIf="expand.issues" [innerHTML]="genAI.issues"></div>
+            </div>
+        </div>
+
+        <div [ngClass]="expand.improvements ? 'w-100' : 'w-25'" (click)="expandContent('improvements')">
+            <div class="box box-ai shadows" [ngClass]="expand.improvements ? 'expanded': 'not-expanded'">
+                <app-mini-loader *ngIf="genAI.improvementsLoading"></app-mini-loader>
+                <div class="title">Improvements</div>
+                <div class="content-html" *ngIf="expand.improvements" [innerHTML]="genAI.improvements"></div>
+            </div>
+        </div>
+
+    </div>
     <div class="screenshots">
         <img class="ss-img shadows" [src]="ss" alt="screenshot" *ngFor="let ss of appData.screenshots">
     </div>

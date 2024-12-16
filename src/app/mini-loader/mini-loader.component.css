@@ -1,93 +1,9 @@
-/* .preloader {
-    position: absolute;
-    top: 0;
-    left: 0;
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-    flex-direction: column;
-}
-
-.text {
-    color: var(--action-primary-color);
-    font-size: 1.5rem;
-}
-
-.preloader__box {
-    --action-primary-color: #4B5981;
-    --alert-watched-color: #56b3b3;
-    --warning-new-color: #E49273;
-    width: 300px;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-
-    span {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        position: absolute;
-        border: 2px solid #fff;
-        pointer-events: none;
-        animation: preloader 1.5s linear infinite;
-
-        &:nth-of-type(1) {
-            border-radius: 48% 52% 68% 32% / 46% 40% 60% 54%;
-            box-shadow: 0px 0px 10px 0px var(--action-primary-color),
-                inset 0px 0px 10px 0px var(--action-primary-color);
-        }
-
-        &:nth-of-type(2) {
-            animation-direction: reverse;
-            border-radius: 27% 73% 64% 36% / 69% 39% 61% 31%;
-            box-shadow: 0px 0px 10px 0px var(--alert-watched-color),
-                inset 0px 0px 10px 0px var(--alert-watched-color);
-        }
-
-        &:nth-of-type(3) {
-            animation-duration: 3s;
-            border-radius: 58% 42% 30% 70% / 38% 59% 41% 62%;
-            box-shadow: 0px 0px 10px 0px var(--warning-new-color),
-                inset 0px 0px 10px 0px var(--warning-new-color);
-        }
-    }
-}
-
-@keyframes preloader {
-	0% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(360deg);
-	}
-} */
-
-
-
-/* ------------------------------- NEW --------------------------------- */
-
 .loading {
-    position: absolute;
-    top: 0;
-    left: 0;
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-    flex-direction: column;
-    
-    height: 100vh;
-    width: 100%;
+    width: inherit;
+    height: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: hsl(220deg 29% 90% / 50%);
 }
 
 .pl {
